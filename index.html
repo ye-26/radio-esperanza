@@ -128,16 +128,14 @@
     
     @media (prefers-reduced-motion: reduce) {
       .tab-content.active { animation: none; }
-      .tab-btn, .badge-live .dot { transition: none; animation: none; }
+      .tab-btn, .badge-live.online .dot { transition: none; animation: none; }
     }
 
-    /* Indicador En Transmisión */
+    /* --- Indicador En Transmisión / Fuera de Línea --- */
     .badge-live {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 0, 85, 0.15);
-      color: #ff0055;
       padding: 5px 12px;
       border-radius: 20px;
       font-size: 0.75rem;
@@ -145,14 +143,33 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 15px;
+      transition: background 0.4s, color 0.4s;
     }
 
     .badge-live .dot {
       width: 7px;
       height: 7px;
-      background-color: #ff0055;
       border-radius: 50%;
+    }
+
+    /* Estado 🟣 EN TRANSMISIÓN */
+    .badge-live.online {
+      background: rgba(144, 0, 255, 0.15);
+      color: #c893ff;
+    }
+    .badge-live.online .dot {
+      background-color: #c893ff;
       animation: pulse 1.5s infinite;
+    }
+
+    /* Estado ⚫ FUERA DE LÍNEA */
+    .badge-live.offline {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+    }
+    .badge-live.offline .dot {
+      background-color: var(--text-secondary);
+      animation: none; /* Sin animación de latido */
     }
 
     @keyframes pulse {
@@ -311,7 +328,7 @@
         gap: 1px; 
       }
       .tab-btn { 
-        font-size: 0.65rem; /* Letra más pequeña para que quepa en móviles */
+        font-size: 0.65rem;
         padding: 8px 4px; 
         letter-spacing: -0.2px;
       }
@@ -319,7 +336,7 @@
       .station-title { font-size: 1.4rem; }
       .station-subtitle { font-size: 0.85rem; }
       
-      .player-mask { width: 62%; } /* Ligeramente más ancha para proteger el reloj */
+      .player-mask { width: 62%; }
       .clock-in-mask { font-size: 0.85rem; }
     }
   </style>
@@ -344,8 +361,9 @@
     <!-- PESTAÑA 1: INICIO / REPRODUCTOR -->
     <div id="home" class="tab-content active">
 
-      <div class="badge-live">
-        <span class="dot"></span> En Transmisión
+      <!-- Indicador Dinámico (Su clase "online" / "offline" se gestiona por JavaScript) -->
+      <div id="status-badge" class="badge-live online">
+        <span class="dot"></span> <span id="status-text">En Transmisión</span>
       </div>
 
       <h1 class="station-title">Radio Esperanza</h1>
@@ -361,7 +379,7 @@
             </div>
           </div>
 
-          <!-- REPRODUCTOR (Mantiene su funcionalidad interactiva al 100%) -->
+          <!-- REPRODUCTOR -->
           <div data-type="newStreamPlayer" 
                data-publicToken="c77b0829-2cab-4c7e-8644-4ff95792c3be" 
                data-theme="dark" 
@@ -384,10 +402,11 @@
         <h3>Horarios de Transmisión <span id="tz-indicator" style="font-size: 0.75rem; color: var(--text-secondary); font-weight: normal; display: block;"></span></h3>
         
         <div id="schedule-container">
-          <div class="schedule-item"><strong>Domingos a Viernes - 08:00 AM:</strong> Mañana de Bendición</div>
-          <div class="schedule-item"><strong>Domingos a Viernes - 03:00 PM:</strong> Tardes de Alabanza</div>
-          <div class="schedule-item"><strong>Sábados - 07:00 PM:</strong> Especiales Musicales en Vivo</div>
-          <div class="schedule-item"><strong>Domingos - 10:00 AM:</strong> Transmisión Especial Dominical</div>
+          <!-- Se llena automáticamente con el JS --> 
+          <div class="schedule-item"><strong>Domingos a Viernes - 07:00 PM:</strong> Anochecer con Cristo</div>
+          <div class="schedule-item"><strong></strong></div>
+          <div class="schedule-item"><strong>Sábados - 05:30 PM:</strong> Especiales Musicales en Vivo</div>
+          <div class="schedule-item"><strong></strong></div>
         </div>
         
       </div>
@@ -398,7 +417,7 @@
       <div class="info-box">
         <h3>Nuestra Misión</h3>
         <p>Radio Esperanza es una emisora digital sin fines de lucro, creada con el propósito de compartir un mensaje de esperanza, fe y ánimo con nuestra audiencia.<br>A través de nuestra programación ofrecemos música, reflexiones, mensajes y contenidos que buscan edificar, inspirar y acompañar a cada persona que nos escucha.<br>Nuestra misión es utilizar este medio para transmitir un mensaje que bendiga vidas y acerque a las personas a Dios.</p>
-        <p>Transmitimos las 24 horas del día conectando corazones sin fronteras.</p>
+        <p>Radio Esperanza</p>
       </div>
     </div>
 
@@ -409,7 +428,7 @@
         <p>¿Tienes alguna petición, saludo o sugerencia? Escríbenos:</p>
         <div class="contact-links">
           <a href="https://wa.me/" target="_blank" class="contact-btn">💬 Escríbenos por WhatsApp</a>
-          <a href="mailto:tucorreo@radioesperanza.com" class="contact-btn">✉️ Enviar un Correo</a>
+          <a href="mailto:c" class="contact-btn">✉️ Enviar un Correo</a>
         </div>
       </div>
     </div>
@@ -419,21 +438,75 @@
 
   <script>
     // ==========================================
-    // 🔒 PROTECCIÓN ANTI-COPIA (Sin bloquear reproductor)
+    // 🔒 PROTECCIÓN ANTI-COPIA
     // ==========================================
     document.addEventListener('contextmenu', function(e) {
-      // Bloquea el menú de clic derecho solo en el documento principal
       e.preventDefault();
     });
-
     document.addEventListener('copy', function(e) {
-      // Bloquea la acción de copiar texto
       e.preventDefault();
     });
 
+    // ==================================================
+    // ⚙️ CONTROL INTERNO DE TRANSMISIÓN
+    // SOLO MODIFICA ESTA PARTE PARA CAMBIAR EL INDICADOR
+    // NO ES VISIBLE PARA LOS USUARIOS
+    // ==================================================
+    const horariosTransmision = [
+        { dia: 0, inicio: "19:00", fin: "20:00" }, // Domingo (0)
+        { dia: 1, inicio: "19:00", fin: "20:00" }, // Lunes (1)
+        { dia: 2, inicio: "19:00", fin: "20:00" }, // Martes (2)
+        { dia: 3, inicio: "19:00", fin: "20:00" }, // Miércoles (3)
+        { dia: 4, inicio: "19:00", fin: "20:00" }, // Jueves (4)
+        { dia: 5, inicio: "19:00", fin: "20:00" }, // Viernes (5)
+        { dia: 6, inicio: "19:00", fin: "20:00" }  // Sábado (6)
+    ];
+
+    function checkLiveStatus() {
+        // Tomamos siempre la hora exacta de Colombia como referencia
+        const now = new Date();
+        const strBogota = now.toLocaleString("en-US", { timeZone: "America/Bogota" });
+        const dateBogota = new Date(strBogota);
+        
+        const currentDay = dateBogota.getDay();
+        const currentHour = dateBogota.getHours();
+        const currentMinute = dateBogota.getMinutes();
+        
+        // Convertimos a minutos totales para facilitar la comparación
+        const currentTime = currentHour * 60 + currentMinute;
+        let isOnline = false;
+
+        for (let i = 0; i < horariosTransmision.length; i++) {
+            const slot = horariosTransmision[i];
+            
+            if (slot.dia === currentDay) {
+                const [startH, startM] = slot.inicio.split(':').map(Number);
+                const [endH, endM] = slot.fin.split(':').map(Number);
+                
+                const startTime = startH * 60 + startM;
+                const endTime = endH * 60 + endM;
+
+                if (currentTime >= startTime && currentTime < endTime) {
+                    isOnline = true;
+                    break;
+                }
+            }
+        }
+
+        const badge = document.getElementById('status-badge');
+        const badgeText = document.getElementById('status-text');
+
+        if (isOnline) {
+            badge.className = 'badge-live online';
+            badgeText.textContent = 'En Transmisión';
+        } else {
+            badge.className = 'badge-live offline';
+            badgeText.textContent = 'Fuera de Línea';
+        }
+    }
 
     // ==========================================
-    // FUNCIONES DEL REPRODUCTOR Y PESTAÑAS
+    // FUNCIONES DEL REPRODUCTOR, PESTAÑAS Y RELOJ
     // ==========================================
     function switchTab(tabId, evt) {
       document.querySelectorAll('.tab-content').forEach(content => {
@@ -442,7 +515,6 @@
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active');
       });
-      
       document.getElementById(tabId).classList.add('active');
       
       if (evt && evt.currentTarget) {
@@ -460,8 +532,10 @@
       hours = hours ? hours : 12; 
       minutes = minutes < 10 ? '0' + minutes : minutes;
 
-      const timeString = `⏱️ ${hours}:${minutes} ${ampm}`;
-      document.getElementById('clockDisplay').textContent = timeString;
+      document.getElementById('clockDisplay').textContent = `⏱️ ${hours}:${minutes} ${ampm}`;
+      
+      // Validamos si estamos en transmisión cada segundo
+      checkLiveStatus();
     }
 
     setInterval(updateClock, 1000);
@@ -469,13 +543,12 @@
 
 
     // ==========================================
-    // SISTEMA DE CONVERSIÓN DE ZONA HORARIA
+    // SISTEMA VISIBLE DE CONVERSIÓN DE ZONA HORARIA
+    // (Muestra la cartelera a los usuarios)
     // ==========================================
     const baseSchedule = [
-      { name: "Mañana de Bendición", days: [0, 1, 2, 3, 4, 5], time: "08:00" },
-      { name: "Tardes de Alabanza", days: [0, 1, 2, 3, 4, 5], time: "15:00" },
-      { name: "Especiales Musicales en Vivo", days: [6], time: "19:00" },
-      { name: "Transmisión Especial Dominical", days: [0], time: "10:00" }
+      { name: "Anochecer con Cristo", days: [0, 1, 2, 3, 4, 5], time: "19:00" },
+      { name: "Especiales Musicales en Vivo", days: [6], time: "17:30" },
     ];
 
     function convertAndDisplaySchedule() {
