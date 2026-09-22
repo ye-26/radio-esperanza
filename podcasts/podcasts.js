@@ -33,9 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error cargando podcasts:', error);
             contenedor.innerHTML = `
                 <div class="pd-error">
-                    PRÓXIMAMENTE<br>
-                    <small>Aún en desarrollo </>...</small>
-<small>ysoft</></small>
+        PRÓXIMAMENTE<br>
+        <small>Aún en desarrollo ... &lt;/&gt;</small><br>
+        <small>ysoft</small>
+    </div>`;
                 </div>`;
         }
     };
