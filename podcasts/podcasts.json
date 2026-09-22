@@ -1,0 +1,29 @@
+{
+  "podcasts": [
+    {
+      "id": "podcasts/music/1.mp3",
+      "titulo": "Musica",
+      "descripcion": "Un espacio donde compartimos historias, experiencias y reflexionamos sobre la vida.",
+      "autor": "Radio Esperanza",
+      "fecha": "10/09/2026",
+      "categoria": "Musica",
+      "imagen": "podcasts/music/portada.jpg",
+      "episodios": [
+        {
+          "id": "1",
+          "archivo": "podcasts/music/1.mp3",
+          "titulo": "El comienzo del viaje",
+          "descripcion": "En este primer episodio hablamos sobre el inicio de nuestra aventura.",
+          "fecha": "10/09/2026"
+        },
+        {
+          "id": "2",
+          "archivo": "podcasts/music/2.mp3",
+          "titulo": "Una aventura inesperada",
+          "descripcion": "Una historia que ocurrió durante nuestra visita al sur y nos dejó una gran enseñanza.",
+          "fecha": "17/09/2026"
+        }
+      ]
+    }
+  ]
+}

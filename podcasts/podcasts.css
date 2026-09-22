@@ -1,0 +1,82 @@
+/* Variables protegidas para evitar conflictos */
+:root {
+    --pd-primary: #9000FF;
+    --pd-accent: #c893ff;
+    --pd-card-bg: rgba(20, 20, 30, 0.7);
+    --pd-text: #ffffff;
+    --pd-text-muted: #a0a0c0;
+    --pd-border: rgba(144, 0, 255, 0.2);
+    --pd-radius: 12px;
+}
+
+#radio-esperanza-podcasts {
+    font-family: inherit;
+    color: var(--pd-text);
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
+#radio-esperanza-podcasts * { box-sizing: border-box; }
+
+/* Estados */
+.pd-loading, .pd-error { text-align: center; padding: 30px; border-radius: var(--pd-radius); }
+.pd-loading { color: var(--pd-text-muted); }
+.pd-error { background: rgba(255, 0, 0, 0.1); color: #ff6b6b; border: 1px dashed #ff6b6b; }
+
+/* Próximamente */
+.pd-proximamente {
+    text-align: center; padding: 40px 20px; background: var(--pd-card-bg);
+    border-radius: var(--pd-radius); border: 1px dashed var(--pd-border);
+}
+.pd-prox-icon { font-size: 50px; margin-bottom: 10px; }
+.pd-proximamente h2 { color: var(--pd-primary); margin: 0 0 10px 0; font-size: 1.4rem; }
+.pd-proximamente p { color: var(--pd-text-muted); font-size: 0.95rem; margin: 0; }
+
+/* Grid y Tarjetas */
+.pd-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+.pd-card {
+    background: var(--pd-card-bg); border-radius: var(--pd-radius); overflow: hidden;
+    border: 1px solid var(--pd-border); display: flex; flex-direction: column;
+}
+.pd-card-img { width: 100%; height: 160px; object-fit: cover; border-bottom: 1px solid var(--pd-border); }
+.pd-card-content { padding: 15px; position: relative; }
+.pd-badge {
+    position: absolute; top: -12px; right: 15px; background: var(--pd-primary); color: #fff;
+    padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold;
+}
+.pd-card-title { font-size: 1.15rem; color: var(--pd-accent); margin: 0 0 8px 0; }
+.pd-card-desc { color: var(--pd-text-muted); font-size: 0.85rem; line-height: 1.4; margin-bottom: 15px; }
+.pd-card-meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: #8a8aab; margin-bottom: 15px; }
+.pd-btn {
+    display: block; width: 100%; background: rgba(144, 0, 255, 0.15); color: var(--pd-text);
+    padding: 10px; text-align: center; border-radius: 8px; border: 1px solid var(--pd-primary);
+    cursor: pointer; font-weight: 600; transition: all 0.3s ease;
+}
+.pd-btn:hover { background: var(--pd-primary); }
+
+/* Vista Detalle */
+.pd-back-btn {
+    background: none; border: none; color: var(--pd-accent); cursor: pointer;
+    margin-bottom: 20px; font-size: 0.9rem; font-weight: bold; padding: 0;
+}
+.pd-back-btn:hover { text-decoration: underline; }
+.pd-header { text-align: center; margin-bottom: 25px; }
+.pd-header-img { width: 140px; height: 140px; object-fit: cover; border-radius: var(--pd-radius); border: 2px solid var(--pd-primary); margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.pd-header h1 { font-size: 1.5rem; color: var(--pd-text); margin: 0 0 10px 0; }
+.pd-header-desc { font-size: 0.9rem; color: var(--pd-text-muted); margin: 0 0 10px 0; line-height: 1.5; }
+.pd-header-meta { font-size: 0.8rem; color: var(--pd-accent); }
+
+/* Lista de Episodios */
+.pd-episodes-title { font-size: 1.1rem; color: var(--pd-primary); border-bottom: 1px solid var(--pd-border); padding-bottom: 10px; margin-bottom: 15px; text-transform: uppercase; }
+.pd-episode { background: var(--pd-card-bg); padding: 15px; border-radius: 8px; border-left: 4px solid var(--pd-primary); margin-bottom: 15px; }
+.pd-ep-info { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.pd-ep-title { font-size: 1rem; color: var(--pd-text); margin: 0; }
+.pd-ep-date { font-size: 0.75rem; color: #8a8aab; }
+.pd-ep-desc { color: var(--pd-text-muted); font-size: 0.85rem; margin: 0 0 12px 0; line-height: 1.4; }
+
+/* Reproductor */
+.pd-ep-player-container { display: flex; flex-direction: column; gap: 5px; }
+.pd-audio-player { width: 100%; height: 35px; outline: none; border-radius: 20px; }
+/* Ocultar botones de descarga en navegadores basados en Chromium */
+.pd-audio-player::-webkit-media-controls-enclosure { border-radius: 20px; }
+.pd-duration { font-size: 0.75rem; color: var(--pd-accent); text-align: right; font-weight: bold; }
