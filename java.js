@@ -5,7 +5,7 @@ document.addEventListener('copy', e => e.preventDefault());
 //  (UTC-5)
 function getColombiaTime() {
   const now = new Date();
-  // Sumamos el offset del navegador para conseguir UTC real, luego restamos 5 horas
+  //  UTC
   const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
   return new Date(utc + (3600000 * -5));
 }
@@ -13,7 +13,7 @@ function getColombiaTime() {
 //  Clic al Logo
 let manualOverride = false;
 document.getElementById('logo-trigger').addEventListener('click', function() {
-  manualOverride = true; // Pausa el reloj automático para que pruebes
+  manualOverride = true; // Pausa
   if (document.body.classList.contains('day-mode')) {
     document.body.classList.remove('day-mode');
     document.body.classList.add('night-mode');
@@ -25,7 +25,7 @@ document.getElementById('logo-trigger').addEventListener('click', function() {
 
 // FONDO DINÁMICO AUTOMÁTICO
 function updateDynamicBackground() {
-  if (manualOverride) return; // Si tocaste el logo, respeta el cambio manual
+  if (manualOverride) return; // cambio manual
   
   const dateBogota = getColombiaTime();
   const hour = dateBogota.getHours();
