@@ -1,8 +1,8 @@
-// 🔒 PROTECCIÓN ANTI-COPIA
+//  PROTECCIÓN ANTI-COPIA
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('copy', e => e.preventDefault());
 
-// 🕒 FUNCIÓN MAESTRA INFALIBLE PARA HORA DE COLOMBIA (UTC-5)
+//  (UTC-5)
 function getColombiaTime() {
   const now = new Date();
   // Sumamos el offset del navegador para conseguir UTC real, luego restamos 5 horas
@@ -10,7 +10,7 @@ function getColombiaTime() {
   return new Date(utc + (3600000 * -5));
 }
 
-// 🔘 TRUCO PARA PROBAR LAS ANIMACIONES: Clic al Logo
+//  Clic al Logo
 let manualOverride = false;
 document.getElementById('logo-trigger').addEventListener('click', function() {
   manualOverride = true; // Pausa el reloj automático para que pruebes
@@ -23,7 +23,7 @@ document.getElementById('logo-trigger').addEventListener('click', function() {
   }
 });
 
-// ⚙️ FONDO DINÁMICO AUTOMÁTICO
+// FONDO DINÁMICO AUTOMÁTICO
 function updateDynamicBackground() {
   if (manualOverride) return; // Si tocaste el logo, respeta el cambio manual
   
@@ -42,7 +42,7 @@ function updateDynamicBackground() {
 updateDynamicBackground();
 setInterval(updateDynamicBackground, 60000); // Revisa cada minuto
 
-// 📡 CONTROL DE TRANSMISIÓN
+// CONTROL DE TRANSMISIÓN
 const horariosTransmision = [
   { dia: 0, inicio: "19:00", fin: "20:00" }, { dia: 1, inicio: "19:00", fin: "20:00" },
   { dia: 2, inicio: "19:00", fin: "20:00" }, { dia: 3, inicio: "19:00", fin: "20:00" },
@@ -75,7 +75,7 @@ function checkLiveStatus() {
   }
 }
 
-// ⏱️ RELOJ EN MÁSCARA Y PESTAÑAS
+// RELOJ EN MÁSCARA Y PESTAÑAS
 function switchTab(tabId, evt) {
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -94,7 +94,7 @@ function updateClock() {
 }
 setInterval(updateClock, 1000); updateClock(); 
 
-// 🗓️ ZONAS HORARIAS PARA HORARIOS
+// ZONAS HORARIAS PARA HORARIOS
 const baseSchedule = [
   { name: "Anochecer con Cristo", days: [0, 1, 2, 3, 4, 5], time: "19:00" },
   { name: "Especiales Musicales en Vivo", days: [6], time: "17:30" },
