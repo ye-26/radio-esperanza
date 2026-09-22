@@ -174,7 +174,7 @@ body.day-mode .cloud { opacity: 0.6; }
   z-index: 10; /* Siempre sobre el fondo */
 }
 
-/* Agregamos cursor pointer para el truco de probar */
+/* cambio dia-noche */
 .station-header {
   display: flex;
   flex-direction: column;
@@ -196,7 +196,7 @@ body.day-mode .cloud { opacity: 0.6; }
   pointer-events: none;
 }
 
-/* Navegación y resto de la tarjeta intacta */
+/* Navegación */
 .nav-tabs {
   display: flex; justify-content: space-between; gap: 2px;
   background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -273,4 +273,19 @@ body.day-mode .cloud { opacity: 0.6; }
   .station-subtitle { font-size: 0.85rem; }
   .player-mask { width: 62%; }
   .clock-in-mask { font-size: 0.85rem; }
+}
+/* Ajuste 2 */
+.nav-tabs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 4px !important;
+}
+
+.tab-btn {
+  flex: 1 1 auto !important;
+  font-size: 0.8rem !important;
+  padding: 6px 10px !important;
+  white-space: nowrap !important;
 }
