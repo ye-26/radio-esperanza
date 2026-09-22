@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Radio Esperanza - En Vivo</title>
-  <!-- Enlace al archivo de estilos CSS -->
+  <!-- Enlaces CSS -->
   <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="podcasts/podcasts.css">
 </head>
 <body>
 
-  <!-- ⚙️ FONDO DINÁMICO -->
+  <!-- FONDO DINÁMICO -->
   <div id="dynamic-bg-container">
     <div id="stars-layer"></div>
     <div id="moon"></div>
@@ -31,6 +32,7 @@
     <nav class="nav-tabs">
       <button class="tab-btn active" onclick="switchTab('home', event)">En Vivo</button>
       <button class="tab-btn" onclick="switchTab('schedule', event)">Programación</button>
+      <button class="tab-btn" onclick="switchTab('podcasts', event)">Podcasts</button> <!-- NUEVO -->
       <button class="tab-btn" onclick="switchTab('about', event)">Quiénes Somos</button>
       <button class="tab-btn" onclick="switchTab('contact', event)">Contacto</button>
     </nav>
@@ -47,7 +49,7 @@
           <div class="player-mask">
             <div class="clock-in-mask" id="clockDisplay">⏱️ --:--</div>
           </div>
-          <!-- REPRODUCTOR CASTER.FM -->
+          <!-- REPRODUCTOR  -->
           <div data-type="newStreamPlayer" 
                data-publicToken="c77b0829-2cab-4c7e-8644-4ff95792c3be" 
                data-theme="dark" 
@@ -59,7 +61,6 @@
             <a href="https://www.caster.fm">Stream Hosting</a> 
             <a href="https://www.caster.fm">Radio Server Hosting</a>
           </div>
-          <!-- Este script se queda aquí porque pertenece al reproductor externo -->
           <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
         </div>
       </div>
@@ -70,6 +71,13 @@
       <div class="info-box">
         <h3>Horarios de Transmisión <span id="tz-indicator" style="font-size: 0.75rem; color: var(--text-secondary); font-weight: normal; display: block;"></span></h3>
         <div id="schedule-container"></div>
+      </div>
+    </div>
+
+    <!-- PESTAÑA PODCASTS -->
+    <div id="podcasts" class="tab-content">
+      <div class="info-box" style="max-height: 350px; padding: 10px;">
+        <div id="radio-esperanza-podcasts"></div>
       </div>
     </div>
 
@@ -97,7 +105,8 @@
     <p class="footer-text">© 2026 Radio Esperanza. Todos los derechos reservados.</p>
   </div>
 
-  <!-- Enlace al archivo de funciones JavaScript -->
+  <!-- JS -->
   <script src="java.js"></script>
+  <script src="podcasts/podcasts.js"></script>
 </body>
 </html>
