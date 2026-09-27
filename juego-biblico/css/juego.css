@@ -1,0 +1,215 @@
+/* ==========================================
+   JUEGO BÍBLICO - GLASSMORPHISM & VISTAS
+   ========================================== */
+
+.juego-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #ffffff;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+/* Tarjeta Principal del Juego */
+.juego-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37), 0 0 15px rgba(123, 31, 162, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.juego-titulo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.juego-subtitulo {
+    font-size: 0.85rem;
+    color: #c893ff;
+    margin-bottom: 24px;
+}
+
+/* Botón Principal Glassmorphism */
+.btn-juego-principal {
+    background: linear-gradient(135deg, rgba(144, 0, 255, 0.35), rgba(200, 147, 255, 0.15));
+    border: 1px solid rgba(160, 60, 255, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 15px rgba(144, 0, 255, 0.4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 320px;
+    margin: 10px auto;
+}
+
+.btn-juego-principal:hover {
+    background: linear-gradient(135deg, rgba(144, 0, 255, 0.6), rgba(200, 147, 255, 0.25));
+    box-shadow: 0 0 22px rgba(144, 0, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+.btn-juego-secundario {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    color: #e0e0e0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 12px;
+}
+
+.btn-juego-secundario:hover {
+    background: rgba(144, 0, 255, 0.2);
+    color: #ffffff;
+    border-color: rgba(160, 60, 255, 0.4);
+}
+
+/* Opciones de Respuesta */
+.opciones-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.btn-opcion {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 14px 18px;
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-opcion:hover {
+    background: rgba(123, 31, 162, 0.2);
+    border-color: rgba(156, 39, 176, 0.4);
+    color: #ffffff;
+}
+
+.btn-opcion.correcta {
+    background: rgba(46, 125, 50, 0.4) !important;
+    border-color: #66bb6a !important;
+    color: #ffffff !important;
+}
+
+.btn-opcion.incorrecta {
+    background: rgba(198, 40, 40, 0.4) !important;
+    border-color: #ef5350 !important;
+    color: #ffffff !important;
+}
+
+/* Pregunta actual y Progreso */
+.progreso-bar-container {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progreso-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7b1fa2, #c893ff);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* ==========================================
+   PANTALLA DE CRÉDITOS TIPO PELÍCULA
+   ========================================== */
+.creditos-overlay {
+    position: relative;
+    width: 100%;
+    height: 380px; /* Altura fija para la marquesina */
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(10, 8, 20, 0.85);
+    border: 1px solid rgba(144, 0, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.creditos-scroll-wrapper {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+    box-sizing: border-box;
+    cursor: grab;
+    user-select: none;
+}
+
+.creditos-scroll-wrapper:active {
+    cursor: grabbing;
+}
+
+.creditos-bloque {
+    margin-bottom: 24px;
+}
+
+.creditos-rol {
+    font-size: 0.75rem;
+    color: #b388ff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+}
+
+.creditos-nombre {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 2px 0;
+}
+
+.creditos-footer-btn {
+    margin-top: 15px;
+    z-index: 10;
+    position: relative;
+}
+
+@media (max-width: 500px) {
+    .juego-card {
+        padding: 16px;
+    }
+    .creditos-overlay {
+        height: 320px;
+    }
+}
