@@ -31,7 +31,7 @@
     // Observar la pestaña sin modificar el sistema de navegación original
     document.addEventListener('DOMContentLoaded', () => {
         // Asume que tu sección se llama 'about' o 'seccion-acerca' según la estructura actual
-        const seccionAcerca = document.getElementById('about') || document.getElementById('about');
+        const seccionAcerca = document.getElementById('about') || document.getElementById('tab-btn g-about');
         
         if (seccionAcerca) {
             const observer = new MutationObserver((mutations) => {
