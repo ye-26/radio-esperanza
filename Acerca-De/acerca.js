@@ -6,7 +6,7 @@
     let audioAcercaDe = null;
     
     // CORRECCIÓN: Uso de ruta relativa estricta (./) respetando mayúsculas y minúsculas
-    const RUTA_AUDIO = './AcercaDe/acerca-audio.mp3'; 
+    const RUTA_AUDIO = 'AcercaDe/acerca-audio.mp3'; 
 
     function manejarAudio(estaActiva) {
         if (estaActiva) {
