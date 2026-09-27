@@ -166,7 +166,7 @@
     },
     {
       "id": 28,
-      "pregunta": "¿Qué profeta interpretó los sueños del faraón y salvó a Egipto?",
+      "pregunta": "¿Quién interpretó los sueños del faraón y salvó a Egipto?",
       "opciones": ["Moisés", "José", "Daniel", "Elías"],
       "respuesta": 1
     },
@@ -185,7 +185,7 @@
     {
       "id": 31,
       "pregunta": "¿Quién escribió el libro de Job?",
-      "opciones": ["Moisés", "Desconocido tradicionalmente", "David", "Isaías"],
+      "opciones": ["Moisés", "Desconocido", "David", "Isaías"],
       "respuesta": 1
     },
     {
@@ -220,7 +220,7 @@
     },
     {
       "id": 37,
-      "pregunta": "¿Qué rey escribió el Cantar de los Cantares según la tradición?",
+      "pregunta": "¿Quién escribió el Cantar de los Cantares?",
       "opciones": ["David", "Salomón", "Saúl", "Ezequías"],
       "respuesta": 1
     },
@@ -316,13 +316,13 @@
     },
     {
       "id": 53,
-      "pregunta": "¿Qué mujer fue visitada por el ángel Gabriel y concibió a Jesús?",
+      "pregunta": "¿Qué mujer fue visitada por el ángel Gabriel?",
       "opciones": ["María", "Marta", "María Magdalena", "Ana"],
       "respuesta": 0
     },
     {
       "id": 54,
-      "pregunta": "¿Qué discípulo escribió el Evangelio que incluye muchas parábolas del buen samaritano y el hijo pródigo?",
+      "pregunta": "¿Qué discípulo escribió el Evangelio que incluye las parábolas del buen samaritano y el hijo pródigo?",
       "opciones": ["Mateo", "Marcos", "Lucas", "Juan"],
       "respuesta": 2
     },
@@ -382,13 +382,13 @@
     },
     {
       "id": 64,
-      "pregunta": "¿Qué mujer fue la primera en ver a Jesús resucitado según algunos evangelios?",
+      "pregunta": "¿Qué mujer fue la primera en ver a Jesús resucitado?",
       "opciones": ["María Magdalena", "María, madre de Jesús", "Marta", "María de Betania"],
       "respuesta": 0
     },
     {
       "id": 65,
-      "pregunta": "¿Qué libro del Antiguo Testamento contiene proverbios y consejos prácticos?",
+      "pregunta": "¿Qué libro del Antiguo Testamento consejos?",
       "opciones": ["Salmos", "Proverbios", "Isaías", "Eclesiastés"],
       "respuesta": 1
     },
@@ -502,20 +502,20 @@
     },
     {
       "id": 84,
-      "pregunta": "¿Qué profeta fue conocido por su libro que contiene oráculos contra las naciones?",
-      "opciones": ["Jeremías", "Ezequiel", "Isaías", "Amós"],
-      "respuesta": 2
+      "pregunta": "¿En que libro se encuentra en versiculo más largo de la Escrituras?",
+      "opciones": ["Jeremías", "Ezequiel", "Isaías", "Ester"],
+      "respuesta": 3
     },
     {
       "id": 85,
-      "pregunta": "¿Qué apóstol escribió la carta a los Hebreos según la tradición (aunque es incierto)?",
+      "pregunta": "¿Qué apóstol escribió la carta a los Hebreos?",
       "opciones": ["Pablo", "Bernabé", "Apolo", "Desconocido"],
       "respuesta": 3
     },
     {
       "id": 86,
       "pregunta": "¿Qué mujer fue liberada por Pedro de la prisión en una intervención milagrosa?",
-      "opciones": ["Tabita (Dorcas)", "Lidia", "Priscila", "Eunice"],
+      "opciones": ["Tabita", "Lidia", "Priscila", "Eunice"],
       "respuesta": 0
     },
     {
@@ -592,9 +592,9 @@
     },
     {
       "id": 99,
-      "pregunta": "¿Qué libro del Antiguo Testamento contiene oráculos contra Babilonia y promesas de restauración?",
-      "opciones": ["Isaías", "Jeremías", "Ezequiel", "Daniel"],
-      "respuesta": 2
+      "pregunta": "¿Cuantas parejas de animales impuros debian entrar en el arca?",
+      "opciones": ["2", "1", "3", "7"],
+      "respuesta": 1
     },
     {
       "id": 100,
