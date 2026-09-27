@@ -157,7 +157,7 @@ function inicializarAudioAcercaDe() {
     if (!reproductorAcercaDe) {
         // IMPORTANTE: Ajusta esta ruta relativa para que coincida con tu estructura en GitHub Pages.
         // No modifiques nada dentro de la carpeta "Recursos". Llama al audio desde su carpeta correcta.
-        reproductorAcercaDe = new Audio('./ruta-a-la-carpeta-acerca-de/tu-archivo-de-audio.mp3');
+        reproductorAcercaDe = new Audio('./Acerca-De/acerca-audio.mp3');
         reproductorAcercaDe.loop = true; // Opcional: si deseas que la música se repita
     }
 }
