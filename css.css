@@ -405,25 +405,103 @@ body.day-mode .cloud { opacity: 0.6; }
 }
 
 /* 2. Forzamos a los botones a obedecer el tamaño y partir el texto */
+/* ==========================================
+   2. DISEÑO DE BOTONES: EFECTO GLASSMORPHISM SUTIL
+   ========================================== */
 .radio-grid-nav .tab-btn {
+    /* Mantener propiedades de la cuadrícula intactas */
     margin: 0 !important;
     width: 100% !important;
     height: 100% !important;
     box-sizing: border-box !important;
-    
-    /* CLAVE: Esto arregla el problema de los textos desbordados */
     white-space: normal !important; 
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
-    
-    font-size: 0.65rem !important; /* Tamaño ideal para que quepa */
+    font-size: 0.65rem !important; 
     line-height: 1.1 !important;
     padding: 4px !important;
-    
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
+    border-radius: 8px;
+    transition: all 0.3s ease !important;
+
+    /* --- EFECTO CRISTAL (GLASSMORPHISM) --- */
+    background: rgba(255, 255, 255, 0.03) !important; /* Fondo casi transparente */
+    backdrop-filter: blur(8px) saturate(120%) !important; /* Desenfoque del fondo */
+    -webkit-backdrop-filter: blur(8px) saturate(120%) !important; /* Soporte para Safari/iOS */
+    
+    /* Borde translúcido con iluminación superior */
+    border: 1px solid rgba(255, 255, 255, 0.05) !important; 
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important; /* Reflejo de luz en el borde superior */
+    
+    color: #e0e0e0;
+    
+    /* Sombra exterior para separar del fondo + Brillo interior (inset) */
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.2), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important; 
+}
+
+/* Hover (Cristal iluminado) */
+.radio-grid-nav .tab-btn:hover {
+    background: rgba(123, 31, 162, 0.15) !important; /* Tinte violeta sutil */
+    border-color: rgba(156, 39, 176, 0.3) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(123, 31, 162, 0.2), /* Glow violeta suave */
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff;
+}
+
+/* Active (Cristal presionado) */
+.radio-grid-nav .tab-btn.active {
+    background: rgba(123, 31, 162, 0.25) !important;
+    border-color: rgba(156, 39, 176, 0.4) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 
+        0 0 12px rgba(123, 31, 162, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff;
+}
+
+/* ==========================================
+   4. ESTILOS VISUALES DE LIVE (CRISTAL MÁS INTENSO)
+   ========================================== */
+.g-live {
+    /* Tinte morado un poco más visible y gradiente sutil */
+    background: linear-gradient(135deg, rgba(144, 0, 255, 0.1), rgba(200, 147, 255, 0.02)) !important;
+    backdrop-filter: blur(12px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(130%) !important;
+    
+    border: 1px solid rgba(144, 0, 255, 0.3) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.25) !important; /* Reflejo blanco más marcado */
+    
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.3),
+        0 0 8px rgba(144, 0, 255, 0.2), 
+        inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
+}
+
+.g-live:hover {
+    background: linear-gradient(135deg, rgba(144, 0, 255, 0.2), rgba(200, 147, 255, 0.05)) !important;
+    border: 1px solid rgba(144, 0, 255, 0.5) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(144, 0, 255, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2) !important;
+}
+
+.g-live.active {
+    background: linear-gradient(135deg, rgba(144, 0, 255, 0.35), rgba(200, 147, 255, 0.1)) !important;
+    border: 1px solid rgba(160, 60, 255, 0.6) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 
+        0 0 20px rgba(144, 0, 255, 0.6),
+        inset 0 1px 3px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* 3. Asignamos cada botón a su lugar en el mapa */
