@@ -3,6 +3,7 @@
   "modoActivo": "unico",
   "rutasDatos": {
     "preguntas": "juego-biblico/datos/preguntas.json",
+    "preguntas": "juego-biblico/datos/preguntas1.json",
     "creditos": "juego-biblico/datos/creditos.json"
   },
   "audio": {
