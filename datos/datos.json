@@ -1,0 +1,29 @@
+{
+  "horarios_normales": [
+    {
+      "dia": 0,
+      "inicio": "19:00",
+      "fin": "20:00",
+      "name": "Anochecer con Cristo",
+      "days_array": [0, 1, 2, 3, 4, 5],
+      "time": "19:00"
+    },
+    {
+      "dia": 6,
+      "inicio": "17:30",
+      "fin": "19:30",
+      "name": "Especiales Musicales en Vivo",
+      "days_array": [6],
+      "time": "17:30"
+    }
+  ],
+  "eventos_especiales": [
+    {
+      "fecha": "2026-10-16",
+      "hora_inicio": "17:24",
+      "hora_fin": "18:30",
+      "titulo": "Gran Vigilia de Oración",
+      "descripcion": "Acompáñanos en esta jornada especial de clamor y adoración en vivo."
+    }
+  ]
+}
