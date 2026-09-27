@@ -1,0 +1,14 @@
+{
+  "horarios_normales": [
+    {
+      "name": "Anochecer con Cristo",
+      "days_array": [0, 1, 2, 3, 4, 5],
+      "hora": "19:00"
+    },
+    {
+      "name": "Especiales Musicales en Vivo",
+      "days_array": [6],
+      "hora": "17:30"
+    }
+  ]
+}
