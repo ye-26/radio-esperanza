@@ -1,24 +1,104 @@
-
+{
+  "categorias": [
     {
       "id": "escuela-sabatica",
       "nombre": "Escuela Sabática",
       "icono": "📖",
-      "descripcion": "Materiales, lecciones y guías de estudio semanales.",
-      "carpeta": "escuela-sabatica",
+      "descripcion": "Guía de estudio de la Biblia",
+      "carpeta": "leccion4t26",
       "archivos": [
         {
-          "nombre": "Lección 01: La Gracia Redentora",
-          "archivo": "leccion-01.pdf",
+          "nombre": "EL CREADOR HABLA",
+          "archivo": "Leccion_1-4to-2026.pdf",
           "tipo": "pdf",
-          "tamano": "2.4 MB",
-          "descripcion": "Guía de estudio para la primera semana del trimestre."
+          "tamano": "700 KB",
+          "descripcion": "Lección 1: Para el 3 de octubre de 2026"
         },
         {
-          "nombre": "Lección 02: La Promesa de Esperanza",
-          "archivo": "leccion-02.pdf",
+          "nombre": "EL LLAMADO DE UN PROFETA",
+          "archivo": "Leccion_2-4to-2026.pdf",
           "tipo": "pdf",
-          "tamano": "1.8 MB",
-          "descripcion": "Estudio bíblico complementario sobre las promesas."
+          "tamano": "274 KB",
+          "descripcion": "Lección 2: Para el 10 de octubre de 2026"
+        },
+        {
+          "nombre": "PROFETAS DEL ANTIGUO TESTAMENTO",
+          "archivo": "Leccion_3-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "336 KB",
+          "descripcion": "Lección 3: Para el 17 de octubre de 2026"
+        },
+        {
+          "nombre": "PROFETAS DEL ANTIGUO TESTAMENTO",
+          "archivo": "Leccion_4-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "816 KB",
+          "descripcion": "Lección 4: Para el 24 de octubre de 2026"
+        },
+        {
+          "nombre": "REVELACIÓN E INSPIRACIÓN",
+          "archivo": "Leccion_5-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "698 KB",
+          "descripcion": "Lección 5: Para el 31 de octubre de 2026"
+        },
+        {
+          "nombre": "LOS ESCRITOS PROFÉTICOS",
+          "archivo": "Leccion_6-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "891 KB",
+          "descripcion": "Lección 6: Para el 7 de noviembre de 2026"
+        },
+        {
+          "nombre": "¡ESCUCHEN ESTO!",
+          "archivo": "Leccion_7-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "2.6 MB",
+          "descripcion": "Lección 7: Para el 14 de noviembre de 2026"
+        },
+        {
+          "nombre": "INTERPRETACIÓN DE LOS ESCRITOS PROFÉTICOS",
+          "archivo": "Leccion_8-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "307 KB",
+          "descripcion": "Lección 8: Para el 21 de noviembre de 2026"
+        },
+        {
+          "nombre": "PONIENDO A PRUEBA A LOS PROFETAS",
+          "archivo": "Leccion_9-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "313 KB",
+          "descripcion": "Lección 9: Para el 28 de noviembre de 2026"
+        },
+        {
+          "nombre": "AUTORIDAD Y RELEVANCIA PROFÉTICAS",
+          "archivo": "Leccion_10-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "836 KB",
+          "descripcion": "Lección 10: Para el 5 de diciembre de 2026"
+        },
+        {
+          "nombre": "MANIFESTACIÓN PROFÉTICA EN MOMENTOS CRUCIALES",
+          "archivo": "Leccion_11-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "746 KB",
+          "descripcion": "Lección 11: Para el 12 de diciembre de 2026"
+        },
+        {
+          "nombre": "REVELACIONES PROFÉTICAS DEL FIN DE LOS TIEMPOS",
+          "archivo": "Leccion_12-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "917 KB",
+          "descripcion": "Lección 12: Para el 19 de diciembre de 2026"
+        },
+        {
+          "nombre": "BENDICIONES DE LA PALABRA PROFÉTICA ",
+          "archivo": "Leccion_13-4to-2026.pdf",
+          "tipo": "pdf",
+          "tamano": "1 MB",
+          "descripcion": "Lección 13: Para el 26 de diciembre de 2026"
         }
       ]
     }
+  ]
+}
