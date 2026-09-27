@@ -1,26 +1,25 @@
 /**
  * Módulo de Audio para la sección "Acerca de"
- * Carga bajo demanda, respeta la caché y se detiene automáticamente al cambiar de pestaña.
+ * Corrección de ruta para compatibilidad con GitHub Pages
  */
 (function() {
     let audioAcercaDe = null;
-    // IMPORTANTE: Cambia esta ruta si tu audio está en otra carpeta
-    const RUTA_AUDIO = new URL(
-        'Acerca-De/acerca-audio.mp3',
-    ).href;
+    
+    // CORRECCIÓN: Uso de ruta relativa estricta (./) respetando mayúsculas y minúsculas
+    const RUTA_AUDIO = './AcercaDe/acerca-audio.mp3'; 
 
     function manejarAudio(estaActiva) {
         if (estaActiva) {
-            // Carga bajo demanda: solo se crea si el usuario entró a la pestaña
+            // Carga bajo demanda
             if (!audioAcercaDe) {
                 audioAcercaDe = new Audio(RUTA_AUDIO);
                 audioAcercaDe.loop = true;
-                audioAcercaDe.volume = 0.6; // Ajusta el volumen si lo deseas
+                audioAcercaDe.volume = 0.6; 
             }
-            // Reproducir. El catch evita errores en la consola si el navegador bloquea el autoplay inicial.
-            audioAcercaDe.play().catch(e => console.log("El usuario debe interactuar primero:", e));
+            // Reproducir (silencia errores si el navegador bloquea el autoplay)
+            audioAcercaDe.play().catch(e => console.log("Interacción requerida para audio", e));
         } else {
-            // Detener inmediatamente y reiniciar
+            // Detener y reiniciar al salir
             if (audioAcercaDe) {
                 audioAcercaDe.pause();
                 audioAcercaDe.currentTime = 0;
@@ -28,10 +27,9 @@
         }
     }
 
-    // Observar la pestaña sin modificar el sistema de navegación original
     document.addEventListener('DOMContentLoaded', () => {
-        // Asume que tu sección se llama 'about' o 'seccion-acerca' según la estructura actual
-        const seccionAcerca = document.getElementById('about') || document.getElementById('tab-btn g-about');
+        // Asume el ID de tu sección Acerca de. Revisa tu HTML si el ID es diferente.
+        const seccionAcerca = document.getElementById('about') || document.getElementById('seccion-acerca') || document.querySelector('[onclick*="about"]')?.closest('.tab-content'); 
         
         if (seccionAcerca) {
             const observer = new MutationObserver((mutations) => {
@@ -42,7 +40,6 @@
                     }
                 });
             });
-            // Escucha los cambios de clase (cuando switchTab le pone o quita 'active')
             observer.observe(seccionAcerca, { attributes: true });
         }
     });
