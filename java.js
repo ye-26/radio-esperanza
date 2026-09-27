@@ -4,10 +4,9 @@ document.addEventListener('copy', e => e.preventDefault());
 
 //  (UTC-5)
 function getColombiaTime() {
-  const now = new Date();
-  //  UTC
-  const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-  return new Date(utc + (3600000 * -5));
+ const now = new Date();
+ const colTimeStr = now.toLocaleString("en-US", { timeZone: "America/Bogota" });
+ return new Date(colTimeStr);
 }
 
 //  Clic al Logo
@@ -145,3 +144,41 @@ function convertAndDisplaySchedule() {
   if (localZone !== "America/Bogota") document.getElementById('tz-indicator').textContent = "(Adaptado a tu hora local)";
 }
 document.addEventListener('DOMContentLoaded', convertAndDisplaySchedule);
+
+// ==========================================
+// 2. CONTROLADOR DE AUDIO SECCIÓN "ACERCA DE"
+// ==========================================
+
+// Variable global para asegurar una ÚNICA instancia y evitar múltiples reproducciones
+let reproductorAcercaDe = null;
+
+function inicializarAudioAcercaDe() {
+    // Solo crea el elemento de audio si no existe. Esto aprovecha la CACHÉ del navegador.
+    if (!reproductorAcercaDe) {
+        // IMPORTANTE: Ajusta esta ruta relativa para que coincida con tu estructura en GitHub Pages.
+        // No modifiques nada dentro de la carpeta "Recursos". Llama al audio desde su carpeta correcta.
+        reproductorAcercaDe = new Audio('./ruta-a-la-carpeta-acerca-de/tu-archivo-de-audio.mp3');
+        reproductorAcercaDe.loop = true; // Opcional: si deseas que la música se repita
+    }
+}
+
+// Función a ejecutar CUANDO EL USUARIO HACE CLIC en el botón de Play dentro de "Acerca de"
+function reproducirMusicaAcercaDe() {
+    inicializarAudioAcercaDe();
+    
+    // Solo reproduce si está pausado (respeta políticas del navegador al ser activado por clic)
+    if (reproductorAcercaDe.paused) {
+        reproductorAcercaDe.play().catch(error => {
+            console.warn("El navegador bloqueó la reproducción. Requiere interacción del usuario.", error);
+        });
+    }
+}
+
+// Función a ejecutar al SALIR de la sección "Acerca de"
+function pausarMusicaAcercaDe() {
+    if (reproductorAcercaDe && !reproductorAcercaDe.paused) {
+        reproductorAcercaDe.pause();
+        // NO reseteamos la variable reproductorAcercaDe a null para mantener el archivo en memoria/caché
+    }
+}
+
