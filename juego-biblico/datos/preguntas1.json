@@ -1,0 +1,606 @@
+{
+  "version": 1,
+  "titulo": "Juego Bíblico - 100 Preguntas",
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Quién construyó el arca siguiendo el mandato de Dios?",
+      "opciones": ["Moisés", "Noé", "Abraham", "David"],
+      "respuesta": 1
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Cuál es el primer libro del Antiguo Testamento?",
+      "opciones": ["Éxodo", "Salmos", "Génesis", "Mateo"],
+      "respuesta": 2
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Cuántos días y noches llovió durante el gran diluvio?",
+      "opciones": ["7 días", "12 días", "40 días y 40 noches", "100 días"],
+      "respuesta": 2
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Quién recibió los Diez Mandamientos en el Monte Sinaí?",
+      "opciones": ["Moisés", "Josué", "Aarón", "Samuel"],
+      "respuesta": 0
+    },
+    {
+      "id": 5,
+      "pregunta": "¿En qué ciudad nació Jesús?",
+      "opciones": ["Nazaret", "Jerusalén", "Belén", "Jericó"],
+      "respuesta": 2
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Quién fue vendido por sus hermanos y llegó a ser gobernador en Egipto?",
+      "opciones": ["Jacob", "José", "Efraín", "Leví"],
+      "respuesta": 1
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Qué profeta fue llevado al cielo en un carro de fuego?",
+      "opciones": ["Elías", "Eliseo", "Isaías", "Jeremías"],
+      "respuesta": 0
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Quién fue el rey que escribió muchos de los Salmos?",
+      "opciones": ["Saúl", "David", "Salomón", "Ezequías"],
+      "respuesta": 1
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Cuál de estos libros es un libro de sabiduría atribuido a Salomón?",
+      "opciones": ["Proverbios", "Isaías", "Hechos", "Jueces"],
+      "respuesta": 0
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Quién fue el primer rey de Israel ungido por Samuel?",
+      "opciones": ["David", "Saúl", "Salomón", "Roboam"],
+      "respuesta": 1
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Qué apóstol negó a Jesús tres veces antes del amanecer?",
+      "opciones": ["Pedro", "Juan", "Santiago", "Tomás"],
+      "respuesta": 0
+    },
+    {
+      "id": 12,
+      "pregunta": "¿Cuál es el mandamiento que Jesús resumió como el más importante?",
+      "opciones": ["Amar a Dios y al prójimo", "Guardar el sábado", "No robar", "Honrar al padre"],
+      "respuesta": 0
+    },
+    {
+      "id": 13,
+      "pregunta": "¿Quién escribió la mayor parte de las cartas del Nuevo Testamento?",
+      "opciones": ["Pedro", "Pablo", "Juan", "Santiago"],
+      "respuesta": 1
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Qué milagro realizó Jesús en las bodas de Caná?",
+      "opciones": ["Sanó a un ciego", "Multiplicó panes", "Convirtió agua en vino", "Caminó sobre el agua"],
+      "respuesta": 2
+    },
+    {
+      "id": 15,
+      "pregunta": "¿Quién fue el profeta que desafió a los profetas de Baal en el monte Carmelo?",
+      "opciones": ["Isaías", "Elías", "Jeremías", "Oseas"],
+      "respuesta": 1
+    },
+    {
+      "id": 16,
+      "pregunta": "¿Qué mujer judía se convirtió en reina y salvó a su pueblo?",
+      "opciones": ["María", "Débora", "Ester", "Rut"],
+      "respuesta": 2
+    },
+    {
+      "id": 17,
+      "pregunta": "¿Quién fue el juez que derrotó a los madianitas con solo 300 hombres?",
+      "opciones": ["Sansón", "Gedeón", "Jefté", "Otoniel"],
+      "respuesta": 1
+    },
+    {
+      "id": 18,
+      "pregunta": "¿Qué instrumento tocaba el rey David?",
+      "opciones": ["Flauta", "Arpa", "Trompeta", "Tambor"],
+      "respuesta": 1
+    },
+    {
+      "id": 19,
+      "pregunta": "¿Cuál apóstol escribió el Apocalipsis?",
+      "opciones": ["Pablo", "Pedro", "Juan", "Santiago"],
+      "respuesta": 2
+    },
+    {
+      "id": 20,
+      "pregunta": "¿Qué libro narra la creación del mundo?",
+      "opciones": ["Éxodo", "Génesis", "Levítico", "Números"],
+      "respuesta": 1
+    },
+    {
+      "id": 21,
+      "pregunta": "¿Quién fue conocido por su gran sabiduría y construyó el templo en Jerusalén?",
+      "opciones": ["David", "Salomón", "Saúl", "Ezequías"],
+      "respuesta": 1
+    },
+    {
+      "id": 22,
+      "pregunta": "¿Qué apóstol dudó de la resurrección hasta ver las heridas de Jesús?",
+      "opciones": ["Tomás", "Felipe", "Andrés", "Bartolomé"],
+      "respuesta": 0
+    },
+    {
+      "id": 23,
+      "pregunta": "¿Quién fue el profeta que tuvo una visión del valle de huesos secos?",
+      "opciones": ["Ezequiel", "Daniel", "Isaías", "Joel"],
+      "respuesta": 0
+    },
+    {
+      "id": 24,
+      "pregunta": "¿Qué rey pidió sabiduría a Dios en lugar de riquezas?",
+      "opciones": ["Saúl", "David", "Salomón", "Ezequías"],
+      "respuesta": 2
+    },
+    {
+      "id": 25,
+      "pregunta": "¿Cuál de estos personajes fue juez y tuvo una fuerza extraordinaria?",
+      "opciones": ["Gedeón", "Sansón", "Samuel", "Eli"],
+      "respuesta": 1
+    },
+    {
+      "id": 26,
+      "pregunta": "¿Qué libro del Nuevo Testamento narra la vida y enseñanzas de Jesús?",
+      "opciones": ["Hechos", "Romanos", "Evangelios", "Apocalipsis"],
+      "respuesta": 2
+    },
+    {
+      "id": 27,
+      "pregunta": "¿Quién fue el primer mártir cristiano según el libro de los Hechos?",
+      "opciones": ["Esteban", "Pablo", "Pedro", "Jacobo"],
+      "respuesta": 0
+    },
+    {
+      "id": 28,
+      "pregunta": "¿Qué profeta interpretó los sueños del faraón y salvó a Egipto?",
+      "opciones": ["Moisés", "José", "Daniel", "Elías"],
+      "respuesta": 1
+    },
+    {
+      "id": 29,
+      "pregunta": "¿Cuál es el fruto del Espíritu según Pablo en Gálatas?",
+      "opciones": ["Sabiduría", "Fe", "Amor", "Paciencia"],
+      "respuesta": 2
+    },
+    {
+      "id": 30,
+      "pregunta": "¿Qué discípulo fue pescador y hermano de Andrés?",
+      "opciones": ["Santiago", "Pedro", "Juan", "Tomás"],
+      "respuesta": 1
+    },
+    {
+      "id": 31,
+      "pregunta": "¿Quién escribió el libro de Job?",
+      "opciones": ["Moisés", "Desconocido tradicionalmente", "David", "Isaías"],
+      "respuesta": 1
+    },
+    {
+      "id": 32,
+      "pregunta": "¿Qué mujer fue la madre de Samuel y oró fervientemente por él?",
+      "opciones": ["Ana", "María", "Sara", "Rebeca"],
+      "respuesta": 0
+    },
+    {
+      "id": 33,
+      "pregunta": "¿Qué profeta fue arrojado al foso de los leones?",
+      "opciones": ["Daniel", "Ezequiel", "Jeremías", "Oseas"],
+      "respuesta": 0
+    },
+    {
+      "id": 34,
+      "pregunta": "¿Cuál apóstol escribió la carta a los Romanos?",
+      "opciones": ["Pablo", "Pedro", "Juan", "Santiago"],
+      "respuesta": 0
+    },
+    {
+      "id": 35,
+      "pregunta": "¿Qué mujer recogió espigas en el campo y luego se casó con Booz?",
+      "opciones": ["Rut", "Ester", "María", "Marta"],
+      "respuesta": 0
+    },
+    {
+      "id": 36,
+      "pregunta": "¿Qué profeta joven fue llamado por Dios en medio de la noche con la frase 'Háblame, Señor'?",
+      "opciones": ["Samuel", "Isaías", "Jeremías", "Ezequiel"],
+      "respuesta": 0
+    },
+    {
+      "id": 37,
+      "pregunta": "¿Qué rey escribió el Cantar de los Cantares según la tradición?",
+      "opciones": ["David", "Salomón", "Saúl", "Ezequías"],
+      "respuesta": 1
+    },
+    {
+      "id": 38,
+      "pregunta": "¿Qué apóstol fue conocido como el 'discípulo amado'?",
+      "opciones": ["Pedro", "Juan", "Santiago", "Mateo"],
+      "respuesta": 1
+    },
+    {
+      "id": 39,
+      "pregunta": "¿Qué libro contiene la historia de la torre que quiso alcanzar el cielo?",
+      "opciones": ["Génesis", "Éxodo", "Números", "Jueces"],
+      "respuesta": 0
+    },
+    {
+      "id": 40,
+      "pregunta": "¿Quién fue el profeta que confrontó al rey David por su pecado con Betsabé?",
+      "opciones": ["Natán", "Samuel", "Elías", "Isaías"],
+      "respuesta": 0
+    },
+    {
+      "id": 41,
+      "pregunta": "¿Qué discípulo escribió el Evangelio que comienza con 'En el principio era el Verbo'?",
+      "opciones": ["Mateo", "Marcos", "Lucas", "Juan"],
+      "respuesta": 3
+    },
+    {
+      "id": 42,
+      "pregunta": "¿Qué libro del Antiguo Testamento es una colección de canciones y oraciones?",
+      "opciones": ["Proverbios", "Salmos", "Isaías", "Rut"],
+      "respuesta": 1
+    },
+    {
+      "id": 43,
+      "pregunta": "¿Quién fue el líder que guió a los israelitas a la Tierra Prometida tras la muerte de Moisés?",
+      "opciones": ["Josué", "Caleb", "Gedeón", "Ezequías"],
+      "respuesta": 0
+    },
+    {
+      "id": 44,
+      "pregunta": "¿Qué apóstol escribió la mayoría de las epístolas dirigidas a iglesias gentiles?",
+      "opciones": ["Pablo", "Pedro", "Juan", "Santiago"],
+      "respuesta": 0
+    },
+    {
+      "id": 45,
+      "pregunta": "¿Qué profeta tuvo visiones sobre los cuatro jinetes y el fin de los tiempos?",
+      "opciones": ["Daniel", "Ezequiel", "Isaías", "Joel"],
+      "respuesta": 0
+    },
+    {
+      "id": 46,
+      "pregunta": "¿Qué mujer fue la suegra de Rut y la acompañó a Belén?",
+      "opciones": ["Noemí", "Ana", "María", "Sara"],
+      "respuesta": 0
+    },
+    {
+      "id": 47,
+      "pregunta": "¿Qué apóstol fue recaudador de impuestos antes de seguir a Jesús?",
+      "opciones": ["Mateo", "Tomás", "Felipe", "Andrés"],
+      "respuesta": 0
+    },
+    {
+      "id": 48,
+      "pregunta": "¿Qué libro narra la salida de los israelitas de Egipto?",
+      "opciones": ["Levítico", "Éxodo", "Génesis", "Deuteronomio"],
+      "respuesta": 1
+    },
+    {
+      "id": 49,
+      "pregunta": "¿Qué profeta escribió el libro que contiene la visión del 'siervo sufriente'?",
+      "opciones": ["Isaías", "Jeremías", "Ezequiel", "Amós"],
+      "respuesta": 0
+    },
+    {
+      "id": 50,
+      "pregunta": "¿Quién fue el hombre que midió la ciudad santa en el Apocalipsis?",
+      "opciones": ["Un ángel", "Juan", "Miguel", "Pedro"],
+      "respuesta": 0
+    },
+    {
+      "id": 51,
+      "pregunta": "¿Qué apóstol escribió una carta que enfatiza la fe sin obras es muerta?",
+      "opciones": ["Pablo", "Pedro", "Santiago", "Juan"],
+      "respuesta": 2
+    },
+    {
+      "id": 52,
+      "pregunta": "¿Qué profeta fue llamado a comer un rollo en su visión?",
+      "opciones": ["Ezequiel", "Daniel", "Jeremías", "Isaías"],
+      "respuesta": 0
+    },
+    {
+      "id": 53,
+      "pregunta": "¿Qué mujer fue visitada por el ángel Gabriel y concibió a Jesús?",
+      "opciones": ["María", "Marta", "María Magdalena", "Ana"],
+      "respuesta": 0
+    },
+    {
+      "id": 54,
+      "pregunta": "¿Qué discípulo escribió el Evangelio que incluye muchas parábolas del buen samaritano y el hijo pródigo?",
+      "opciones": ["Mateo", "Marcos", "Lucas", "Juan"],
+      "respuesta": 2
+    },
+    {
+      "id": 55,
+      "pregunta": "¿Qué libro contiene la historia de Sansón y Dalila?",
+      "opciones": ["Jueces", "Rut", "1 Samuel", "2 Samuel"],
+      "respuesta": 0
+    },
+    {
+      "id": 56,
+      "pregunta": "¿Qué rey pidió que trajeran a Daniel para interpretar sueños en Babilonia?",
+      "opciones": ["Nabucodonosor", "Ciro", "Asuero", "Artajerjes"],
+      "respuesta": 0
+    },
+    {
+      "id": 57,
+      "pregunta": "¿Qué apóstol escribió la carta que comienza 'Dios es amor'?",
+      "opciones": ["Pedro", "Juan", "Pablo", "Santiago"],
+      "respuesta": 1
+    },
+    {
+      "id": 58,
+      "pregunta": "¿Qué profeta fue conocido por su libro corto que contiene un llamado al arrepentimiento y al día del Señor?",
+      "opciones": ["Joel", "Jonás", "Habacuc", "Miqueas"],
+      "respuesta": 0
+    },
+    {
+      "id": 59,
+      "pregunta": "¿Qué personaje bíblico fue arrojado al mar y tragado por un gran pez?",
+      "opciones": ["Jonás", "Elías", "Jeremías", "Oseas"],
+      "respuesta": 0
+    },
+    {
+      "id": 60,
+      "pregunta": "¿Qué apóstol escribió la epístola dirigida a los Gálatas?",
+      "opciones": ["Pablo", "Pedro", "Juan", "Santiago"],
+      "respuesta": 0
+    },
+    {
+      "id": 61,
+      "pregunta": "¿Qué libro contiene la genealogía de Jesús y su nacimiento?",
+      "opciones": ["Marcos", "Mateo", "Juan", "Hechos"],
+      "respuesta": 1
+    },
+    {
+      "id": 62,
+      "pregunta": "¿Qué profeta fue enviado a Nínive para predicar arrepentimiento?",
+      "opciones": ["Jonás", "Nahúm", "Habacuc", "Joel"],
+      "respuesta": 0
+    },
+    {
+      "id": 63,
+      "pregunta": "¿Qué apóstol escribió una carta a los filipenses?",
+      "opciones": ["Pablo", "Pedro", "Juan", "Santiago"],
+      "respuesta": 0
+    },
+    {
+      "id": 64,
+      "pregunta": "¿Qué mujer fue la primera en ver a Jesús resucitado según algunos evangelios?",
+      "opciones": ["María Magdalena", "María, madre de Jesús", "Marta", "María de Betania"],
+      "respuesta": 0
+    },
+    {
+      "id": 65,
+      "pregunta": "¿Qué libro del Antiguo Testamento contiene proverbios y consejos prácticos?",
+      "opciones": ["Salmos", "Proverbios", "Isaías", "Eclesiastés"],
+      "respuesta": 1
+    },
+    {
+      "id": 66,
+      "pregunta": "¿Qué apóstol fue conocido por su viaje misionero y cartas a las iglesias?",
+      "opciones": ["Pedro", "Pablo", "Juan", "Andrés"],
+      "respuesta": 1
+    },
+    {
+      "id": 67,
+      "pregunta": "¿Qué profeta tuvo una visión de un horno de fuego y fue llamado 'siervo' en el Nuevo Testamento?",
+      "opciones": ["Isaías", "Jeremías", "Ezequiel", "Daniel"],
+      "respuesta": 0
+    },
+    {
+      "id": 68,
+      "pregunta": "¿Qué libro narra la historia de Rut y Booz?",
+      "opciones": ["Rut", "Jueces", "1 Samuel", "2 Samuel"],
+      "respuesta": 0
+    },
+    {
+      "id": 69,
+      "pregunta": "¿Qué apóstol escribió la carta a los Colosenses?",
+      "opciones": ["Pablo", "Pedro", "Juan", "Santiago"],
+      "respuesta": 0
+    },
+    {
+      "id": 70,
+      "pregunta": "¿Qué profeta habló sobre el valle de huesos secos que volvieron a la vida?",
+      "opciones": ["Ezequiel", "Isaías", "Jeremías", "Oseas"],
+      "respuesta": 0
+    },
+    {
+      "id": 71,
+      "pregunta": "¿Qué discípulo fue conocido por su incredulidad inicial y luego proclamó '¡Señor mío y Dios mío!'?",
+      "opciones": ["Pedro", "Tomás", "Juan", "Santiago"],
+      "respuesta": 1
+    },
+    {
+      "id": 72,
+      "pregunta": "¿Qué libro del Nuevo Testamento relata la expansión de la iglesia primitiva?",
+      "opciones": ["Hechos", "Romanos", "Gálatas", "Efesios"],
+      "respuesta": 0
+    },
+    {
+      "id": 73,
+      "pregunta": "¿Qué profeta fue conocido por su mensaje contra la injusticia social y la idolatría en Israel?",
+      "opciones": ["Amós", "Jonás", "Nahúm", "Habacuc"],
+      "respuesta": 0
+    },
+    {
+      "id": 74,
+      "pregunta": "¿Qué rey escribió muchos proverbios y fue famoso por su juicio justo?",
+      "opciones": ["David", "Salomón", "Saúl", "Ezequías"],
+      "respuesta": 1
+    },
+    {
+      "id": 75,
+      "pregunta": "¿Qué apóstol fue ejecutado por orden de Herodes según el Nuevo Testamento?",
+      "opciones": ["Santiago, hijo de Zebedeo", "Pedro", "Juan", "Andrés"],
+      "respuesta": 0
+    },
+    {
+      "id": 76,
+      "pregunta": "¿Qué profeta tuvo una visión de un rollo comestible y fue instruido a proclamar a las naciones?",
+      "opciones": ["Ezequiel", "Daniel", "Jeremías", "Isaías"],
+      "respuesta": 0
+    },
+    {
+      "id": 77,
+      "pregunta": "¿Qué mujer ungió los pies de Jesús con perfume y fue elogiada por su acto de devoción?",
+      "opciones": ["María Magdalena", "María de Betania", "Marta", "María, madre de Jesús"],
+      "respuesta": 1
+    },
+    {
+      "id": 78,
+      "pregunta": "¿Qué apóstol escribió la epístola que advierte sobre falsos maestros y la importancia del amor fraternal?",
+      "opciones": ["Pedro", "Juan", "Pablo", "Santiago"],
+      "respuesta": 0
+    },
+    {
+      "id": 79,
+      "pregunta": "¿Qué libro del Antiguo Testamento contiene la historia de David y Goliat?",
+      "opciones": ["1 Samuel", "2 Samuel", "Jueces", "1 Reyes"],
+      "respuesta": 0
+    },
+    {
+      "id": 80,
+      "pregunta": "¿Qué profeta fue conocido por su mensaje de esperanza y restauración para Israel después del exilio?",
+      "opciones": ["Isaías", "Zacarías", "Amós", "Jonás"],
+      "respuesta": 1
+    },
+    {
+      "id": 81,
+      "pregunta": "¿Qué apóstol escribió la carta a los Tesalonicenses?",
+      "opciones": ["Pablo", "Pedro", "Juan", "Santiago"],
+      "respuesta": 0
+    },
+    {
+      "id": 82,
+      "pregunta": "¿Qué personaje bíblico fue conocido por su paciencia en medio del sufrimiento?",
+      "opciones": ["Job", "José", "Moisés", "David"],
+      "respuesta": 0
+    },
+    {
+      "id": 83,
+      "pregunta": "¿Qué evangelio comienza con la genealogía de Jesús y la visita de los magos?",
+      "opciones": ["Marcos", "Mateo", "Lucas", "Juan"],
+      "respuesta": 1
+    },
+    {
+      "id": 84,
+      "pregunta": "¿Qué profeta fue conocido por su libro que contiene oráculos contra las naciones?",
+      "opciones": ["Jeremías", "Ezequiel", "Isaías", "Amós"],
+      "respuesta": 2
+    },
+    {
+      "id": 85,
+      "pregunta": "¿Qué apóstol escribió la carta a los Hebreos según la tradición (aunque es incierto)?",
+      "opciones": ["Pablo", "Bernabé", "Apolo", "Desconocido"],
+      "respuesta": 3
+    },
+    {
+      "id": 86,
+      "pregunta": "¿Qué mujer fue liberada por Pedro de la prisión en una intervención milagrosa?",
+      "opciones": ["Tabita (Dorcas)", "Lidia", "Priscila", "Eunice"],
+      "respuesta": 0
+    },
+    {
+      "id": 87,
+      "pregunta": "¿Qué profeta tuvo una visión de un carro con ruedas llenas de ojos?",
+      "opciones": ["Ezequiel", "Isaías", "Daniel", "Jeremías"],
+      "respuesta": 0
+    },
+    {
+      "id": 88,
+      "pregunta": "¿Qué apóstol escribió la carta que contiene la famosa definición de amor en 1 Corintios 13?",
+      "opciones": ["Pedro", "Pablo", "Juan", "Santiago"],
+      "respuesta": 1
+    },
+    {
+      "id": 89,
+      "pregunta": "¿Qué libro del Antiguo Testamento es conocido por sus reflexiones sobre la vanidad de la vida?",
+      "opciones": ["Eclesiastés", "Proverbios", "Job", "Cantar de los Cantares"],
+      "respuesta": 0
+    },
+    {
+      "id": 90,
+      "pregunta": "¿Qué profeta fue enviado a predicar en el reino del norte y denunció la injusticia social?",
+      "opciones": ["Amós", "Oseas", "Miqueas", "Joel"],
+      "respuesta": 0
+    },
+    {
+      "id": 91,
+      "pregunta": "¿Qué apóstol escribió la carta que comienza con 'A los que son amados por Dios y llamados a ser santos'?",
+      "opciones": ["Pablo", "Pedro", "Juan", "Santiago"],
+      "respuesta": 0
+    },
+    {
+      "id": 92,
+      "pregunta": "¿Qué personaje bíblico fue conocido por su sueño de una escalera que llegaba al cielo?",
+      "opciones": ["Jacob", "José", "Isaac", "Abraham"],
+      "respuesta": 0
+    },
+    {
+      "id": 93,
+      "pregunta": "¿Qué profeta fue llamado a casarse con una mujer infiel como símbolo del pueblo infiel?",
+      "opciones": ["Oseas", "Amós", "Isaías", "Jeremías"],
+      "respuesta": 0
+    },
+    {
+      "id": 94,
+      "pregunta": "¿Qué apóstol fue conocido por su carta que enfatiza la sabiduría práctica y la fe activa?",
+      "opciones": ["Santiago", "Pedro", "Juan", "Pablo"],
+      "respuesta": 0
+    },
+    {
+      "id": 95,
+      "pregunta": "¿Qué libro del Nuevo Testamento contiene las Bienaventuranzas?",
+      "opciones": ["Marcos", "Mateo", "Lucas", "Juan"],
+      "respuesta": 1
+    },
+    {
+      "id": 96,
+      "pregunta": "¿Qué profeta fue conocido por su visión de un horno y por denunciar la corrupción en Jerusalén?",
+      "opciones": ["Jeremías", "Isaías", "Ezequiel", "Amós"],
+      "respuesta": 0
+    },
+    {
+      "id": 97,
+      "pregunta": "¿Qué apóstol escribió la carta que contiene la exhortación 'Sed sobrios, velad; porque vuestro adversario el diablo'?",
+      "opciones": ["Pablo", "Pedro", "Juan", "Santiago"],
+      "respuesta": 1
+    },
+    {
+      "id": 98,
+      "pregunta": "¿Qué personaje bíblico fue conocido por su hospitalidad y recibió a los apóstoles en Filipos?",
+      "opciones": ["Lidia", "Priscila", "Tabita", "Eunice"],
+      "respuesta": 0
+    },
+    {
+      "id": 99,
+      "pregunta": "¿Qué libro del Antiguo Testamento contiene oráculos contra Babilonia y promesas de restauración?",
+      "opciones": ["Isaías", "Jeremías", "Ezequiel", "Daniel"],
+      "respuesta": 2
+    },
+    {
+      "id": 100,
+      "pregunta": "¿Qué apóstol escribió la carta que contiene la exhortación 'Haced todo con amor' y la advertencia sobre los falsos maestros?",
+      "opciones": ["Pedro", "Juan", "Pablo", "Santiago"],
+      "respuesta": 0
+    }
+  ]
+}
