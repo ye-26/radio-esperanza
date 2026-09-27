@@ -19,12 +19,13 @@ const baseProgramacionDatos = {
   ]
 };
 
-// Obtener la hora actual de Colombia (UTC -5)
+// Obtener la hora actual de Colombia
 function getColombiaTime() {
-  const now = new Date();
-  const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-  return new Date(utc + (3600000 * -5));
+ const now = new Date();
+ const colTimeStr = now.toLocaleString("en-US", { timeZone: "America/Bogota" });
+ return new Date(colTimeStr);
 }
+
 
 // Control de Estado en Vivo (Prioriza Evento Especial sobre Transmisión/Fuera de línea)
 function checkLiveStatus() {
