@@ -5,7 +5,7 @@
 (function() {
     let audioAcercaDe = null;
     // IMPORTANTE: Cambia esta ruta si tu audio está en otra carpeta
-    const RUTA_AUDIO = '/acerca-audio.mp3'; 
+    const RUTA_AUDIO = 'acerca-audio.mp3'; 
 
     function manejarAudio(estaActiva) {
         if (estaActiva) {
