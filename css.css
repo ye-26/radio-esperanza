@@ -332,11 +332,36 @@ body.day-mode .cloud { opacity: 0.6; }
 }
 
 /* Responsividad para móviles pequeños */
-@media (max-width: 420px) {
- .nav-row .tab-btn {
- font-size: 0.6rem !important;
- padding: 6px 2px !important;
- }
+/* ==========================================
+   DISEÑO MÓVIL: MANTENER GRID 4x2 EXACTO
+   ========================================== */
+@media (max-width: 650px) {
+    .radio-grid-nav {
+        /* Obligamos al navegador a mantener el mapa exacto de 4x2 en móviles */
+        grid-template-areas:
+            "live prog game cont"
+            "live pod rec about" !important;
+            
+        /* Ajustamos las columnas: LIVE un poco más angosto para dar respiro a los textos */
+        grid-template-columns: 0.8fr 1.1fr 1.1fr 1.1fr !important;
+        
+        /* Reducimos la separación entre botones para ahorrar espacio en la pantalla */
+        gap: 3px !important; 
+        padding: 0 2px !important;
+    }
+
+    .radio-grid-nav .tab-btn {
+        /* Reducimos el tamaño de la fuente para que palabras como "PROGRAMACIÓN" no se corten */
+        font-size: 0.55rem !important; 
+        padding: 4px 1px !important;
+        border-radius: 6px !important; /* Bordes ligeramente más finos para botones pequeños */
+        line-height: 1.1 !important;
+    }
+
+    .g-live {
+        /* Escala el texto de LIVE para que sea proporcional al resto en móviles */
+        font-size: 0.85rem !important; 
+    }
 }
 
 /* ==========================================
