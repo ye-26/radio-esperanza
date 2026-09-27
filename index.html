@@ -71,12 +71,20 @@
     </div>
 
     <!-- PESTAÑA 2 -->
-    <div id="schedule" class="tab-content">
-      <div class="info-box">
-        <h3>Horarios de Transmisión <span id="tz-indicator" style="font-size: 0.75rem; color: var(--text-secondary); font-weight: normal; display: block;"></span></h3>
-        <div id="schedule-container"></div>
-      </div>
+   <!-- Pestaña Programación -->
+<div id="schedule" class="tab-content">
+    
+    <!-- SUB-NAVEGACIÓN -->
+    <div class="programacion-nav" style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+        <button id="btn-ver-horarios" class="btn-accion-recurso active" style="flex: 1;">Ver horarios de transmisión</button>
+        <button id="btn-ver-eventos" class="btn-accion-recurso" style="flex: 1; background: rgba(255, 152, 0, 0.1); border-color: rgba(255, 152, 0, 0.3);">Ver eventos especiales</button>
     </div>
+
+    <!-- CONTENEDORES VACÍOS: JavaScript los llenará leyendo programacion.json -->
+    <div id="contenido-horarios">Cargando horarios...</div>
+    <div id="contenido-eventos" style="display: none;">Cargando eventos...</div>
+
+</div>
 
     <!-- PESTAÑA PODCASTS -->
     <div id="podcasts" class="tab-content">
@@ -127,6 +135,8 @@
   <script src="juego-biblico/js/audio.js"></script>
 <script src="juego-biblico/js/creditos.js"></script>
 <script src="juego-biblico/js/juego.js"></script>
+<script src="Programacion/programacion.js"></script>
+<script src="Acerca-De/acerca.js"></script>
 </body>
 </html>
 
