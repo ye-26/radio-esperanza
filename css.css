@@ -215,10 +215,28 @@ body.day-mode .cloud { opacity: 0.6; }
   box-shadow: 0 4px 15px rgba(144, 0, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.tab-content { display: none; }
-.tab-content.active {
-  display: block; animation: fadeSlideUp 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+/* ==========================================
+   MANEJO DE PESTAÑAS (TRUCO PARA MANTENER CASTER.FM VIVO EN MÓVILES)
+   ========================================== */
+.tab-content {
+    /* En lugar de display: none, lo sacamos de la pantalla para que no se mate el iframe */
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Transición suave opcional */
 }
+
+.tab-content.active {
+    position: relative; /* Lo devolvemos a su lugar original */
+    top: auto;
+    left: auto;
+    visibility: visible;
+    opacity: 1;
+    display: block; /* Aseguramos que se muestre como bloque */
+}
+
 @keyframes fadeSlideUp {
   0% { opacity: 0; transform: translateY(12px); }
   100% { opacity: 1; transform: translateY(0); }
