@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego Bíblico - Radio Esperanza</title>
+  <style>
+    /* ==========================================
+       ESTILOS 
+       ========================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      
+      
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      
+      
+      -webkit-user-drag: none;
+    }
+
+    body {
+      background: #0f0c1b;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      overflow-x: hidden;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .juego-container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .juego-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* TIPOGRAFÍA */
+    .juego-titulo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #c893ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .juego-subtitulo {
+      color: #c893ff;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+
+    /* BOTONES */
+    .btn-juego-principal, .btn-juego-secundario {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-juego-principal {
+      background: linear-gradient(135deg, #8a2be2 0%, #4a00e0 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(138, 43, 226, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-juego-principal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(138, 43, 226, 0.5);
+    }
+
+    .btn-juego-principal:active {
+      transform: translateY(1px);
+    }
+
+    .btn-juego-secundario {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e0e0ff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-juego-secundario:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    .juego-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .btn-volver-atras {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      padding: 7px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-volver-atras:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-2px);
+    }
+
+    .progreso-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progreso-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #8a2be2, #c893ff);
+      border-radius: 10px;
+      transition: width 0.4s ease;
+      box-shadow: 0 0 10px rgba(200, 147, 255, 0.5);
+    }
+
+
+    .pregunta-texto {
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #ffffff;
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+
+    .opciones-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .btn-opcion {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      color: #ffffff;
+      font-size: 0.95rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn-opcion:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(200, 147, 255, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-opcion.correcta {
+      background: rgba(46, 204, 113, 0.25) !important;
+      border-color: #2ecc71 !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+    }
+
+    .btn-opcion.incorrecta {
+      background: rgba(231, 76, 60, 0.25) !important;
+      border-color: #e74c3c !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 15px rgba(231, 76, 60, 0.4);
+    }
+
+
+    .creditos-overlay {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      margin: 15px 0;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .creditos-scroll-wrapper {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      will-change: transform;
+    }
+
+    .creditos-bloque {
+      text-align: center;
+    }
+
+    .creditos-rol {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #c893ff;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .creditos-nombre {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="juego-contenedor" class="juego-container">
+    </div>
+
+  <script>
+    // ==========================================
+    // 5
+    // ==========================================
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('copy', e => e.preventDefault());
+    document.addEventListener('cut', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
+    document.addEventListener('selectstart', e => e.preventDefault());
+
+    // ==========================================
+    // 1. CONFIGURACIÓN 
+    // ==========================================
+    const CONFIG = {
+      totalArchivosPreguntas: 10,
+      prefijoPreguntas: 'datos/preguntas',
+      creditosJson: 'datos/creditos.json',
+      volumenEfectos: 0.8,
+      volumenCreditos: 0.5
+    };
+
+    // ==========================================
+    // 2. MOTOR DE AUDIO
+    // ==========================================
+    class AudioEngine {
+      constructor() {
+        this.unlocked = false;
+        this.musicaCreditos = null;
+        
+        this.sonidos = {
+          click: ['audio/click.mp3', './audio/click.mp3', 'secciones/juego-biblico/audio/click.mp3'],
+          correcto: ['audio/correcto.mp3', './audio/correcto.mp3', 'secciones/juego-biblico/audio/correcto.mp3'],
+          incorrecto: ['audio/incorrecto.mp3', './audio/incorrecto.mp3', 'secciones/juego-biblico/audio/incorrecto.mp3'],
+          victoria: ['audio/victoria.mp3', './audio/victoria.mp3', 'secciones/juego-biblico/audio/victoria.mp3'],
+          derrota: ['audio/derrota.mp3', './audio/derrota.mp3', 'secciones/juego-biblico/audio/derrota.mp3'],
+          credits: ['audio/credits.mp3', './audio/credits.mp3', 'secciones/juego-biblico/audio/credits.mp3']
+        };
+
+        this.initUnlock();
+      }
+
+      initUnlock() {
+        const unlock = () => {
+          if (this.unlocked) return;
+          this.unlocked = true;
+          const silent = new Audio();
+          silent.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+          silent.play().catch(() => {});
+          document.removeEventListener('click', unlock);
+          document.removeEventListener('touchstart', unlock);
+        };
+        document.addEventListener('click', unlock, { once: true });
+        document.addEventListener('touchstart', unlock, { once: true });
+      }
+
+      async intentarReproducir(listaRutas, volumen = 0.8, esBucle = false) {
+        for (const ruta of listaRutas) {
+          try {
+            const audio = new Audio(ruta);
+            audio.volume = volumen;
+            audio.loop = esBucle;
+            await audio.play();
+            return audio;
+          } catch (err) {}
+        }
+        return null;
+      }
+
+      reproducirEfecto(nombre) {
+        if (!this.sonidos[nombre]) return;
+        this.intentarReproducir(this.sonidos[nombre], CONFIG.volumenEfectos, false);
+      }
+
+      async iniciarMusicaCreditos() {
+        this.detenerMusicaCreditos();
+        this.musicaCreditos = await this.intentarReproducir(this.sonidos.credits, CONFIG.volumenCreditos, true);
+      }
+
+      detenerMusicaCreditos() {
+        if (this.musicaCreditos) {
+          this.musicaCreditos.pause();
+          this.musicaCreditos.currentTime = 0;
+          this.musicaCreditos = null;
+        }
+      }
+    }
+
+    const audioEngine = new AudioEngine();
+
+    // ==========================================
+    // 3. ALGORITMO DE CARGA ALEATORIA
+    // ==========================================
+    let ultimoIndiceCuestionario = -1;
+
+    async function cargarCuestionarioAleatorio() {
+      const total = CONFIG.totalArchivosPreguntas || 10;
+      let indicesDisponibles = [];
+      for (let i = 1; i <= total; i++) indicesDisponibles.push(i);
+
+      let candidatos = indicesDisponibles.filter(idx => idx !== ultimoIndiceCuestionario);
+      if (candidatos.length === 0) candidatos = indicesDisponibles;
+
+      while (candidatos.length > 0) {
+        const randIdx = Math.floor(Math.random() * candidatos.length);
+        const numSeleccionado = candidatos[randIdx];
+
+        const rutasAProbar = [
+          `${CONFIG.prefijoPreguntas}${numSeleccionado}.json`,
+          `./${CONFIG.prefijoPreguntas}${numSeleccionado}.json`,
+          `secciones/juego-biblico/${CONFIG.prefijoPreguntas}${numSeleccionado}.json`
+        ];
+
+        for (const ruta of rutasAProbar) {
+          try {
+            const resp = await fetch(ruta);
+            if (resp.ok) {
+              const data = await resp.json();
+              if (data && data.preguntas && data.preguntas.length > 0) {
+                ultimoIndiceCuestionario = numSeleccionado;
+                return { data, numArchivo: numSeleccionado };
+              }
+            }
+          } catch (e) {}
+        }
+
+        candidatos.splice(randIdx, 1);
+      }
+
+      const resp = await fetch('datos/preguntas1.json');
+      if (resp.ok) {
+        const data = await resp.json();
+        return { data, numArchivo: 1 };
+      }
+
+      throw new Error('No se encontraron cuestionarios JSON disponibles.');
+    }
+
+    // ==========================================
+    // 4. CONTROLADOR
+    // ==========================================
+    let creditosAnimFrame = null;
+    let creditosPosicionY = 0;
+
+    async function abrirPantallaCreditos() {
+      audioEngine.detenerMusicaCreditos();
+      audioEngine.iniciarMusicaCreditos();
+
+      let datosCreditos = null;
+      const rutasCreditos = [CONFIG.creditosJson, `./${CONFIG.creditosJson}`, `secciones/juego-biblico/${CONFIG.creditosJson}`];
+      
+      for (const ruta of rutasCreditos) {
+        try {
+          const resp = await fetch(ruta);
+          if (resp.ok) {
+            datosCreditos = await resp.json();
+            break;
+          }
+        } catch (e) {}
+      }
+
+      if (!datosCreditos) {
+        datosCreditos = {
+          titulo: "RADIO ESPERANZA",
+          secciones: [
+            { rol: "Desarrollo & Diseño", nombres: ["Equipo YSoft"] },
+            { rol: "Contenido Bíblico", nombres: ["Ministerio de Educación"] },
+            { rol: "Música & Efectos", nombres: ["Radio Esperanza Sound"] }
+          ]
+        };
+      }
+
+      const contenedor = document.getElementById('juego-contenedor');
+      let htmlSecciones = datosCreditos.secciones.map(sec => `
+        <div class="creditos-bloque">
+          <div class="creditos-rol">${escapar(sec.rol)}</div>
+          ${sec.nombres.map(n => `<div class="creditos-nombre">${escapar(n)}</div>`).join('')}
+        </div>
+      `).join('');
+
+      contenedor.innerHTML = `
+        <div class="juego-card">
+          <div class="juego-titulo">${escapar(datosCreditos.titulo || "CRÉDITOS")}</div>
+          
+          <div class="creditos-overlay" id="creditos-viewport">
+            <div class="creditos-scroll-wrapper" id="creditos-content">
+              ${htmlSecciones}
+            </div>
+          </div>
+
+          <button class="btn-juego-principal" id="btn-volver-creditos" style="margin-top: 15px;">
+            VOLVER AL MENÚ
+          </button>
+        </div>
+      `;
+
+      const viewport = document.getElementById('creditos-viewport');
+      const content = document.getElementById('creditos-content');
+      if (viewport && content) {
+        creditosPosicionY = viewport.clientHeight;
+        const paso = () => {
+          creditosPosicionY -= 0.7;
+          if (creditosPosicionY < -content.clientHeight) {
+            creditosPosicionY = viewport.clientHeight;
+          }
+          content.style.transform = `translateY(${creditosPosicionY}px)`;
+          creditosAnimFrame = requestAnimationFrame(paso);
+        };
+        creditosAnimFrame = requestAnimationFrame(paso);
+      }
+
+      document.getElementById('btn-volver-creditos').addEventListener('click', () => {
+        audioEngine.reproducirEfecto('click');
+        if (creditosAnimFrame) cancelAnimationFrame(creditosAnimFrame);
+        audioEngine.detenerMusicaCreditos();
+        mostrarMenuInicio();
+      });
+    }
+
+    // ==========================================
+    // 5. MOTOR DEL JUEGO BÍBLICO
+    // ==========================================
+    let preguntasActuales = [];
+    let indicePregunta = 0;
+    let puntaje = 0;
+    let respondido = false;
+
+    function mostrarMenuInicio() {
+      audioEngine.detenerMusicaCreditos();
+      const contenedor = document.getElementById('juego-contenedor');
+      contenedor.innerHTML = `
+        <div class="juego-card">
+          <div class="juego-titulo">JUEGO BÍBLICO</div>
+          <div class="juego-subtitulo">
+            Pon a prueba tus conocimientos de las Sagradas Escrituras
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button class="btn-juego-principal" id="btn-iniciar-juego">
+              INICIAR JUEGO BÍBLICO
+            </button>
+            <button class="btn-juego-secundario" id="btn-abrir-creditos">
+              CRÉDITOS
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('btn-iniciar-juego').addEventListener('click', () => {
+        audioEngine.reproducirEfecto('click');
+        iniciarJuego();
+      });
+
+      document.getElementById('btn-abrir-creditos').addEventListener('click', () => {
+        audioEngine.reproducirEfecto('click');
+        abrirPantallaCreditos();
+      });
+    }
+
+    async function iniciarJuego() {
+      const contenedor = document.getElementById('juego-contenedor');
+      contenedor.innerHTML = `
+        <div class="juego-card">
+          <div style="color: #c893ff; padding: 20px 0; font-weight: 600;">
+            Cargando cuestionario bíblico...
+          </div>
+        </div>
+      `;
+
+      try {
+        const resultado = await cargarCuestionarioAleatorio();
+        preguntasActuales = resultado.data.preguntas;
+        indicePregunta = 0;
+        puntaje = 0;
+        renderizarPregunta();
+      } catch (e) {
+        contenedor.innerHTML = `
+          <div class="juego-card">
+            <div style="color: #ff6b6b; margin-bottom: 15px; font-size: 0.9rem;">
+              No se encontraron archivos de preguntas por favor, intenta más tarde o contacta al soporte.
+            </div>
+            <button class="btn-juego-principal" id="btn-reintentar">
+              REINTENTAR
+            </button>
+          </div>
+        `;
+        document.getElementById('btn-reintentar').addEventListener('click', () => {
+          audioEngine.reproducirEfecto('click');
+          iniciarJuego();
+        });
+      }
+    }
+
+    function renderizarPregunta() {
+      const contenedor = document.getElementById('juego-contenedor');
+      const total = preguntasActuales.length;
+      const preg = preguntasActuales[indicePregunta];
+      respondido = false;
+
+      const porcentajeProgreso = (indicePregunta / total) * 100;
+
+      contenedor.innerHTML = `
+        <div class="juego-card">
+          <div class="juego-top-bar">
+            <button class="btn-volver-atras" id="btn-volver-top">
+              ⬅ Menú
+            </button>
+            <div style="font-size: 0.85rem; color: #c893ff; font-weight: 600;">
+              Pregunta ${indicePregunta + 1} de ${total}
+            </div>
+          </div>
+
+          <div class="progreso-bar-bg">
+            <div class="progreso-bar-fill" style="width: ${porcentajeProgreso}%;"></div>
+          </div>
+
+          <div class="pregunta-texto">${escapar(preg.pregunta)}</div>
+
+          <div class="opciones-grid" id="opciones-contenedor">
+            ${preg.opciones.map((op, idx) => `
+              <button class="btn-opcion" data-index="${idx}">
+                <span>${escapar(op)}</span>
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      document.getElementById('btn-volver-top').addEventListener('click', () => {
+        audioEngine.reproducirEfecto('click');
+        mostrarMenuInicio();
+      });
+
+      const botonesOpciones = document.querySelectorAll('.btn-opcion');
+      botonesOpciones.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          if (respondido) return;
+          const idxSeleccionado = parseInt(e.currentTarget.getAttribute('data-index'));
+          verificarRespuesta(idxSeleccionado, preg.respuesta, e.currentTarget, botonesOpciones);
+        });
+      });
+    }
+
+    function verificarRespuesta(idxSeleccionado, idxCorrecto, botonPresionado, todosLosBotones) {
+      respondido = true;
+
+      if (idxSeleccionado === idxCorrecto) {
+        botonPresionado.classList.add('correcta');
+        audioEngine.reproducirEfecto('correcto');
+        puntaje++;
+      } else {
+        botonPresionado.classList.add('incorrecta');
+        audioEngine.reproducirEfecto('incorrecto');
+        if (todosLosBotones[idxCorrecto]) {
+          todosLosBotones[idxCorrecto].classList.add('correcta');
+        }
+      }
+
+      todosLosBotones.forEach(b => b.style.pointerEvents = 'none');
+
+      setTimeout(() => {
+        indicePregunta++;
+        if (indicePregunta < preguntasActuales.length) {
+          renderizarPregunta();
+        } else {
+          mostrarResultados();
+        }
+      }, 1500);
+    }
+
+    function mostrarResultados() {
+      const contenedor = document.getElementById('juego-contenedor');
+      const total = preguntasActuales.length;
+      const porcentaje = Math.round((puntaje / total) * 100);
+
+      if (porcentaje >= 70) {
+        audioEngine.reproducirEfecto('victoria');
+      } else {
+        audioEngine.reproducirEfecto('derrota');
+      }
+
+      let mensaje = '';
+      if (porcentaje === 100) mensaje = '¡Excelente! Tienes un conocimiento bíblico impresionante. 🎉';
+      else if (porcentaje >= 70) mensaje = '¡Muy bien! Buen conocimiento de las Escrituras. 📖';
+      else mensaje = '¡Sigue escudriñando las Escrituras! 🙏';
+
+      contenedor.innerHTML = `
+        <div class="juego-card">
+          <div class="juego-titulo">RESULTADOS</div>
+
+          <div style="font-size: 3rem; font-weight: 800; color: #c893ff; margin: 15px 0 5px 0;">
+            ${puntaje} / ${total}
+          </div>
+          <div style="color: #a0a0c0; font-size: 0.9rem; margin-bottom: 15px;">
+            Puntaje Obtenido (${porcentaje}%)
+          </div>
+
+          <div style="color: #ffffff; font-size: 0.95rem; margin-bottom: 25px;">
+            ${mensaje}
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button class="btn-juego-principal" id="btn-siguiente-nivel">
+              SIGUIENTE
+            </button>
+            <button class="btn-juego-secundario" id="btn-menu-res">
+              MENÚ PRINCIPAL
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('btn-siguiente-nivel').addEventListener('click', () => {
+        audioEngine.reproducirEfecto('click');
+        iniciarJuego();
+      });
+
+      document.getElementById('btn-menu-res').addEventListener('click', () => {
+        audioEngine.reproducirEfecto('click');
+        mostrarMenuInicio();
+      });
+    }
+
+    function escapar(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    // Cargar Menú 
+    document.addEventListener('DOMContentLoaded', mostrarMenuInicio);
+  </script>
+</body>
+</html>

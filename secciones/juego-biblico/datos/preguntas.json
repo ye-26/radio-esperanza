@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "titulo": "Juego Bíblico - Nivel Único",
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Quién construyó el arca siguiendo el mandato de Dios?",
+      "opciones": ["Moisés", "Noé", "Abraham", "David"],
+      "respuesta": 1
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Cuál es el primer libro del Antiguo Testamento?",
+      "opciones": ["Éxodo", "Salmos", "Génesis", "Mateo"],
+      "respuesta": 2
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Cuántos días y noches llovió durante el gran diluvio?",
+      "opciones": ["7 días", "12 días", "40 días y 40 noches", "100 días"],
+      "respuesta": 2
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Quién recibió los Diez Mandamientos en el Monte Sinaí?",
+      "opciones": ["Moisés", "Josué", "Aarón", "Samuel"],
+      "respuesta": 0
+    },
+    {
+      "id": 5,
+      "pregunta": "¿En qué ciudad nació Jesús?",
+      "opciones": ["Nazaret", "Jerusalén", "Belén", "Jericó"],
+      "respuesta": 2
+    }
+  ]
+}

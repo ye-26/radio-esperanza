@@ -1,0 +1,27 @@
+{
+"transmissions": [
+{
+"title": "Anochecer con Cristo",
+"days": "Domingos a Viernes",
+"startTime": "2026-06-06T19:00:00-05:00",
+"endTime": "2026-06-06T21:00:00-05:00",
+"description": "Espacio de reflexión nocturna y música edificante adaptado a tu zona horaria local."
+},
+{
+"title": "Especiales Musicales en Vivo",
+"days": "Sábados",
+"startTime": "2026-06-06T17:30:00-05:00",
+"endTime": "2026-06-06T20:00:00-05:00",
+"description": "Disfruta de alabanzas en vivo y peticiones de radioescuchas."
+}
+],
+"events": [
+{
+"title": "Vigilia de Oración Juvenil",
+"days": "Viernes",
+"startTime": "2026-06-06T22:00:00-05:00",
+"endTime": "2026-06-06T23:59:00-05:00",
+"description": "Transmisión especial desde el auditorio principal."
+}
+]
+}

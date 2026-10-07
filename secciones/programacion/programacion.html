@@ -1,0 +1,311 @@
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        padding: 24px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    /* Encabezado con estado en vivo */
+    .header-status {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--text-muted);
+    }
+
+    /* Estados dinámicos */
+    .status-badge.live {
+        background: rgba(16, 185, 129, 0.15);
+        border-color: rgba(16, 185, 129, 0.3);
+        color: #34d399;
+    }
+    .status-badge.live .status-dot {
+        background-color: #34d399;
+        box-shadow: 0 0 8px #34d399;
+        animation: pulse 1.5s infinite;
+    }
+
+    .status-badge.special {
+        background: rgba(245, 158, 11, 0.15);
+        border-color: rgba(245, 158, 11, 0.3);
+        color: #fbbf24;
+    }
+    .status-badge.special .status-dot {
+        background-color: #fbbf24;
+        box-shadow: 0 0 8px #fbbf24;
+        animation: pulse 1.5s infinite;
+    }
+
+    .status-badge.offline {
+        color: var(--text-muted);
+    }
+    .status-badge.offline .status-dot {
+        background-color: var(--text-muted);
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(0.95); opacity: 0.8; }
+        50% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    /* Botones de navegación */
+    .nav-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        background-color: var(--btn-inactive);
+        color: var(--text-primary);
+        border: 1px solid var(--btn-inactive-border);
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex: 1;
+        min-width: 220px;
+        text-align: center;
+    }
+
+    .tab-btn:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .tab-btn.active {
+        background-color: var(--btn-active);
+        border-color: var(--btn-active-border);
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    }
+
+    /* Contenedor de listas */
+    .schedule-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 20px;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+    }
+
+    .card-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+    }
+
+    .loading-text, .error-text {
+        text-align: center;
+        padding: 40px;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+    }
+
+    /* Pie de página */
+    footer {
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+</style>
+
+
+<div class="container">
+    <!-- Indicador Superior de Estado en Vivo -->
+    <div class="header-status">
+        <div id="liveStatusBadge" class="status-badge offline">
+            <span class="status-dot"></span>
+            <span id="liveStatusText">Fuera de línea</span>
+        </div>
+        <div style="font-size: 0.8rem; color: var(--text-muted);" id="localTzInfo">Hora local</div>
+    </div>
+
+    <!-- Botones de Pestañas -->
+    <div class="nav-buttons">
+        <button id="btnTransmissions" class="tab-btn active" onclick="switchTab('transmissions')">Ver horarios de transmisión</button>
+        <button id="btnSpecials" class="tab-btn" onclick="switchTab('specials')">Ver eventos especiales</button>
+    </div>
+
+    <!-- Contenido Dinámico -->
+    <div id="contentContainer" class="schedule-list">
+        <div class="loading-text">Cargando programación...</div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 Radio Esperanza. Todos los derechos reservados.
+</footer>
+
+<script>
+    let scheduleData = { transmissions: [], specials: [] };
+    let currentTab = 'transmissions';
+
+    async function loadSchedule() {
+        try {
+            const response = await fetch('horarios.json');
+            if (!response.ok) throw new Error('No se pudo cargar el archivo de horarios.');
+            scheduleData = await response.json();
+            renderContent();
+            updateLiveStatus();
+            setInterval(updateLiveStatus, 30000); // Revisa cada 30 segundos
+        } catch (error) {
+            console.error(error);
+            document.getElementById('contentContainer').innerHTML = `
+                <div class="error-text">
+                    No se pudo cargar el archivo <code>horarios.json</code> o el formato es incorrecto.<br>
+                    Asegúrate de que se encuentre en la misma carpeta.
+                </div>
+            `;
+        }
+    }
+
+    function switchTab(tab) {
+        currentTab = tab;
+        document.getElementById('btnTransmissions').classList.toggle('active', tab === 'transmissions');
+        document.getElementById('btnSpecials').classList.toggle('active', tab === 'specials');
+        renderContent();
+    }
+
+    // Función auxiliar para convertir hora formato ISO o HH:mm UTC a hora local del navegador
+    function formatLocalTimeRange(startTimeUTC, endTimeUTC, daysText) {
+        try {
+            // Si el formato es por ejemplo "20:00" y queremos adaptarlo a la fecha actual del usuario
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate).padStart(2, '0');
+
+            // Creamos objetos de fecha asumiendo hora base UTC o del servidor (ej. UTC-5 Colombia)
+            // O interpretándolos directamente si vienen en formato ISO completo
+            const startDate = new Date(`${year}-${month}-${day}T${startTimeUTC}:00`);
+            const endDate = new Date(`${year}-${month}-${day}T${endTimeUTC}:00`);
+
+            const options = { hour: 'numeric', minute: '2-digit', hour12: true };
+            const localStart = startDate.toLocaleTimeString([], options);
+            const localEnd = endDate.toLocaleTimeString([], options);
+
+            return `${daysText} - ${localStart} a ${localEnd}`;
+        } catch (e) {
+            return `${daysText} - ${startTimeUTC} a ${endTimeUTC}`;
+        }
+    }
+
+    function renderContent() {
+        const container = document.getElementById('contentContainer');
+        const items = currentTab === 'transmissions' ? scheduleData.transmissions : scheduleData.specials;
+
+        if (!items || items.length === 0) {
+            container.innerHTML = `<div class="loading-text">No hay elementos programados en esta sección.</div>`;
+            return;
+        }
+
+        container.innerHTML = items.map(item => `
+            <div class="card">
+                <div class="card-title">${item.title}</div>
+                <div class="card-info">
+                    <span>⏰</span>
+                    <span>${item.days ? formatLocalTimeRange(item.startTime, item.endTime, item.days) : item.dateTimeLocal || ''}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function updateLiveStatus() {
+        const badge = document.getElementById('liveStatusBadge');
+        const text = document.getElementById('liveStatusText');
+        
+        const now = new Date();
+        const currentTimeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        
+        // Revisar eventos especiales activos
+        let activeSpecial = scheduleData.specials?.find(item => {
+            return item.startTime && item.endTime && currentTimeStr >= item.startTime && currentTimeStr <= item.endTime;
+        });
+
+        if (activeSpecial) {
+            badge.className = 'status-badge special';
+            text.textContent = `En evento especial: ${activeSpecial.title}`;
+            return;
+        }
+
+        // Revisar transmisiones regulares activas
+        let activeTransmission = scheduleData.transmissions?.find(item => {
+            return item.startTime && item.endTime && currentTimeStr >= item.startTime && currentTimeStr <= item.endTime;
+        });
+
+        if (activeTransmission) {
+            badge.className = 'status-badge live';
+            text.textContent = `En transmisión: ${activeTransmission.title}`;
+            return;
+        }
+
+        // Fuera de línea por defecto
+        badge.className = 'status-badge offline';
+        text.textContent = 'Fuera de línea';
+    }
+
+    // Inicializar al cargar la página
+    window.onload = loadSchedule;
+</script>
