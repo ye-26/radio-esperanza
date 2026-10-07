@@ -10,5 +10,11 @@
     "titulo": "Juego Bíblico",
     "icono": "🎮",
     "rutaHTML": "secciones/juego-biblico/index.html"
+  },
+  {
+    "id": "app-programacion",
+    "titulo": "Programación",
+    "icono": "📅",
+    "rutaHTML": "secciones/programacion/programacion.html"
   }
 ]
