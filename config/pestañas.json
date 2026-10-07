@@ -1,0 +1,26 @@
+[
+  {
+    "id": "app-sintonizar",
+    "titulo": "Sintonizar",
+    "icono": "📻",
+    "rutaHTML": "secciones/sintonizar/sintonizar.html"
+  },
+  {
+    "id": "app-programacion",
+    "titulo": "Programación",
+    "icono": "📅",
+    "rutaHTML": "secciones/programacion/programacion.html"
+  },
+  {
+    "id": "app-juego",
+    "titulo": "Juego Bíblico",
+    "icono": "🎮",
+    "rutaHTML": "secciones/juego-biblico/index.html"
+  },
+  {
+    "id": "app-recursos",
+    "titulo": "Recursos",
+    "icono": "📚",
+    "rutaHTML": "secciones/recursos/recursos.js"
+  }
+]
