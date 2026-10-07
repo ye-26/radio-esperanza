@@ -1,142 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Radio Esperanza - En Vivo</title>
-  <!-- Enlaces CSS -->
-  <link rel="stylesheet" href="css.css">
-  <link rel="stylesheet" href="podcasts/podcasts.css">
-  <link rel="stylesheet" href="recursos/recursos.css">
-  <link rel="stylesheet" href="juego-biblico/css/juego.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Radio Esperanza</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <!-- FONDO DINÁMICO -->
-  <div id="dynamic-bg-container">
-    <div id="stars-layer"></div>
-    <div id="moon"></div>
-    
-    <div id="sun"></div>
-    <div class="cloud cloud-1"></div>
-    <div class="cloud cloud-2"></div>
-    <div class="cloud cloud-3"></div>
-  </div>
-
-  <div class="radio-card">
-
-    <!-- Encabezado con Logo  -->
-    <div class="station-header" id="logo-trigger" title="Toca para cambiar Día/Noche">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 50'%3E%3Cpath d='M20 35 A15 15 0 0 1 20 15 M15 40 A22 22 0 0 1 15 10 M25 30 A8 8 0 0 1 25 20' fill='none' stroke='%239000FF' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='25' r='4' fill='%239000FF'/%3E%3Ctext x='45' y='32' font-family='sans-serif' font-size='20' font-weight='bold' fill='%23ffffff'%3ERADIO%3C/text%3E%3Ctext x='115' y='32' font-family='sans-serif' font-size='20' font-weight='bold' fill='%239000FF'%3EESPERANZA%3C/text%3E%3C/svg%3E" alt="Logo Radio Esperanza" class="station-logo" draggable="false">
+    <div id="loading-screen">
+        <div class="loader-logo">BIENVENIDO!</div>
+        <div class="loader-spinner"></div>
     </div>
 
-   <!-- Menú de Pestañas (Grid por Áreas) -->
-<nav class="radio-grid-nav">
-    <button class="tab-btn g-live active" onclick="switchTab('home', event)">LIVE</button>
-    <button class="tab-btn g-prog" onclick="switchTab('schedule', event)">PROGRAMACIÓN</button>
-    <button class="tab-btn g-game" onclick="switchTab('bible-game', event)">JUEGO BÍBLICO</button>
-    <button class="tab-btn g-cont" onclick="switchTab('contact', event)">CONTACTO</button>
-    <button class="tab-btn g-pod" onclick="switchTab('podcasts', event)">PODCASTS</button>
-    <button class="tab-btn g-rec" onclick="switchTab('bible-resources', event)">RECURSOS BÍBLICOS</button>
-    <button class="tab-btn g-about" onclick="switchTab('about', event)">ACERCA DE</button>
-</nav>
-
-    <!-- PESTAÑA 1 -->
-    <div id="home" class="tab-content active">
-      <div id="status-badge" class="badge-live online">
-        <span class="dot"></span> <span id="status-text">Calculando...</span>
-      </div>
-      <h1 class="station-title">Radio Esperanza</h1>
-      <p class="station-subtitle">Has clic en PLAY para sintonizar nuestra señal digital en vivo</p>
-      <div class="player-container">
-        <div class="player-wrapper">
-          <div class="player-mask">
-            <div class="clock-in-mask" id="clockDisplay">⏱️ --:--</div>
-          </div>
-          <!-- REPRODUCTOR  -->
-          <div data-type="newStreamPlayer" 
-               data-publicToken="c77b0829-2cab-4c7e-8644-4ff95792c3be" 
-               data-theme="dark" 
-               data-color="9000FF" 
-               data-channelId="" 
-               data-rendered="false" 
-               class="cstrEmbed">
-            <a href="https://www.caster.fm">Shoutcast Hosting</a> 
-            <a href="https://www.caster.fm">Stream Hosting</a> 
-            <a href="https://www.caster.fm">Radio Server Hosting</a>
-          </div>
-          <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
+    <div class="desktop-background">
+        <div class="bg-animation"></div>
+        
+        <div class="desktop-logo-container" id="logo-trigger" style="cursor: pointer;">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 50'%3E%3Cpath d='M20 35 A15 15 0 0 1 20 15 M15 40 A22 22 0 0 1 15 10 M25 30 A8 8 0 0 1 25 20' fill='none' stroke='%239000FF' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='25' r='4' fill='%239000FF'/%3E%3Ctext x='45' y='32' font-family='sans-serif' font-size='20' font-weight='bold' fill='%23ffffff'%3ERADIO%3C/text%3E%3Ctext x='115' y='32' font-family='sans-serif' font-size='20' font-weight='bold' fill='%239000FF'%3EESPERANZA%3C/text%3E%3C/svg%3E" alt="Logo Radio Esperanza Centro" draggable="false">
         </div>
-      </div>
     </div>
 
-    <!-- PESTAÑA 2 -->
-   <!-- Pestaña Programación -->
-<div id="schedule" class="tab-content">
-    
-    <!-- SUB-NAVEGACIÓN -->
-    <div class="programacion-nav" style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
-        <button id="btn-ver-horarios" class="btn-accion-recurso active" style="flex: 1;">Ver horarios de transmisión</button>
-        <button id="btn-ver-eventos" class="btn-accion-recurso" style="flex: 1; background: rgba(255, 152, 0, 0.1); border-color: rgba(255, 152, 0, 0.3);">Ver eventos especiales</button>
-    </div>
+    <main id="desktop-area"></main>
 
-    <!-- CONTENEDORES VACÍOS: JavaScript los llenará leyendo programacion.json -->
-    <div id="contenido-horarios">Cargando horarios...</div>
-    <div id="contenido-eventos" style="display: none;">Cargando eventos...</div>
-
-</div>
-
-    <!-- PESTAÑA PODCASTS -->
-    <div id="podcasts" class="tab-content">
-      <div class="info-box" style="max-height: 350px; padding: 10px;">
-        <div id="radio-esperanza-podcasts"></div>
-      </div>
-    </div>
-
- <!-- PESTAÑA JUEGO BÍBLICO -->
-<div id="bible-game" class="tab-content">
-    <div id="juego-contenedor"></div>
-</div>
-
- 
- <!-- PESTAÑA RECURSOS BÍBLICOS -->
-<div id="bible-resources" class="tab-content">
-    <div id="recursos-contenedor"></div>
-</div>
-
-    <!-- PESTAÑA 3 -->
-    <div id="about" class="tab-content">
-      <div class="info-box">
-        <h3>Nuestra Misión</h3>
-        <p>Radio Esperanza es una emisora digital sin fines de lucro, creada con el propósito de compartir un mensaje de esperanza, fe y ánimo con nuestra audiencia.<br>A través de nuestra programación ofrecemos música, reflexiones, mensajes y contenidos que buscan edificar, inspirar y acompañar a cada persona que nos escucha.<br>Nuestra misión es utilizar este medio para transmitir un mensaje que bendiga vidas y acerque a las personas a Dios.</p>
-        <p>Radio Esperanza</p>
-      </div>
-    </div>
-
-    <!-- PESTAÑA 4 -->
-    <div id="contact" class="tab-content">
-      <div class="info-box" style="text-align: center;">
-        <h3>Ponte en Contacto</h3>
-        <p>¿Tienes alguna petición, saludo o sugerencia? Escríbenos:</p>
-        <div class="contact-links">
-          <a href="https://wa.me/" target="_blank" class="contact-btn">💬 Escríbenos por WhatsApp</a>
-          <a href="mailto:yprojects.media@gmail.com" class="contact-btn">✉️ Enviar un Correo</a>
+    <div id="start-menu" class="hidden">
+        <div class="start-header">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 50'%3E%3Cpath d='M20 35 A15 15 0 0 1 20 15 M15 40 A22 22 0 0 1 15 10 M25 30 A8 8 0 0 1 25 20' fill='none' stroke='%239000FF' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='25' r='4' fill='%239000FF'/%3E%3Ctext x='45' y='32' font-family='sans-serif' font-size='20' font-weight='bold' fill='%23ffffff'%3ERADIO%3C/text%3E%3Ctext x='115' y='32' font-family='sans-serif' font-size='20' font-weight='bold' fill='%239000FF'%3EESPERANZA%3C/text%3E%3C/svg%3E" alt="Logo Menú" class="menu-logo" draggable="false">
+            <input type="text" id="app-search" placeholder="Buscar aplicación...">
         </div>
-      </div>
+        <div id="start-grid" class="app-grid"></div>
     </div>
 
-    <p class="footer-text">© 2026 Radio Esperanza. Todos los derechos reservados.</p>
-  </div>
+    <nav id="taskbar">
+        <button id="btn-start" class="taskbar-btn" title="Inicio">
+            <span class="icon">⌂</span>
+        </button>
+        <div id="taskbar-apps"></div>
+        <div id="taskbar-clock"></div>
+    </nav>
 
-  <!-- JS -->
-  <script src="java.js"></script>
-  <script src="podcasts/podcasts.js"></script>
-  <script src="recursos/recursos.js"></script>
-  <script src="juego-biblico/js/audio.js"></script>
-<script src="juego-biblico/js/creditos.js"></script>
-<script src="juego-biblico/js/juego.js"></script>
-<script src="Programacion/programacion.js"></script>
-<script src="Acerca-De/acerca.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Caché activado correctamente'))
+                    .catch(err => console.error('Error al iniciar caché:', err));
+            });
+        }
+    </script>
 </body>
 </html>
-
