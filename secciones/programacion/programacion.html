@@ -1,311 +1,470 @@
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    body {
-        background-color: var(--bg-color);
-        color: var(--text-primary);
-        padding: 24px;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .container {
-        max-width: 700px;
-        margin: 0 auto;
-        width: 100%;
-    }
-
-    /* Encabezado con estado en vivo */
-    .header-status {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .status-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .status-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: var(--text-muted);
-    }
-
-    /* Estados dinámicos */
-    .status-badge.live {
-        background: rgba(16, 185, 129, 0.15);
-        border-color: rgba(16, 185, 129, 0.3);
-        color: #34d399;
-    }
-    .status-badge.live .status-dot {
-        background-color: #34d399;
-        box-shadow: 0 0 8px #34d399;
-        animation: pulse 1.5s infinite;
-    }
-
-    .status-badge.special {
-        background: rgba(245, 158, 11, 0.15);
-        border-color: rgba(245, 158, 11, 0.3);
-        color: #fbbf24;
-    }
-    .status-badge.special .status-dot {
-        background-color: #fbbf24;
-        box-shadow: 0 0 8px #fbbf24;
-        animation: pulse 1.5s infinite;
-    }
-
-    .status-badge.offline {
-        color: var(--text-muted);
-    }
-    .status-badge.offline .status-dot {
-        background-color: var(--text-muted);
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(0.95); opacity: 0.8; }
-        50% { transform: scale(1.2); opacity: 1; }
-        100% { transform: scale(0.95); opacity: 0.8; }
-    }
-
-    /* Botones de navegación */
-    .nav-buttons {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 24px;
-        flex-wrap: wrap;
-    }
-
-    .tab-btn {
-        background-color: var(--btn-inactive);
-        color: var(--text-primary);
-        border: 1px solid var(--btn-inactive-border);
-        padding: 12px 20px;
-        border-radius: 12px;
-        font-size: 0.95rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        flex: 1;
-        min-width: 220px;
-        text-align: center;
-    }
-
-    .tab-btn:hover {
-        border-color: rgba(255, 255, 255, 0.2);
-        background: rgba(255, 255, 255, 0.08);
-    }
-
-    .tab-btn.active {
-        background-color: var(--btn-active);
-        border-color: var(--btn-active-border);
-        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
-    }
-
-    /* Contenedor de listas */
-    .schedule-list {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .card {
-        background-color: var(--card-bg);
-        border: 1px solid var(--card-border);
-        border-radius: 16px;
-        padding: 20px;
-        transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .card:hover {
-        border-color: rgba(255, 255, 255, 0.15);
-        transform: translateY(-2px);
-    }
-
-    .card-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--text-primary);
-    }
-
-    .card-info {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-    }
-
-    .loading-text, .error-text {
-        text-align: center;
-        padding: 40px;
-        color: var(--text-muted);
-        font-size: 0.95rem;
-    }
-
-    /* Pie de página */
-    footer {
-        text-align: center;
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-</style>
-
-
-<div class="container">
-    <!-- Indicador Superior de Estado en Vivo -->
-    <div class="header-status">
-        <div id="liveStatusBadge" class="status-badge offline">
-            <span class="status-dot"></span>
-            <span id="liveStatusText">Fuera de línea</span>
-        </div>
-        <div style="font-size: 0.8rem; color: var(--text-muted);" id="localTzInfo">Hora local</div>
-    </div>
-
-    <!-- Botones de Pestañas -->
-    <div class="nav-buttons">
-        <button id="btnTransmissions" class="tab-btn active" onclick="switchTab('transmissions')">Ver horarios de transmisión</button>
-        <button id="btnSpecials" class="tab-btn" onclick="switchTab('specials')">Ver eventos especiales</button>
-    </div>
-
-    <!-- Contenido Dinámico -->
-    <div id="contentContainer" class="schedule-list">
-        <div class="loading-text">Cargando programación...</div>
-    </div>
-</div>
-
-<footer>
-    &copy; 2026 Radio Esperanza. Todos los derechos reservados.
-</footer>
-
-<script>
-    let scheduleData = { transmissions: [], specials: [] };
-    let currentTab = 'transmissions';
-
-    async function loadSchedule() {
-        try {
-            const response = await fetch('horarios.json');
-            if (!response.ok) throw new Error('No se pudo cargar el archivo de horarios.');
-            scheduleData = await response.json();
-            renderContent();
-            updateLiveStatus();
-            setInterval(updateLiveStatus, 30000); // Revisa cada 30 segundos
-        } catch (error) {
-            console.error(error);
-            document.getElementById('contentContainer').innerHTML = `
-                <div class="error-text">
-                    No se pudo cargar el archivo <code>horarios.json</code> o el formato es incorrecto.<br>
-                    Asegúrate de que se encuentre en la misma carpeta.
-                </div>
-            `;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Esperanza - Programación</title>
+    <style>
+        /* =========================================
+           SECCIÓN CSS
+           ========================================= */
+        :root {
+            --bg-color: #0b0914;
+            --card-bg: rgba(25, 20, 35, 0.6);
+            --card-border: rgba(138, 43, 226, 0.3);
+            --primary-color: #9d4edd;
+            --text-main: #f8f9fa;
+            --text-secondary: #b392d6;
+            --shadow-glow: 0 4px 30px rgba(138, 43, 226, 0.15);
         }
-    }
 
-    function switchTab(tab) {
-        currentTab = tab;
-        document.getElementById('btnTransmissions').classList.toggle('active', tab === 'transmissions');
-        document.getElementById('btnSpecials').classList.toggle('active', tab === 'specials');
-        renderContent();
-    }
+        body {
+            background: radial-gradient(circle at top center, #1b1330 0%, var(--bg-color) 100%);
+            color: var(--text-main);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
 
-    // Función auxiliar para convertir hora formato ISO o HH:mm UTC a hora local del navegador
-    function formatLocalTimeRange(startTimeUTC, endTimeUTC, daysText) {
-        try {
-            // Si el formato es por ejemplo "20:00" y queremos adaptarlo a la fecha actual del usuario
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Cabecera y estado de transmisión */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        .status-offline { background: rgba(255, 50, 50, 0.2); color: #ff6b6b; border: 1px solid rgba(255, 50, 50, 0.4); }
+        .status-live { background: rgba(0, 255, 128, 0.2); color: #00ff80; border: 1px solid rgba(0, 255, 128, 0.6); box-shadow: 0 0 15px rgba(0, 255, 128, 0.3); }
+        .status-event { background: rgba(255, 223, 0, 0.2); color: #ffdf00; border: 1px solid rgba(255, 223, 0, 0.6); box-shadow: 0 0 15px rgba(255, 223, 0, 0.3); }
+
+        .timezone-info {
+            display: none;
+        }
+
+       
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            text-align: left;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(157, 78, 221, 0.15);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-btn .arrow {
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-btn.active .arrow {
+            transform: rotate(90deg);
+        }
+
+       
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.4s ease forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-time {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-desc {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+        .message { text-align: center; color: var(--text-secondary); padding: 20px; }
+        .error { color: #ff6b6b; }
+
+        footer { text-align: center; margin-top: 50px; font-size: 0.8em; color: rgba(255,255,255,0.4); }
+    </style>
+</head>
+
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;" oncopy="return false;" oncut="return false;" onpaste="return false;">
+
+    <div class="container">
+        
+        <header>
+            <div id="status-indicator" class="status-badge status-offline">Cargando estado...</div>
+            <div id="timezone-info" class="timezone-info">Detectando zona horaria local...</div>
+        </header>
+
+        
+        <nav class="nav-menu">
+            <button id="btn-horarios" class="nav-btn">
+                <span>Ver horarios de programación</span>
+                <span class="arrow">▶</span>
+            </button>
+            <button id="btn-eventos" class="nav-btn">
+                <span>Ver eventos especiales</span>
+                <span class="arrow">▶</span>
+            </button>
+        </nav>
+
+        <main id="content-area" class="content-area">
+        </main>
+
+        <footer>
+            © 2026 Radio Esperanza. Todos los derechos reservados.
+        </footer>
+    </div>
+
+    <!-- =========================================
+         SECCIÓN JAVASCRIPT
+         ========================================= -->
+    <script>
+        // Variables globales
+        let programasDatos = [];
+        let eventosDatos = [];
+        const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const BOGOTA_TZ = "America/Bogota";
+
+        // Elementos del DOM
+        const contentArea = document.getElementById('content-area');
+        const btnHorarios = document.getElementById('btn-horarios');
+        const btnEventos = document.getElementById('btn-eventos');
+        const statusIndicator = document.getElementById('status-indicator');
+        const tzInfo = document.getElementById('timezone-info');
+
+        // Nombres de los días de la semana
+        const dayNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
+        // Fechas de referencia
+        const refDates = {
+            0: '2024-01-07', // Domingo
+            1: '2024-01-01', // Lunes
+            2: '2024-01-02', // Martes
+            3: '2024-01-03', // Miércoles
+            4: '2024-01-04', // Jueves
+            5: '2024-01-05', // Viernes
+            6: '2024-01-06'  // Sábado
+        };
+
+        
+        async function initApp() {
+            tzInfo.innerHTML = `Horarios mostrados en tu hora local:<br><strong>${localTimeZone}</strong>`;
+            
+            try {
+                
+                const [resHorarios, resEventos] = await Promise.all([
+                    fetch('horarios.json'),
+                    fetch('eventos.json')
+                ]);
+
+                if (!resHorarios.ok || !resEventos.ok) throw new Error("Error en red al cargar JSON");
+
+                programasDatos = await resHorarios.json();
+                eventosDatos = await resEventos.json();
+
+                
+                contentArea.innerHTML = '';
+                
+                
+                updateLiveStatus();
+                setInterval(updateLiveStatus, 60000);
+
+            } catch (error) {
+                console.error(error);
+                contentArea.innerHTML = `<div class="message error">Error al cargar los horarios. Asegúrese de estar usando un servidor local (ej. Live Server).</div>`;
+                statusIndicator.className = 'status-badge status-offline';
+                statusIndicator.innerText = 'Error de conexión';
+            }
+        }
+
+        // --- FUNCIONES DE CONVERSIÓN DE ZONA HORARIA --- //
+
+        
+        function formatLocalTime(dateObj) {
+            return dateObj.toLocaleTimeString('es-ES', { 
+                hour: '2-digit', minute: '2-digit', hour12: true 
+            }).toUpperCase();
+        }
+
+        
+        function getDayNamePlural(dayIndex) {
+            const name = dayNames[dayIndex];
+            return (name === 'Sábado' || name === 'Domingo') ? name + 's' : name;
+        }
+
+        
+        function formatDaysString(daysArray) {
+            if (daysArray.length === 0) return "";
+            if (daysArray.length === 1) return getDayNamePlural(daysArray[0]);
+
+            let isContiguous = true;
+            for(let i=0; i < daysArray.length - 1; i++) {
+                let diff = daysArray[i+1] - daysArray[i];
+                if (diff !== 1 && diff !== -6) { 
+                    isContiguous = false; 
+                    break; 
+                }
+            }
+
+            if (isContiguous && daysArray.length >= 3) {
+                return `${getDayNamePlural(daysArray[0])} a ${getDayNamePlural(daysArray[daysArray.length-1])}`;
+            }
+
+            return daysArray.map(d => getDayNamePlural(d)).join(', ');
+        }
+
+        
+        function convertWeeklySchedule(diasBogota, horaInicio, horaFin) {
+            let localDaysSet = new Set();
+            let localStartTime = "";
+            let localEndTime = "";
+
+            diasBogota.forEach(dayIndex => {
+                const startStr = `${refDates[dayIndex]}T${horaInicio}:00-05:00`;
+                const endStr = `${refDates[dayIndex]}T${horaFin}:00-05:00`;
+
+                const dateStart = new Date(startStr);
+                const dateEnd = new Date(endStr);
+
+                localDaysSet.add(dateStart.getDay());
+                
+                localStartTime = formatLocalTime(dateStart);
+                localEndTime = formatLocalTime(dateEnd);
+            });
+
+            let localDaysArr = Array.from(localDaysSet).sort((a, b) => a - b);
+            let daysFormatted = formatDaysString(localDaysArr);
+
+            return { daysFormatted, localStartTime, localEndTime };
+        }
+
+        
+        function updateLiveStatus() {
             const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate).padStart(2, '0');
+            const nowTs = now.getTime();
 
-            // Creamos objetos de fecha asumiendo hora base UTC o del servidor (ej. UTC-5 Colombia)
-            // O interpretándolos directamente si vienen en formato ISO completo
-            const startDate = new Date(`${year}-${month}-${day}T${startTimeUTC}:00`);
-            const endDate = new Date(`${year}-${month}-${day}T${endTimeUTC}:00`);
+            
+            let eventActive = false;
+            for (const evento of eventosDatos) {
+                const startTs = new Date(`${evento.fecha}T${evento.hora_inicio}:00-05:00`).getTime();
+                let endTs = new Date(`${evento.fecha}T${evento.hora_fin}:00-05:00`).getTime();
+                
+                if (evento.hora_fin < evento.hora_inicio) {
+                    endTs += 24 * 60 * 60 * 1000;
+                }
 
-            const options = { hour: 'numeric', minute: '2-digit', hour12: true };
-            const localStart = startDate.toLocaleTimeString([], options);
-            const localEnd = endDate.toLocaleTimeString([], options);
+                if (nowTs >= startTs && nowTs <= endTs) {
+                    eventActive = true;
+                    break;
+                }
+            }
 
-            return `${daysText} - ${localStart} a ${localEnd}`;
-        } catch (e) {
-            return `${daysText} - ${startTimeUTC} a ${endTimeUTC}`;
+            if (eventActive) {
+                setStatusUI('En evento especial', 'status-event');
+                return;
+            }
+
+            
+            let programActive = false;
+            
+            const bogotaNowStr = new Intl.DateTimeFormat('en-US', { timeZone: BOGOTA_TZ }).format(now);
+            const bogotaDate = new Date(bogotaNowStr);
+
+            for (const prog of programasDatos) {
+                for (let offset of [-1, 0, 1]) {
+                    const evalDate = new Date(bogotaDate);
+                    evalDate.setDate(evalDate.getDate() + offset);
+                    
+                    if (prog.dias.includes(evalDate.getDay())) {
+                        const yyyy = evalDate.getFullYear();
+                        const mm = String(evalDate.getMonth() + 1).padStart(2, '0');
+                        const dd = String(evalDate.getDate()).padStart(2, '0');
+                        const baseDateStr = `${yyyy}-${mm}-${dd}`;
+
+                        const startTs = new Date(`${baseDateStr}T${prog.hora_inicio}:00-05:00`).getTime();
+                        let endTs = new Date(`${baseDateStr}T${prog.hora_fin}:00-05:00`).getTime();
+
+                        if (prog.hora_fin < prog.hora_inicio) {
+                            endTs += 24 * 60 * 60 * 1000;
+                        }
+
+                        if (nowTs >= startTs && nowTs <= endTs) {
+                            programActive = true;
+                            break;
+                        }
+                    }
+                }
+                if (programActive) break;
+            }
+
+            if (programActive) {
+                setStatusUI('En transmisión', 'status-live');
+            } else {
+                setStatusUI('Fuera de línea', 'status-offline');
+            }
         }
-    }
 
-    function renderContent() {
-        const container = document.getElementById('contentContainer');
-        const items = currentTab === 'transmissions' ? scheduleData.transmissions : scheduleData.specials;
-
-        if (!items || items.length === 0) {
-            container.innerHTML = `<div class="loading-text">No hay elementos programados en esta sección.</div>`;
-            return;
+        function setStatusUI(text, className) {
+            statusIndicator.innerText = text;
+            statusIndicator.className = `status-badge ${className}`;
         }
 
-        container.innerHTML = items.map(item => `
-            <div class="card">
-                <div class="card-title">${item.title}</div>
-                <div class="card-info">
-                    <span>⏰</span>
-                    <span>${item.days ? formatLocalTimeRange(item.startTime, item.endTime, item.days) : item.dateTimeLocal || ''}</span>
-                </div>
-            </div>
-        `).join('');
-    }
 
-    function updateLiveStatus() {
-        const badge = document.getElementById('liveStatusBadge');
-        const text = document.getElementById('liveStatusText');
+        function renderProgramas() {
+            btnHorarios.classList.add('active');
+            btnEventos.classList.remove('active');
+            contentArea.innerHTML = '';
+
+            if (programasDatos.length === 0) {
+                contentArea.innerHTML = '<div class="message">No hay horarios programados.</div>';
+                return;
+            }
+
+            programasDatos.forEach((prog, index) => {
+                const { daysFormatted, localStartTime, localEndTime } = convertWeeklySchedule(prog.dias, prog.hora_inicio, prog.hora_fin);
+                
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <h3 class="card-title">${prog.icono || '📻'} ${prog.nombre}</h3>
+                    <div class="card-time">⏰ ${daysFormatted} - ${localStartTime} a ${localEndTime}</div>
+                    ${prog.descripcion ? `<div class="card-desc">${prog.descripcion}</div>` : ''}
+                `;
+                contentArea.appendChild(card);
+            });
+        }
+
+        function renderEventos() {
+            btnEventos.classList.add('active');
+            btnHorarios.classList.remove('active');
+            contentArea.innerHTML = '';
+
+            if (eventosDatos.length === 0) {
+                contentArea.innerHTML = '<div class="message">No hay eventos especiales próximos.</div>';
+                return;
+            }
+
+            eventosDatos.forEach((evento, index) => {
+                const startStr = `${evento.fecha}T${evento.hora_inicio}:00-05:00`;
+                const endStr = `${evento.fecha}T${evento.hora_fin}:00-05:00`;
+                
+                const dateStart = new Date(startStr);
+                const dateEnd = new Date(endStr);
+
+                const localDateStr = dateStart.toLocaleDateString('es-ES', { 
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+                });
+
+                const localStartTime = formatLocalTime(dateStart);
+                const localEndTime = formatLocalTime(dateEnd);
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.borderColor = 'var(--primary-color)';
+                
+                card.innerHTML = `
+                    <h3 class="card-title">${evento.icono || '⭐'} ${evento.nombre}</h3>
+                    <div class="card-time">📅 ${localDateStr.charAt(0).toUpperCase() + localDateStr.slice(1)}</div>
+                    <div class="card-time">⏰ ${localStartTime} a ${localEndTime}</div>
+                    ${evento.descripcion ? `<div class="card-desc">${evento.descripcion}</div>` : ''}
+                `;
+                contentArea.appendChild(card);
+            });
+        }
+
+        btnHorarios.addEventListener('click', renderProgramas);
+        btnEventos.addEventListener('click', renderEventos);
+
         
-        const now = new Date();
-        const currentTimeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-        
-        // Revisar eventos especiales activos
-        let activeSpecial = scheduleData.specials?.find(item => {
-            return item.startTime && item.endTime && currentTimeStr >= item.startTime && currentTimeStr <= item.endTime;
-        });
+        window.addEventListener('DOMContentLoaded', initApp);
 
-        if (activeSpecial) {
-            badge.className = 'status-badge special';
-            text.textContent = `En evento especial: ${activeSpecial.title}`;
-            return;
-        }
-
-        // Revisar transmisiones regulares activas
-        let activeTransmission = scheduleData.transmissions?.find(item => {
-            return item.startTime && item.endTime && currentTimeStr >= item.startTime && currentTimeStr <= item.endTime;
-        });
-
-        if (activeTransmission) {
-            badge.className = 'status-badge live';
-            text.textContent = `En transmisión: ${activeTransmission.title}`;
-            return;
-        }
-
-        // Fuera de línea por defecto
-        badge.className = 'status-badge offline';
-        text.textContent = 'Fuera de línea';
-    }
-
-    // Inicializar al cargar la página
-    window.onload = loadSchedule;
-</script>
+    </script>
+</body>
+</html>
