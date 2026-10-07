@@ -16,5 +16,11 @@
     "titulo": "Programación",
     "icono": "📅",
     "rutaHTML": "secciones/programacion/programacion.html"
+  },
+  {
+    "id": "app-recursos",
+    "titulo": "Recursos",
+    "icono": "📚",
+    "rutaHTML": "secciones/recursos/recursos.html"
   }
 ]
