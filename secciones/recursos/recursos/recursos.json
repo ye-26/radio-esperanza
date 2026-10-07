@@ -1,0 +1,12 @@
+{
+  "categorias": [
+    {
+      "id": "escuela-sabatica",
+      "nombre": "Escuela Sabática",
+      "icono": "📖",
+      "descripcion": "Guía de estudio de la Biblia",
+      "cantidad": 13,
+      "archivoJson": "recursos/categorias/escuela-sabatica.json"
+    }
+  ]
+}

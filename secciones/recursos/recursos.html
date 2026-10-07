@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos Bíblicos - Radio Esperanza</title>
+    <style>
+        :root {
+            
+            --bg-color: transparent;
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary: #9c27b0;
+            --primary-light: #b388ff;
+            --primary-hover: rgba(144, 0, 255, 0.25);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --btn-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        
+        html, body { 
+            background-color: var(--bg-color);
+            color: var(--text-main); 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 40px 20px; 
+
+            
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        
+        #app { width: 100%; max-width: 600px; }
+
+        
+        .header-app { text-align: center; margin-bottom: 30px; }
+        .header-app h1 { font-size: 1.8rem; margin-bottom: 8px; }
+        .header-app p { color: var(--primary-light); font-size: 0.95rem; }
+
+        
+        .card {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+       
+        .cat-card { cursor: pointer; text-align: left; }
+        .cat-card:hover { background: rgba(255, 255, 255, 0.03); transform: translateY(-3px); }
+        .cat-icono { font-size: 2rem; display: block; margin-bottom: 10px; }
+        .cat-titulo { font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
+        .cat-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px; }
+        .cat-count { font-size: 0.8rem; color: var(--primary-light); font-weight: 600; }
+
+        
+        
+        
+        .btn-volver {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--btn-border);
+            color: var(--text-main); padding: 8px 16px; border-radius: 8px;
+            cursor: pointer; margin-bottom: 20px; font-size: 0.9rem;
+            display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
+        }
+        .btn-volver:hover { background: rgba(255, 255, 255, 0.1); }
+
+        
+        .header-categoria { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .header-categoria h2 { font-size: 1.4rem; }
+        .header-categoria p { color: var(--text-muted); font-size: 0.85rem; width: 100%; margin-top: 4px;}
+
+        
+        .recurso-card { display: flex; justify-content: space-between; align-items: center; padding: 15px; }
+        .recurso-info { flex: 1; min-width: 0; padding-right: 15px; }
+        .recurso-titulo { font-size: 1rem; font-weight: 600; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; }
+        .recurso-meta { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted); }
+        .badge-tipo { background: rgba(255, 255, 255, 0.05); color: var(--primary-light); border: 1px solid var(--btn-border); padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.65rem; }
+
+        
+        .btn-abrir {
+            background: rgba(144, 0, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(144, 0, 255, 0.4); 
+            color: var(--text-main);
+            padding: 8px 16px; border-radius: 6px; cursor: pointer;
+            font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;
+            transition: 0.2s; min-width: 85px; justify-content: center;
+        }
+        .btn-abrir:hover:not(:disabled) { background: rgba(144, 0, 255, 0.25); box-shadow: 0 0 12px rgba(144,0,255,0.3); }
+        .btn-abrir:disabled { opacity: 0.5; cursor: wait; }
+
+        
+        #visor-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000; display: none; flex-direction: column;
+        }
+        .visor-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 20px; background: transparent; border-bottom: 1px solid var(--card-border);
+        }
+        .visor-titulo { font-size: 1rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; margin: 0 15px; }
+        .visor-acciones { display: flex; gap: 10px; }
+        
+        
+        .btn-visor { 
+            padding: 8px 14px; border-radius: 6px; cursor: pointer; 
+            font-weight: 600; font-size: 0.85rem; text-decoration: none; color: white; 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        }
+        .btn-descargar { background: rgba(156, 39, 176, 0.2); border: 1px solid rgba(156, 39, 176, 0.5); }
+        .btn-descargar:hover { background: rgba(156, 39, 176, 0.4); }
+        .btn-cerrar { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); }
+        .btn-cerrar:hover { background: rgba(255,255,255,0.15); }
+        
+        .visor-body { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; padding: 10px; }
+        
+        .visor-body iframe { width: 100%; height: 100%; border: none; border-radius: 8px; background: white; }
+        .visor-body img, .visor-body video { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+        .visor-body audio { width: 100%; max-width: 400px; }
+        
+        .mensaje-error { text-align: center; color: #ff8a80; padding: 20px; background: rgba(255,0,0,0.1); border-radius: 8px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .mensaje-estado { text-align: center; color: var(--text-muted); padding: 40px 20px; }
+
+        footer { margin-top: 40px; text-align: center; font-size: 0.8rem; color: var(--text-muted); }
+        
+        
+        button:focus-visible, a:focus-visible, .cat-card:focus-visible {
+            outline: 2px solid var(--primary-light); outline-offset: 2px;
+        }
+
+        
+        @media (max-width: 480px) {
+            .recurso-card { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .btn-abrir { width: 100%; }
+            .visor-header { flex-direction: column; gap: 10px; align-items: stretch; text-align: center;}
+            .visor-titulo { margin: 0; }
+            .visor-acciones { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-app">
+        <h1>Recursos Bíblicos</h1>
+        <p>Selecciona una categoría para explorar el material</p>
+    </div>
+
+    <div id="app">
+        
+        <div class="mensaje-estado">Cargando catálogo...</div>
+    </div>
+
+    <footer>
+        &copy; 2026 Radio Esperanza. Todos los derechos reservados.
+    </footer>
+
+    
+    <div id="visor-modal" role="dialog" aria-modal="true" aria-label="Visor de recursos">
+        <div class="visor-header">
+            <div class="visor-titulo" id="visor-titulo">Nombre del Archivo</div>
+            <div class="visor-acciones">
+                <a href="#" id="btn-visor-descargar" class="btn-visor btn-descargar" download>⬇ Descargar</a>
+                <button id="btn-visor-cerrar" class="btn-visor btn-cerrar">✕ Cerrar</button>
+            </div>
+        </div>
+        <div class="visor-body" id="visor-body">
+            <
+        </div>
+    </div>
+
+    <script>
+        
+        const memoria = {
+            categorias: {}, 
+            blobs: {}       
+        };
+
+        const appDiv = document.getElementById('app');
+        const visorModal = document.getElementById('visor-modal');
+        const visorCerrar = document.getElementById('btn-visor-cerrar');
+        const visorDescargar = document.getElementById('btn-visor-descargar');
+        const visorBody = document.getElementById('visor-body');
+        const visorTitulo = document.getElementById('visor-titulo');
+
+        let urlTemporalActual = null;
+
+        function escapar(str) {
+            if (!str) return '';
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(str).replace(/[&<>"']/g, m => map[m]);
+        }
+
+        async function init() {
+            try {
+                const res = await fetch('recursos/recursos.json');
+                if (!res.ok) throw new Error();
+                const data = await res.json();
+                renderCategorias(data.categorias);
+            } catch (e) {
+                appDiv.innerHTML = `<div class="mensaje-error">⚠️ No se pudo cargar el índice de recursos. Verifica tu conexión.</div>`;
+            }
+        }
+
+        function renderCategorias(categorias) {
+            if (!categorias || categorias.length === 0) {
+                appDiv.innerHTML = `<div class="mensaje-estado">No hay categorías disponibles.</div>`;
+                return;
+            }
+
+            let html = '';
+            categorias.forEach(cat => {
+                html += `
+                    <div class="card cat-card" tabindex="0" onclick="cargarCategoria('${escapar(cat.id)}', '${escapar(cat.archivoJson)}')">
+                        <span class="cat-icono">${escapar(cat.icono)}</span>
+                        <h3 class="cat-titulo">${escapar(cat.nombre)}</h3>
+                        <p class="cat-desc">${escapar(cat.descripcion)}</p>
+                        <span class="cat-count">${cat.cantidad || 0} recursos</span>
+                    </div>
+                `;
+            });
+            appDiv.innerHTML = html;
+        }
+
+        async function cargarCategoria(id, archivoJson) {
+            appDiv.innerHTML = `<div class="mensaje-estado">⏳ Cargando recursos...</div>`;
+            
+            try {
+                let data = memoria.categorias[id];
+                if (!data) {
+                    const res = await fetch(archivoJson);
+                    if (!res.ok) throw new Error();
+                    data = await res.json();
+                    memoria.categorias[id] = data;
+                }
+                renderRecursos(data);
+            } catch (e) {
+                appDiv.innerHTML = `
+                    <button class="btn-volver" onclick="init()">← Volver a Categorías</button>
+                    <div class="mensaje-error">⚠️ Error al cargar los detalles de la categoría.</div>
+                `;
+            }
+        }
+
+        function renderRecursos(data) {
+            let html = `
+                <button class="btn-volver" onclick="init()">← Volver a Categorías</button>
+                <div class="header-categoria">
+                    <span class="cat-icono" style="margin:0;">${escapar(data.icono)}</span>
+                    <div>
+                        <h2>${escapar(data.nombre)}</h2>
+                        <p>${escapar(data.descripcion)}</p>
+                    </div>
+                </div>
+            `;
+
+            if (!data.archivos || data.archivos.length === 0) {
+                html += `<div class="mensaje-estado">Esta categoría aún no tiene recursos.</div>`;
+            } else {
+                data.archivos.forEach((rec, index) => {
+                    html += `
+                        <div class="card recurso-card">
+                            <div class="recurso-info">
+                                <div class="recurso-titulo">${escapar(rec.nombre)}</div>
+                                <div class="recurso-meta">
+                                    <span class="badge-tipo">${escapar(rec.tipo)}</span>
+                                    ${rec.tamano ? `<span>· ${escapar(rec.tamano)}</span>` : ''}
+                                </div>
+                            </div>
+                            <button class="btn-abrir" id="btn-abrir-${index}" 
+                                onclick="gestionarRecurso(this, '${escapar(data.carpetaBase)}', '${escapar(rec.archivo)}', '${escapar(rec.tipo)}', '${escapar(rec.nombre)}')">
+                                📖 Abrir
+                            </button>
+                        </div>
+                    `;
+                });
+            }
+            appDiv.innerHTML = html;
+        }
+
+        async function gestionarRecurso(btnElem, carpetaBase, nombreArchivo, tipo, tituloVisual) {
+            const ruta = `${carpetaBase}/${nombreArchivo}`;
+            const textoOriginal = btnElem.innerHTML;
+            btnElem.innerHTML = '⏳ Cargando...';
+            btnElem.disabled = true;
+
+            try {
+                if (!memoria.blobs[ruta]) {
+                    const response = await fetch(ruta);
+                    if (!response.ok) throw new Error("No se pudo descargar");
+                    const blob = await response.blob();
+                    memoria.blobs[ruta] = blob;
+                }
+                const blob = memoria.blobs[ruta];
+                urlTemporalActual = URL.createObjectURL(blob);
+                abrirVisor(urlTemporalActual, nombreArchivo, tipo, tituloVisual);
+            } catch (error) {
+                alert(`Error al abrir el recurso: El archivo "${nombreArchivo}" no se encontró en la carpeta.`);
+            } finally {
+                btnElem.innerHTML = textoOriginal;
+                btnElem.disabled = false;
+            }
+        }
+
+        function abrirVisor(url, nombreArchivo, tipo, tituloVisual) {
+            const t = tipo.toLowerCase();
+            visorTitulo.textContent = tituloVisual;
+            visorDescargar.href = url;
+            visorDescargar.download = nombreArchivo;
+            visorBody.innerHTML = ''; 
+
+            if (t === 'pdf') {
+                visorBody.innerHTML = `<iframe src="${url}#view=FitH" title="Visor PDF"></iframe>`;
+            } else if (t === 'imagen' || t === 'img' || t === 'jpg' || t === 'png') {
+                visorBody.innerHTML = `<img src="${url}" alt="${escapar(tituloVisual)}">`;
+            } else if (t === 'audio' || t === 'mp3') {
+                visorBody.innerHTML = `<audio src="${url}" controls autoplay></audio>`;
+            } else if (t === 'video' || t === 'mp4') {
+                visorBody.innerHTML = `<video src="${url}" controls autoplay></video>`;
+            } else if (t === 'html') {
+                visorBody.innerHTML = `<iframe src="${url}" sandbox="allow-scripts allow-same-origin" title="Visor HTML"></iframe>`;
+            } else {
+                visorBody.innerHTML = `
+                    <div class="mensaje-error">
+                        <h3>Formato no visualizable</h3>
+                        <p>El navegador no puede previsualizar este archivo directamente.</p>
+                        <br>
+                        <p>Utiliza el botón de "Descargar" arriba para guardarlo.</p>
+                    </div>`;
+            }
+            visorModal.style.display = 'flex';
+        }
+
+        visorCerrar.addEventListener('click', () => {
+            visorModal.style.display = 'none';
+            visorBody.innerHTML = ''; 
+            if (urlTemporalActual) {
+                URL.revokeObjectURL(urlTemporalActual);
+                urlTemporalActual = null;
+            }
+        });
+        
+        init();
+    </script>
+</body>
+</html>
