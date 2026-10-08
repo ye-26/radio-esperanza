@@ -1,4 +1,4 @@
-const VERSION = '1.0.03';
+const VERSION = '1.0.04';
 const CACHE_NAME = 'radio-esperanza-juego-v' + VERSION;
 
 const ASSETS = [
@@ -8,13 +8,16 @@ const ASSETS = [
     './script.js',
     './config/pestañas.json',
     './secciones/juego-biblico/index.html',
-    './secciones/juego-biblico/css/juego.css',
-    './secciones/juego-biblico/config/juego.json',
     './secciones/juego-biblico/datos/preguntas1.json',
     './secciones/juego-biblico/datos/creditos.json',
-    './secciones/juego-biblico/js/audio.js',
-    './secciones/juego-biblico/js/creditos.js',
-    './secciones/juego-biblico/js/juego.js'
+    './secciones/juego-biblico/datos/preguntas.json',
+    './secciones/programacion/programacion.html',
+    './secciones/programacion/horarios.json',
+    './secciones/programacion/eventos.json',
+    './secciones/recursos/recursos.html',
+    './secciones/recursos/recursos/recursos.json',
+    './secciones/recursos/recursos/categorias/escuela-sabatica.json',
+    './secciones/sintonizar/sintonizar.html'
 ];
 
 // Instalar el nuevo caché y forzar al navegador a usarlo de inmediato
@@ -25,13 +28,15 @@ self.addEventListener('install', (e) => {
     );
 });
 
-// EL TRUCO QUE INVENTASTE: Leer el código de versión y borrar lo viejo
+
+
+
 self.addEventListener('activate', (e) => {
     e.waitUntil(
         caches.keys().then((keys) => {
             return Promise.all(
                 keys.map((key) => {
-                    // Si el nombre del caché viejo no coincide con la versión nueva (ej. 1.0 vs 1.1), ¡mátalo!
+                    //
                     if (key !== CACHE_NAME) {
                         console.log('Borrando versión vieja:', key);
                         return caches.delete(key);
@@ -42,7 +47,7 @@ self.addEventListener('activate', (e) => {
     );
 });
 
-// Usar el caché o buscar en internet
+
 self.addEventListener('fetch', (e) => {
     e.respondWith(
         caches.match(e.request).then((res) => res || fetch(e.request))
