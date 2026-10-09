@@ -1,0 +1,509 @@
+{
+  "config": {
+    "nombre": "Asistente de Radio Esperanza",
+    "saludo": "Hola, soy el asistente de Radio Esperanza. ¿En qué te puedo ayudar? Puedes preguntarme por la señal en vivo, el reproductor, Android o PC.",
+    "sugerenciasIniciales": ["como-escuchar", "no-carga-sintonizar", "programacion-horarios", "recursos-biblicos"],
+    "umbralDirecto": 0.5,
+    "umbralSugerencia": 0.22,
+    "dudaTexto": "No estoy seguro de haber entendido. ¿Quieres ayuda para escuchar la radio, resolver un problema del reproductor o usarlo en Android o PC?",
+    "sinRespuestaTexto": "No encontré una respuesta parecida. Prueba con otras palabras o cuéntame si usas Android o PC y qué ocurre en el reproductor. También puedes elegir un tema:"
+  },
+  "sinonimos": {
+    "cel": "celular",
+    "celu": "celular",
+    "celular": "celular",
+    "celulares": "celular",
+    "movil": "celular",
+    "moviles": "celular",
+    "móvil": "celular",
+    "móviles": "celular",
+    "telefono": "celular",
+    "teléfono": "celular",
+    "telefonos": "celular",
+    "teléfonos": "celular",
+    "smartphone": "celular",
+    "smartphones": "celular",
+    "celularcito": "celular",
+    "computadora": "pc",
+    "computador": "pc",
+    "computadores": "pc",
+    "ordenador": "pc",
+    "ordenadores": "pc",
+    "laptop": "pc",
+    "laptops": "pc",
+    "portatil": "pc",
+    "portátil": "pc",
+    "portatiles": "pc",
+    "portátiles": "pc",
+    "notebook": "pc",
+    "notebooks": "pc",
+    "desktop": "pc",
+    "pc": "pc",
+    "comput": "pc",
+    "compu": "pc",
+    "abrir": "cargar",
+    "abre": "cargar",
+    "abriendo": "cargar",
+    "cargando": "carga",
+    "cargar": "carga",
+    "cargue": "carga",
+    "carga": "carga",
+    "inicia": "iniciar",
+    "iniciar": "iniciar",
+    "iniciando": "iniciar",
+    "reproducir": "escuchar",
+    "reproduciendo": "escuchar",
+    "reproduccion": "escuchar",
+    "reproducción": "escuchar",
+    "play": "escuchar",
+    "sintonizar": "escuchar",
+    "sintonizacion": "escuchar",
+    "sintonización": "escuchar",
+    "oir": "escuchar",
+    "oír": "escuchar",
+    "escucho": "escuchar",
+    "escuchar": "escuchar",
+    "pausa": "pausar",
+    "pausado": "pausar",
+    "detener": "pausar",
+    "parar": "pausar",
+    "reanudar": "continuar",
+    "continuar": "continuar",
+    "seguir": "continuar",
+    "lento": "lenta",
+    "lentitud": "lenta",
+    "trabado": "congelado",
+    "traba": "congelado",
+    "congelada": "congelado",
+    "congelado": "congelado",
+    "cortada": "interrumpida",
+    "cortado": "interrumpida",
+    "intermitente": "interrumpida",
+    "interrumpe": "interrumpida",
+    "falla": "error",
+    "fallo": "error",
+    "problema": "error",
+    "problemas": "error",
+    "bug": "error",
+    "bugs": "error",
+    "web": "pagina",
+    "sitio": "pagina",
+    "website": "pagina",
+    "portal": "pagina",
+    "pagina": "pagina",
+    "página": "pagina",
+    "senal": "transmision",
+    "señal": "transmision",
+    "emision": "transmision",
+    "emisión": "transmision",
+    "en-vivo": "transmision",
+    "transmision": "transmision",
+    "transmisión": "transmision",
+    "grabada": "grabado",
+    "grabaciones": "grabado",
+    "recorded": "grabado",
+    "repeticion": "grabado",
+    "repetición": "grabado",
+    "sonido": "audio",
+    "audio": "audio",
+    "volumen": "audio",
+    "silencio": "audio",
+    "mudo": "audio",
+    "browser": "navegador",
+    "navegadores": "navegador",
+    "chrome": "navegador",
+    "chromium": "navegador",
+    "edge": "navegador",
+    "firefox": "navegador",
+    "safari": "navegador",
+    "wi-fi": "wifi",
+    "inalambrico": "wifi",
+    "inalámbrico": "wifi",
+    "internet": "conexion",
+    "conexión": "conexion",
+    "datos": "internet",
+    "4g": "internet",
+    "5g": "internet",
+    "reiniciar": "recargar",
+    "actualizar": "recargar",
+    "refrescar": "recargar",
+    "recargar": "recargar",
+    "refresh": "recargar",
+    "cache": "cache",
+    "caché": "cache",
+    "incognito": "privado",
+    "incógnito": "privado",
+    "privada": "privado",
+    "privado": "privado",
+    "bateria": "bateria",
+    "batería": "bateria",
+    "calendario": "programacion",
+    "agenda": "programacion",
+    "horario": "programacion",
+    "horarios": "programacion",
+    "programacion": "programacion",
+    "programación": "programacion",
+    "contactar": "contacto",
+    "contacto": "contacto",
+    "soporte": "contacto",
+    "reportar": "reporte",
+    "reclamo": "reporte",
+    "queja": "reporte",
+    "compartir": "compartir",
+    "difundir": "compartir",
+    "podcasts": "podcast",
+    "episodio": "episodio",
+    "episodios": "episodio",
+    "biblico": "biblico",
+    "bíblico": "biblico",
+    "biblicos": "biblico",
+    "bíblicos": "biblico",
+    "sabática": "sabatica",
+    "sabatica": "sabatica",
+    "leccion": "leccion",
+    "lección": "leccion",
+    "lecciones": "leccion",
+    "pdf": "pdf",
+    "material": "recursos",
+    "materiales": "recursos",
+    "evento": "evento",
+    "eventos": "evento",
+    "especial": "especial",
+    "especiales": "especial",
+    "canal": "canal",
+    "canales": "canal",
+    "selector": "canal"
+  },
+  "preguntas": [
+    {
+      "id": "saludo",
+      "titulo": "Saludar al asistente",
+      "ejemplos": ["hola", "buenas", "buenos dias", "buenas tardes", "buenas noches", "que tal", "hey asistente", "hola radio esperanza", "necesito ayuda", "me ayudas por favor"],
+      "respuesta": "¡Hola! Soy el asistente de Radio Esperanza. Puedo ayudarte a escuchar la señal, usar el reproductor en Android o PC, revisar problemas de sonido y encontrar información de contacto."
+    },
+    {
+      "id": "gracias",
+      "titulo": "Agradecer",
+      "ejemplos": ["gracias", "muchas gracias", "te agradezco", "listo gracias", "me sirvio", "ya funciona gracias", "perfecto", "muy amable", "excelente ayuda"],
+      "respuesta": "¡Con gusto! Que disfrutes la señal de Radio Esperanza."
+    },
+    {
+      "id": "despedida",
+      "titulo": "Despedirse",
+      "ejemplos": ["chao", "adios", "hasta luego", "nos vemos", "bye", "eso era todo", "ya no necesito ayuda", "feliz dia"],
+      "respuesta": "¡Hasta luego! Gracias por visitar Radio Esperanza."
+    },
+    {
+      "id": "como-escuchar",
+      "titulo": "Cómo escuchar la radio",
+      "ejemplos": ["como escucho la radio", "como sintonizo", "quiero oir la emisora", "como pongo la radio", "donde le doy para escuchar", "como escucho radio esperanza", "quiero escuchar en vivo", "como funciona el reproductor", "como pongo play", "como inicio la transmision", "donde esta el boton para escuchar", "como se usa esta radio"],
+      "respuesta": "En la página de Radio Esperanza, busca el reproductor y pulsa PLAY para iniciar la señal en vivo. En Android, toca PLAY una vez y espera unos segundos; el navegador puede exigir un toque antes de permitir audio. En PC, haz clic en PLAY y revisa que el volumen del reproductor, la pestaña y el equipo esté activo. Si no ves el reproductor, recarga la página."
+    },
+    {
+      "id": "no-carga-sintonizar",
+      "titulo": "No carga la sección para sintonizar",
+      "ejemplos": ["no carga la seccion de sintonizar", "no me sale donde sintonizar", "no aparece el reproductor", "no carga la radio en mi telefono", "en el celular no carga la radio", "no puedo sintonizar desde el movil", "no aparece el boton play", "no me carga donde escuchar", "no abre la seccion de radio", "no sale la parte para escuchar", "la opcion de sintonizar no funciona", "no carga el reproductor en android", "no carga el reproductor en pc", "la radio no abre en mi computadora", "telefono y no carga la seccion de sintonizar", "en mi cel no aparece la radio", "no veo el cuadro de radio", "se queda cargando la seccion para escuchar", "la pagina abre pero no carga la radio", "no encuentro como poner la emisora", "no me quiere cargar la parte de sintonizar", "no funciona el sitio para escuchar"],
+      "respuesta": "Prueba estos pasos según tu equipo:\n\nAndroid o celular:\n1. Abre la página en Chrome y recárgala desde el menú del navegador.\n2. Comprueba que tengas internet; prueba alternar entre WiFi y datos móviles.\n3. Cierra la pestaña, vuelve a abrir la página y toca PLAY cuando aparezca el reproductor.\n4. Si sigue sin aparecer, borra los datos en caché de Chrome para ese sitio o prueba una pestaña de incógnito.\n\nPC o laptop:\n1. Recarga con Ctrl+F5.\n2. Prueba abrir la página en una ventana privada o en otro navegador actualizado.\n3. Desactiva temporalmente el bloqueador de contenido para esa página y vuelve a cargar.\n\nSi la página aparece pero el reproductor sigue ausente, puede haber una interrupción del sitio o de la señal. Dime qué dispositivo y navegador usas y qué ves en pantalla."
+    },
+    {
+      "id": "reproductor-no-aparece",
+      "titulo": "No aparece el reproductor",
+      "ejemplos": ["no veo el reproductor", "desaparecio el reproductor", "no sale el cuadro del player", "el reproductor esta en blanco", "no aparece el cuadro de la emisora", "no carga el player", "donde esta el player", "no veo play por ningun lado", "el reproductor no se muestra", "la radio no aparece en pantalla", "no carga la tarjeta de radio", "falta el reproductor"],
+      "respuesta": "Recarga la página y espera unos segundos. En Android, prueba Chrome y desactiva temporalmente el ahorro de datos para el sitio. En PC, recarga con Ctrl+F5 y prueba una ventana privada. Si la página carga pero el reproductor no aparece en ninguno de esos intentos, puede ser un problema temporal del sitio; envíanos una captura y dinos tu dispositivo y navegador."
+    },
+    {
+      "id": "pagina-blanca",
+      "titulo": "La página queda en blanco",
+      "ejemplos": ["la pagina queda blanca", "pantalla blanca", "se queda en blanco", "no muestra nada", "pagina negra", "solo veo una pantalla vacia", "no abre el sitio", "la web se ve vacia", "no carga nada de radio esperanza", "se puso la pantalla en blanco"],
+      "respuesta": "Comprueba que la conexión esté activa y vuelve a cargar. En Android, cierra y abre de nuevo la pestaña de Chrome. En PC, usa Ctrl+F5. Si persiste, prueba otro navegador actualizado o una ventana privada; si solo falla Radio Esperanza, puede ser una interrupción temporal del sitio."
+    },
+    {
+      "id": "no-suena",
+      "titulo": "El reproductor no tiene sonido",
+      "ejemplos": ["no se escucha", "no suena la radio", "no tiene audio", "el play funciona pero no se oye", "la emisora esta muda", "no sale sonido del celular", "no escucho nada en la pc", "se oye muy bajito", "el reproductor no tiene volumen", "la radio esta en silencio", "le doy play pero no escucho", "no se oye radio esperanza", "audio no funciona", "no hay sonido en el movil"],
+      "respuesta": "Primero confirma que el reproductor indique reproducción y que el dispositivo no esté en silencio. En Android, sube el volumen multimedia mientras la radio está reproduciéndose, desconecta audífonos o Bluetooth si no los estás usando y toca PLAY otra vez. En PC, revisa el volumen del sistema, el mezclador de volumen y que la pestaña del navegador no esté silenciada. Si sigue sin sonido, prueba otra página de audio para saber si el problema es del dispositivo o de la transmisión."
+    },
+    {
+      "id": "play-no-responde",
+      "titulo": "El botón PLAY no responde",
+      "ejemplos": ["play no funciona", "no hace nada el boton play", "presiono play y no pasa nada", "no arranca al darle play", "no inicia la radio", "boton reproducir no responde", "toco play y no suena", "el boton verde no sirve", "no puedo iniciar la emisora", "le doy al triangulo y nada", "play se queda igual", "el reproductor no empieza"],
+      "respuesta": "Pulsa PLAY una vez y espera unos segundos; evita tocarlo repetidamente. En Android, asegúrate de abrir la página en el navegador y no dentro de una vista previa de otra aplicación. En PC, recarga con Ctrl+F5 y vuelve a probar. Si aparece un aviso de permiso de sonido, permite la reproducción para este sitio. Si no cambia el estado del reproductor, prueba otra conexión o navegador."
+    },
+    {
+      "id": "pausar-continuar",
+      "titulo": "Pausar o reanudar la radio",
+      "ejemplos": ["como pauso la radio", "quiero detener la musica", "como paro la emisora", "como sigo escuchando", "como reanudo la transmision", "pause la radio y no se como continuar", "detener el audio", "reanudar el reproductor", "volver a escuchar despues de pausar", "como pongo pausa"],
+      "respuesta": "Usa el control del reproductor para pausar o reanudar. Si solo aparece PLAY, tócala para iniciar. Si la radio dejó de sonar pero el reproductor parece activo, pulsa pausa y luego PLAY; si no responde, recarga la página y vuelve a iniciar la señal."
+    },
+    {
+      "id": "carga-infinita",
+      "titulo": "El reproductor queda cargando",
+      "ejemplos": ["se queda cargando", "cargando para siempre", "la radio nunca termina de cargar", "el circulo no para", "el reproductor se queda pensando", "no termina de iniciar", "lleva mucho cargando", "la señal no conecta", "queda cargando despues de play", "la carga no avanza"],
+      "respuesta": "Espera unos segundos y comprueba la conexión. Si no inicia, pausa y vuelve a pulsar PLAY. En Android prueba cambiar de WiFi a datos móviles; en PC prueba otra red o una ventana privada. Si otras páginas funcionan y Radio Esperanza continúa cargando, la señal o el servidor podrían estar temporalmente fuera de servicio."
+    },
+    {
+      "id": "se-corta",
+      "titulo": "La señal se corta o interrumpe",
+      "ejemplos": ["la radio se corta", "se interrumpe la señal", "se para cada rato", "el audio va y viene", "la transmision se cae", "se corta el sonido", "se desconecta la emisora", "la radio se detiene sola", "la señal esta intermitente", "se queda sin audio por momentos", "se corta en el celular", "se corta en la computadora"],
+      "respuesta": "Las interrupciones suelen relacionarse con la conexión o con la disponibilidad de la señal. Acércate al WiFi o prueba otra red. En Android, evita que el ahorro de batería cierre el navegador; en PC, mantén abierta la pestaña. Si otros sitios reproducen audio con normalidad y esta señal sigue cortándose, puede ser una interrupción de la transmisión."
+    },
+    {
+      "id": "lenta",
+      "titulo": "La página o radio va lenta",
+      "ejemplos": ["la pagina va lenta", "la radio tarda mucho", "se demora en cargar", "esta muy lenta", "el sitio anda despacio", "el reproductor responde tarde", "se traba mucho", "va a tirones", "tarda demasiado", "el audio se entrecorta", "la pagina se congela", "carga muy despacio"],
+      "respuesta": "Cierra pestañas o aplicaciones que estén usando mucha conexión y vuelve a cargar. En Android, prueba WiFi estable y cierra otras aplicaciones. En PC, revisa si hay descargas activas y prueba otro navegador actualizado. Si solo está lenta la señal de Radio Esperanza, inténtalo de nuevo más tarde."
+    },
+    {
+      "id": "android",
+      "titulo": "Usar Radio Esperanza en Android",
+      "ejemplos": ["uso radio esperanza en android", "como funciona en android", "tengo un android", "ayuda para celular android", "como escucho desde mi telefono", "como usar en samsung", "como escuchar en xiaomi", "como poner radio en mi movil", "como abrir en mi cel", "es compatible con android", "ayuda desde el telefono", "radio esperanza en mi smartphone"],
+      "respuesta": "En Android, abre la página con Chrome actualizado, busca el reproductor y toca PLAY. Si no se oye, sube el volumen multimedia y revisa si el audio está saliendo por audífonos o Bluetooth. Si no carga, cambia entre WiFi y datos móviles, recarga Chrome y prueba una pestaña de incógnito. Mantén el navegador abierto si quieres seguir escuchando."
+    },
+    {
+      "id": "pc",
+      "titulo": "Usar Radio Esperanza en PC",
+      "ejemplos": ["uso radio esperanza en pc", "como funciona en computadora", "tengo una laptop", "ayuda para ordenador", "como escucho desde windows", "como usar en mi portatil", "es compatible con pc", "radio esperanza en computadora", "no funciona en mi laptop", "como escuchar desde el computador", "ayuda desde el escritorio", "como poner play en la pc"],
+      "respuesta": "En PC, abre la página en Chrome, Edge o Firefox actualizado y pulsa PLAY en el reproductor. Comprueba el volumen del equipo y que la pestaña del navegador no esté silenciada. Si no carga, usa Ctrl+F5, prueba una ventana privada y revisa si un bloqueador está impidiendo cargar el reproductor."
+    },
+    {
+      "id": "iphone",
+      "titulo": "Usar Radio Esperanza en iPhone o iPad",
+      "ejemplos": ["tengo iphone", "funciona en iphone", "como escucho en ipad", "no carga en ios", "radio esperanza en apple", "no funciona en safari", "ayuda para iphone", "como poner la radio en mi ipad"],
+      "respuesta": "En iPhone o iPad, abre la página en Safari actualizado y toca PLAY. Revisa el volumen, el modo silencio y la salida de audio Bluetooth. Si no carga, recarga la página, cambia de WiFi a datos móviles o prueba una pestaña privada."
+    },
+    {
+      "id": "datos-moviles",
+      "titulo": "Escuchar usando datos móviles",
+      "ejemplos": ["puedo escuchar con datos", "no tengo wifi", "radio con datos moviles", "sirve con internet del celular", "puedo oir usando 4g", "puedo escuchar con 5g", "no carga con mis datos", "funciona con internet movil", "escuchar fuera de casa", "radio usando plan de datos"],
+      "respuesta": "Puedes probar la página con datos móviles si tu plan tiene conexión a internet. La reproducción continua consume datos; el consumo exacto depende de la calidad y duración de la señal. Si no inicia, revisa que Chrome tenga permiso para usar datos móviles y vuelve a tocar PLAY."
+    },
+    {
+      "id": "wifi",
+      "titulo": "Problemas de conexión WiFi",
+      "ejemplos": ["no carga con wifi", "estoy conectado al wifi pero no funciona", "la radio falla con mi internet", "problemas de wifi", "se corta aunque tengo wifi", "internet lento en casa", "no conecta a la señal", "con otra red si funciona", "wifi conectado sin internet", "radio no carga en la red"],
+      "respuesta": "Abre otra página para confirmar que el WiFi tenga internet. Si la conexión funciona, recarga Radio Esperanza y vuelve a probar PLAY. También puedes acercarte al router o probar datos móviles. Si solo falla en una red, reiniciar el router puede ayudar; si falla en todas, puede ser el navegador o la señal."
+    },
+    {
+      "id": "cache-android",
+      "titulo": "Limpiar caché en Android",
+      "ejemplos": ["como borro cache en android", "limpiar cache de chrome celular", "borrar cache en mi telefono", "vaciar cache del navegador android", "como elimino datos temporales en el cel", "chrome no carga la radio en android", "borrar datos de pagina en android", "limpiar archivos temporales del movil"],
+      "respuesta": "En Android: abre Chrome, toca el menú de tres puntos y entra en Historial > Borrar datos de navegación. Selecciona imágenes y archivos almacenados en caché y confirma. Después abre de nuevo Radio Esperanza y toca PLAY. Los nombres pueden variar un poco según la versión de Chrome."
+    },
+    {
+      "id": "cache-pc",
+      "titulo": "Limpiar caché en PC",
+      "ejemplos": ["como borro cache en pc", "limpiar cache del navegador", "borrar cache en chrome computadora", "eliminar archivos temporales de edge", "como limpio el cache de firefox", "vaciar cache de la pagina en laptop", "borrar datos del sitio en pc", "limpiar almacenamiento del navegador"],
+      "respuesta": "En Chrome o Edge para PC, abre la configuración de privacidad, busca la opción para borrar datos de navegación y selecciona imágenes y archivos en caché. También puedes probar primero Ctrl+F5, que fuerza la recarga de la página. Después vuelve a abrir Radio Esperanza y prueba PLAY."
+    },
+    {
+      "id": "recargar",
+      "titulo": "Recargar o actualizar la página",
+      "ejemplos": ["como recargo la pagina", "actualizar el sitio", "refrescar radio esperanza", "volver a cargar la web", "como reinicio la pagina", "que hago para cargar de nuevo", "forzar recarga en computadora", "actualizar en celular", "volver a abrir el reproductor"],
+      "respuesta": "En Android, usa el menú de Chrome y pulsa Recargar, o cierra y vuelve a abrir la pestaña. En PC Windows, prueba Ctrl+F5 para actualizar la página y sus archivos. En Mac, usa Cmd+Shift+R si el navegador lo admite. Luego espera a que aparezca el reproductor y toca PLAY."
+    },
+    {
+      "id": "privado",
+      "titulo": "Probar una ventana privada o incógnito",
+      "ejemplos": ["como abro modo incognito", "probar ventana privada", "abrir chrome en incognito", "probar sin historial", "usar modo privado para escuchar", "la radio no carga en ventana normal", "como navego privado en el telefono", "modo incognito en pc"],
+      "respuesta": "Prueba abrir una pestaña de incógnito o privada y entra de nuevo a Radio Esperanza. En Chrome para Android, abre el menú de tres puntos y elige Nueva pestaña de incógnito. En PC, usa Ctrl+Shift+N en Chrome o Edge; en Firefox, Ctrl+Shift+P. Si allí funciona, alguna extensión o dato guardado del navegador podría estar interfiriendo."
+    },
+    {
+      "id": "audio",
+      "titulo": "Revisar el volumen y la salida de audio",
+      "ejemplos": ["donde subo el volumen", "no se si esta silenciado", "la pestaña esta muda", "como cambio la salida de audio", "se oye por bluetooth", "no escucho por los audifonos", "el audio sale por otro dispositivo", "volumen del navegador", "como quito el silencio", "radio suena muy bajo"],
+      "respuesta": "En Android, sube el volumen multimedia mientras el reproductor intenta sonar y revisa Bluetooth o los audífonos conectados. En PC, abre el mezclador de volumen y comprueba que el navegador tenga volumen; también revisa si la pestaña está silenciada. Vuelve a pulsar PLAY después de corregirlo."
+    },
+    {
+      "id": "permiso-sonido",
+      "titulo": "Permiso para reproducir sonido",
+      "ejemplos": ["el navegador bloquea el audio", "como permito sonido", "chrome no deja reproducir", "permiso de audio para la pagina", "me pide habilitar sonido", "permitir que el sitio reproduzca audio", "bloquee la radio sin querer", "activar sonido del navegador"],
+      "respuesta": "Pulsa PLAY directamente en la página; muchos navegadores bloquean el audio automático hasta que el usuario toca un control. Si aparece un aviso de permiso para el sitio, permite el sonido. En PC, revisa también que la pestaña no esté silenciada."
+    },
+    {
+      "id": "autoplay",
+      "titulo": "La radio no inicia automáticamente",
+      "ejemplos": ["por que no empieza sola", "quiero que se reproduzca automaticamente", "la radio no arranca al abrir", "tengo que tocar play cada vez", "no hay reproduccion automatica", "autoplay bloqueado", "abre la pagina pero no empieza el audio"],
+      "respuesta": "Es normal que Android, Chrome y otros navegadores pidan una acción antes de reproducir audio. Abre la página y toca PLAY para iniciar la señal. No necesitas cambiar la configuración de seguridad del navegador."
+    },
+    {
+      "id": "ahorro-bateria",
+      "titulo": "La reproducción se detiene con la pantalla apagada",
+      "ejemplos": ["se para cuando bloqueo el celular", "deja de sonar al apagar la pantalla", "android cierra chrome solo", "la radio se detiene en segundo plano", "se corta cuando ahorro bateria", "no sigue sonando con pantalla bloqueada", "como escucho con el telefono bloqueado", "el celular pausa la emisora"],
+      "respuesta": "Android puede pausar pestañas o limitar aplicaciones para ahorrar batería. Revisa Ajustes > Aplicaciones > Chrome > Batería y permite el uso en segundo plano si tu teléfono ofrece esa opción. Desactiva temporalmente el ahorro de batería para probar y mantén Chrome abierto. La reproducción en segundo plano puede variar según el modelo y la versión de Android."
+    },
+    {
+      "id": "ahorro-datos",
+      "titulo": "Ahorro de datos bloquea la página",
+      "ejemplos": ["tengo ahorro de datos", "el modo ahorro no deja cargar", "chrome ahorro de datos bloquea la radio", "no funciona con datos restringidos", "como permito datos en segundo plano", "android restringe el internet", "la radio no usa mis datos"],
+      "respuesta": "Comprueba que el navegador pueda usar internet y que el ahorro de datos no esté bloqueando la página. En Android, revisa Ajustes > Aplicaciones > Chrome > Datos móviles y WiFi; los nombres varían según el teléfono. Prueba temporalmente con WiFi para comparar."
+    },
+    {
+      "id": "now-playing",
+      "titulo": "Qué significa Now Playing",
+      "ejemplos": ["que significa now playing", "que quiere decir now playing", "por que dice now playing", "now playing en el reproductor", "que esta sonando ahora", "donde veo lo que esta en vivo", "programa que estan pasando", "que significa reproduciendo ahora"],
+      "respuesta": "Now Playing significa que el reproductor está listo para mostrar lo que suena en ese momento. En Sintonizar también aparecen PLAY y PAUSE, la etiqueta Recorded, un selector Channel/Switch Channel y controles con fechas y horas. Pulsa PLAY para iniciar la señal en vivo. Si no aparece el nombre de un programa, la transmisión puede no estar enviando ese dato."
+    },
+    {
+      "id": "recorded",
+      "titulo": "Qué significa Recorded",
+      "ejemplos": ["que significa recorded", "que quiere decir recorded", "por que aparece recorded", "recorded en la radio", "hay programas grabados", "donde escucho grabaciones", "es una repeticion", "que significa contenido grabado"],
+      "respuesta": "Recorded significa grabado y aparece como una etiqueta del reproductor. No confirma por sí sola que exista una lista de grabaciones de la radio. Para episodios publicados, abre Podcast: la página muestra el programa La Fe de Jesús con dos episodios."
+    },
+    {
+      "id": "programacion",
+      "titulo": "Programación y horarios",
+      "ejemplos": ["cual es la programacion", "donde veo los horarios", "que programa sigue", "a que hora empieza el programa", "hay calendario de emisiones", "que significa el icono de calendario", "ver agenda de la radio", "horario de radio esperanza", "donde esta la programacion", "que van a transmitir hoy"],
+      "respuesta": "Abre Programación y pulsa Ver horarios de programación. La página muestra Anochecer con Cristo, domingos a viernes de 7:00 p. m. a 8:00 p. m., y Especiales Musicales en Vivo, sábados de 5:30 p. m. a 8:00 p. m. En Ver eventos especiales, al momento de consultar la página aparecía que no había próximos. Los horarios pueden cambiar; confirma los datos en esa sección. Allí también apareció el estado FUERA DE LÍNEA, aunque la lista de horarios seguía disponible."
+    },
+    {
+      "id": "hora",
+      "titulo": "La hora del reproductor parece incorrecta",
+      "ejemplos": ["la hora esta mal", "el reloj del reproductor no coincide", "marca otra hora", "diferencia de horario", "el reloj esta adelantado", "hora incorrecta en la radio", "que zona horaria usa", "el horario no es el de mi pais"],
+      "respuesta": "La hora que ves puede depender del reloj del dispositivo, de la zona horaria configurada o de cómo la página presenta la información. Revisa la fecha, hora y zona horaria de Android o de tu PC. Si la diferencia continúa, envíanos una captura y dinos tu ciudad o zona horaria."
+    },
+    {
+      "id": "transmision-offline",
+      "titulo": "La señal parece estar fuera de línea",
+      "ejemplos": ["la radio esta fuera de linea", "no hay señal en vivo", "la emisora esta apagada", "no transmite ahora", "dice offline", "la transmision no esta disponible", "no se conecta la señal en vivo", "radio esperanza no esta al aire", "la señal se cayó", "no hay emision"],
+      "respuesta": "Comprueba que internet funcione y vuelve a intentar en unos minutos. Si la página carga y PLAY no inicia la señal en ningún dispositivo o red, la transmisión podría estar temporalmente fuera de servicio. Envíanos la hora aproximada del fallo y una captura para que podamos revisarlo."
+    },
+    {
+      "id": "error-404",
+      "titulo": "Error 404 o página no encontrada",
+      "ejemplos": ["me sale error 404", "pagina no encontrada", "dice not found", "no existe la pagina", "error al entrar al sitio", "enlace roto", "la direccion no abre", "error 404 en la radio"],
+      "respuesta": "Verifica que hayas abierto la dirección correcta de Radio Esperanza y vuelve a cargar. Si llegaste desde un enlace guardado, abre la página principal de nuevo. Si el error continúa, envíanos el enlace que abriste y una captura para identificar la página afectada."
+    },
+    {
+      "id": "error-general",
+      "titulo": "Aparece un error en la página",
+      "ejemplos": ["me aparece un error", "sale un mensaje raro", "la pagina muestra error", "error al reproducir", "fallo del reproductor", "me sale un codigo de error", "no puedo entrar por un error", "que hago con este error", "la web marca error"],
+      "respuesta": "Anota el mensaje o código exacto y recarga la página. En Android, prueba Chrome actualizado; en PC, prueba Ctrl+F5 o una ventana privada. Si el error se repite, envíanos una captura, el dispositivo, el navegador y los pasos que hiciste antes de verlo."
+    },
+    {
+      "id": "navegador",
+      "titulo": "Navegador recomendado",
+      "ejemplos": ["que navegador uso", "funciona en chrome", "sirve con edge", "es compatible con firefox", "se puede abrir en safari", "que navegador recomiendan", "debo actualizar mi navegador", "no funciona en mi navegador", "abre con opera", "cual navegador es mejor para escuchar"],
+      "respuesta": "Usa una versión reciente de Chrome, Edge, Firefox o Safari. En Android, Chrome suele ser una buena opción; en PC puedes probar Chrome o Edge. Si el reproductor falla en uno, intenta abrir la página en otro navegador actualizado."
+    },
+    {
+      "id": "bloqueador",
+      "titulo": "Extensiones o bloqueadores interfieren",
+      "ejemplos": ["adblock bloquea la radio", "el bloqueador no deja cargar", "extensiones rompen el reproductor", "no funciona con mi bloqueador", "desactivar bloqueador de anuncios", "la pagina carga en incognito pero no normal", "extensiones del navegador", "bloqueo de contenido en el sitio"],
+      "respuesta": "Una extensión de privacidad o bloqueo puede impedir que se cargue algún componente. Prueba una ventana privada; si funciona, desactiva temporalmente la extensión solo para Radio Esperanza y recarga. En Android, revisa si usas un navegador con bloqueo integrado."
+    },
+    {
+      "id": "calidad-audio",
+      "titulo": "Calidad o consumo de la transmisión",
+      "ejemplos": ["que calidad tiene el audio", "se escucha con mala calidad", "cuantos datos consume la radio", "consume muchos megas", "la señal suena entrecortada", "calidad de streaming", "como bajo el consumo de datos", "radio consume internet"],
+      "respuesta": "El consumo depende de la calidad y del tiempo que escuches. No puedo confirmar la tasa exacta de datos de la transmisión desde el reproductor mostrado. Para reducir el uso de tu plan, escucha por WiFi cuando esté disponible y revisa el consumo de datos de Chrome en los ajustes de Android."
+    },
+    {
+      "id": "compartir",
+      "titulo": "Compartir Radio Esperanza",
+      "ejemplos": ["como comparto la radio", "enviar la pagina a un amigo", "quiero compartir el enlace", "pasar la emisora por whatsapp", "como invito a alguien a escuchar", "compartir radio esperanza", "copiar el link de la pagina", "mandar la radio a mi familia"],
+      "respuesta": "Abre la página de Radio Esperanza y usa Compartir en el menú del navegador, o copia la dirección de la página y envíala por tu aplicación de mensajes. La otra persona podrá abrirla y pulsar PLAY en su dispositivo."
+    },
+    {
+      "id": "acceso-directo",
+      "titulo": "Crear un acceso directo",
+      "ejemplos": ["como pongo la radio en la pantalla de inicio", "crear acceso directo en android", "agregar pagina al inicio", "quiero instalar la radio", "se puede descargar una aplicacion", "poner icono de radio esperanza", "guardar la emisora en el celular", "acceso directo en pc", "como guardo la pagina"],
+      "respuesta": "Puedes guardar la página en favoritos. En Chrome para Android, abre el menú de tres puntos y busca Añadir a pantalla principal; en PC, usa el icono de favoritos del navegador. Esto crea un acceso a la página y no confirma que exista una aplicación independiente de Radio Esperanza."
+    },
+    {
+      "id": "redes-sociales",
+      "titulo": "Redes sociales de Radio Esperanza",
+      "ejemplos": ["cual es su tiktok", "como los encuentro en redes", "quiero seguirlos en tiktok", "cual es el usuario de tiktok", "redes de radio esperanza", "como ver sus redes sociales", "en instagram estan", "donde publico un comentario", "cual es su cuenta social"],
+      "respuesta": "En la página aparece el usuario de TikTok _yeison_s. Para otros perfiles oficiales, consulta los enlaces que estén publicados en Radio Esperanza."
+    },
+    {
+      "id": "contacto",
+      "titulo": "Cómo contactar a Radio Esperanza",
+      "ejemplos": ["como los contacto", "quiero hablar con alguien", "tienen correo", "como escribo a soporte", "necesito ayuda de una persona", "contacto de la emisora", "como me comunico con ustedes", "donde esta el formulario", "quiero enviar un mensaje", "soporte tecnico", "a quien le aviso", "necesito contactarlos"],
+      "respuesta": "Escríbenos desde la ventana o sección Contacto de la página. Cuéntanos qué problema tienes, si usas Android o PC, qué navegador utilizas y qué estabas haciendo cuando ocurrió."
+    },
+    {
+      "id": "reporte",
+      "titulo": "Reportar un problema",
+      "ejemplos": ["quiero reportar un error", "donde aviso que no funciona", "reportar problema del reproductor", "enviar un reporte", "la pagina tiene un fallo", "como informo que no carga", "quiero mandar una captura", "reportar que no hay sonido", "ayuda tecnica por favor", "tengo un problema con la radio"],
+      "respuesta": "Para reportarlo, abre Contacto e incluye: el mensaje de error, lo que intentabas hacer, si usas Android o PC, el navegador y la hora aproximada. Una captura de pantalla ayuda a identificar el problema. No incluyas contraseñas ni datos privados."
+    },
+    {
+      "id": "navegacion-incrustada",
+      "titulo": "La página está abierta dentro de otra aplicación",
+      "ejemplos": ["abri el enlace desde whatsapp", "no funciona dentro de facebook", "la pagina se abrio en una aplicacion", "abrir en chrome", "como lo saco del navegador interno", "el link abre dentro de tiktok", "no reproduce desde el chat", "vista previa no deja escuchar"],
+      "respuesta": "Si abriste el enlace desde una aplicación de mensajes o una red social, el navegador integrado puede limitar la reproducción. Usa el menú de esa vista y elige Abrir en Chrome, Safari o el navegador de tu equipo; después vuelve a tocar PLAY."
+    },
+    {
+      "id": "reintentar",
+      "titulo": "Volver a intentar la reproducción",
+      "ejemplos": ["intentar otra vez", "como vuelvo a conectar", "reintentar señal", "reiniciar el reproductor", "volver a poner play", "se desconecto que hago", "como recupero el audio", "volver a sintonizar"],
+      "respuesta": "Pausa el reproductor si responde, espera unos segundos y pulsa PLAY de nuevo. Si no responde, recarga la página. En Android prueba cambiar de red; en PC prueba Ctrl+F5."
+    },
+    {
+      "id": "no-encontrado",
+      "titulo": "No encuentro un programa o una grabación",
+      "ejemplos": ["no encuentro el programa", "donde esta la grabacion", "quiero escuchar un programa pasado", "como busco emisiones anteriores", "hay archivo de programas", "donde estan los episodios", "buscar programa anterior", "no sale la grabacion que quiero"],
+      "respuesta": "La captura muestra el reproductor y una etiqueta Recorded, pero no confirma que exista un catálogo para buscar programas anteriores. Revisa si la página ofrece una lista o controles de selección. Si buscas un programa específico, consulta Contacto e indica su nombre y fecha aproximada."
+    },
+    {
+      "id": "menu-aplicaciones",
+      "titulo": "Secciones disponibles en Radio Esperanza",
+      "ejemplos": ["que tiene la pagina", "que secciones hay", "que aplicaciones tiene radio esperanza", "donde encuentro la radio", "que puedo hacer en el sitio", "como abro los menus", "donde esta programacion y recursos", "que opciones aparecen en inicio", "para que sirve el menu", "como busco una aplicacion"],
+      "respuesta": "Pulsa el botón de Inicio en la barra inferior para abrir el menú. Allí aparecen Sintonizar, Programación, Juego Bíblico, Recursos, Podcast y Ayuda. El menú también incluye el campo Buscar aplicación para encontrar una sección por su nombre."
+    },
+    {
+      "id": "selector-canal",
+      "titulo": "Cambiar el canal del reproductor",
+      "ejemplos": ["como cambio de canal", "que significa switch channel", "donde selecciono otro canal", "el reproductor tiene mas canales", "cambiar emisora en caster fm", "como abro channel", "selector de canal de la radio", "quiero escuchar otro canal"],
+      "respuesta": "El reproductor muestra un control Channel/Switch Channel. Ábrelo para revisar las opciones disponibles. No puedo confirmar qué canales aparecen en cada momento; si no se muestra ninguna opción, vuelve a Sintonizar más tarde o avísanos desde Contacto."
+    },
+    {
+      "id": "programacion-horarios",
+      "titulo": "Consultar horarios de programas",
+      "ejemplos": ["a que hora es anochecer con cristo", "cuando dan anochecer con cristo", "horario de especiales musicales", "cuando transmiten los especiales musicales", "programas de los sabados", "que programa hay en la tarde", "horarios de la emisora", "cuando puedo escuchar musica en vivo", "horario semanal de radio esperanza", "que programa dan de domingo a viernes"],
+      "respuesta": "En Programación, pulsa Ver horarios de programación. Los horarios publicados son: Anochecer con Cristo, domingos a viernes de 7:00 p. m. a 8:00 p. m.; Especiales Musicales en Vivo, sábados de 5:30 p. m. a 8:00 p. m. Confirma en la página por si el horario se actualizó."
+    },
+    {
+      "id": "eventos-especiales",
+      "titulo": "Eventos especiales",
+      "ejemplos": ["hay eventos especiales", "que eventos vienen", "donde veo eventos de la radio", "cuando es el proximo evento", "ver actividades especiales", "no encuentro los eventos", "programacion de eventos", "hay algun evento proximo"],
+      "respuesta": "Entra en Programación y abre Ver eventos especiales. Al revisar la página, el mensaje decía que no había eventos especiales próximos. Vuelve a consultar esa sección porque la lista puede cambiar."
+    },
+    {
+      "id": "estado-fuera-linea",
+      "titulo": "La programación indica fuera de línea",
+      "ejemplos": ["programacion dice fuera de linea", "me sale fuera de linea", "que significa fuera de linea", "la radio aparece offline", "no aparece al aire", "por que dice fuera de linea en programacion", "la señal esta desconectada", "la radio esta offline"],
+      "respuesta": "La sección Programación mostró el estado FUERA DE LÍNEA cuando la consulté, pero sus horarios se podían abrir. Ese rótulo podría ser temporal o referirse al estado actual; prueba Sintonizar y pulsa PLAY. Si la señal tampoco inicia, inténtalo de nuevo más tarde o repórtalo desde Contacto."
+    },
+    {
+      "id": "recursos-biblicos",
+      "titulo": "Recursos bíblicos y Escuela Sabática",
+      "ejemplos": ["donde encuentro recursos biblicos", "como abro escuela sabatica", "hay guias de estudio", "material de escuela sabatica", "donde estan los pdf biblicos", "quiero descargar una leccion", "recursos para estudiar la biblia", "cuantos materiales hay", "como busco las lecciones", "no encuentro los recursos"],
+      "respuesta": "Abre el menú de Inicio, entra en Recursos y selecciona Escuela Sabática, descrita como Guía de estudio de la Biblia. La página muestra 13 recursos PDF organizados por lección; pulsa Abrir en el material que quieras consultar. Los temas incluyen profetas, revelación e inspiración e interpretación de escritos proféticos."
+    },
+    {
+      "id": "podcast",
+      "titulo": "Podcast y episodios",
+      "ejemplos": ["que podcasts hay", "donde escucho los podcast", "como abro un episodio", "hay estudios biblicos en audio", "quiero escuchar la fe de jesus", "cuantos episodios tiene el podcast", "quien presenta el podcast", "no carga el podcast", "como pauso un episodio", "donde estan los audios"],
+      "respuesta": "Entra en Podcast y abre La Fe de Jesús, clasificado como estudio bíblico y atribuido a Juan Carlos Márquez. La página muestra dos episodios: La Santa Biblia y Dios, fechados el 28/09/2026. Cada episodio tiene controles de reproducción, retroceso y avance de 10 segundos."
+    },
+    {
+      "id": "juego-biblico",
+      "titulo": "Juego Bíblico",
+      "ejemplos": ["como juego el juego biblico", "para que sirve juego biblico", "donde esta el quiz biblico", "quiero probar mis conocimientos biblicos", "como inicio el juego", "hay un juego de la biblia", "no carga el juego biblico", "que es juego biblico", "donde veo los creditos del juego"],
+      "respuesta": "En el menú abre Juego Bíblico. La pantalla invita a poner a prueba tus conocimientos de las Sagradas Escrituras y ofrece Iniciar Juego Bíblico y Créditos. Si al iniciarlo permanece en Cargando, recarga la sección y prueba de nuevo más tarde."
+    },
+    {
+      "id": "asistente-no-disponible",
+      "titulo": "El chat de ayuda muestra un error",
+      "ejemplos": ["el chat de ayuda no funciona", "no puedo escribirle a la ia", "el asistente esta deshabilitado", "el boton enviar aparece gris", "la ia dice ocurrio un error", "ayuda no me deja preguntar", "el campo de pregunta esta bloqueado", "el chat no responde", "no puedo enviar mensajes al asistente", "el bot sale con error"],
+      "respuesta": "La sección Ayuda mostró el mensaje “Ocurrió un error. Por favor, inténtalo de nuevo más tarde” y los controles de pregunta y envío aparecían deshabilitados. Recarga la página y vuelve a probar más tarde. Si continúa, usa Contacto para reportarlo; no puedo confirmar la causa del error."
+    },
+    {
+      "id": "respuesta-dispositivo",
+      "titulo": "Indicar el dispositivo para recibir pasos precisos",
+      "ejemplos": ["no funciona", "ayuda", "sigue igual", "todavia no sirve", "nada funciona", "tengo un problema", "no puedo escuchar", "no se que hacer", "me falla"],
+      "respuesta": "Te ayudo. ¿Estás usando Android o una PC? Dime también si la página no carga, si no aparece el reproductor o si aparece pero no se escucha."
+    }
+  ]
+}
