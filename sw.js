@@ -1,4 +1,4 @@
-const VERSION = '1.0.12';
+const VERSION = '1.0.15';
 const CACHE_NAME = 'radio-esperanza-v' + VERSION;
 
 const ASSETS = [
@@ -20,7 +20,8 @@ const ASSETS = [
     './secciones/recursos/recursos/recursos.json',
     './secciones/recursos/recursos/categorias/escuela-sabatica.json',
     './secciones/sintonizar/sintonizar.html',
-    './secciones/podcast/podcasts.html'
+    './secciones/podcast/podcasts.html',
+    './secciones/contacto/contacto.html'
 ];
 
 self.addEventListener('install', (e) => {
