@@ -1,0 +1,14 @@
+{
+  "podcasts": [
+    {
+      "id": "la-fe-de-Jesus",
+      "titulo": "LA Fe de Jesús",
+      "descripcion": "ESTUDIO BIBLICO",
+      "autor": "Juan Carlos Márquez",
+      "categoria": "La Fe de Jesús",
+      "imagen": "podcasts/la-fe-de-Jesus/portada.jpg",
+      "episodios_count": 2,
+      "info_url": "podcasts/la-fe-de-Jesus/info.json"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "la-fe-de-Jesus",
+  "titulo": "LA Fe de Jesús",
+  "descripcion": "ESTUDIO BIBLICO",
+  "autor": "Juan Carlos Márquez",
+  "categoria": "La Fe de Jesús",
+  "fecha": "28/09/2026",
+  "imagen": "podcasts/la-fe-de-Jesus/portada.jpg",
+  "episodios": [
+    {
+      "id": "1",
+      "titulo": "La Santa Biblia",
+      "descripcion": "",
+      "fecha": "28/09/2026",
+      "archivo": "podcasts/la-fe-de-Jesus/1.mp3"
+    },
+    {
+      "id": "2",
+      "titulo": "Dios",
+      "descripcion": "",
+      "fecha": "28/09/2026",
+      "archivo": "podcasts/la-fe-de-Jesus/2.mp3"
+    }
+  ]
+}
