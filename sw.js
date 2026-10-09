@@ -1,5 +1,5 @@
-const VERSION = '1.0.07';
-const CACHE_NAME = 'radio-esperanza-juego-v' + VERSION;
+const VERSION = '1.0.12';
+const CACHE_NAME = 'radio-esperanza-v' + VERSION;
 
 const ASSETS = [
     './',
@@ -7,6 +7,7 @@ const ASSETS = [
     './style.css',
     './script.js',
     './config/pestañas.json',
+    './config/mensajes.json',
     './secciones/bot/IA.html',
     './secciones/juego-biblico/index.html',
     './secciones/juego-biblico/datos/preguntas1.json',
@@ -19,39 +20,37 @@ const ASSETS = [
     './secciones/recursos/recursos/recursos.json',
     './secciones/recursos/recursos/categorias/escuela-sabatica.json',
     './secciones/sintonizar/sintonizar.html',
-    './secciones/podcast/podcasts.htnl'
+    './secciones/podcast/podcasts.html'
 ];
-
 
 self.addEventListener('install', (e) => {
     self.skipWaiting(); 
     e.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+        caches.open(CACHE_NAME).then((cache) => {
+            const requests = ASSETS.map(url => new Request(url, { cache: 'reload' }));
+            return cache.addAll(requests);
+        })
     );
 });
-
-
-
 
 self.addEventListener('activate', (e) => {
     e.waitUntil(
         caches.keys().then((keys) => {
             return Promise.all(
                 keys.map((key) => {
-                    //
                     if (key !== CACHE_NAME) {
-                        console.log('Borrando versión vieja:', key);
                         return caches.delete(key);
                     }
                 })
             );
-        }).then(() => self.clients.claim())
+        }).then(() => self.clients.claim()) 
     );
 });
 
-
 self.addEventListener('fetch', (e) => {
     e.respondWith(
-        caches.match(e.request).then((res) => res || fetch(e.request))
+        caches.match(e.request).then((res) => {
+            return res || fetch(e.request);
+        })
     );
 });
