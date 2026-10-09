@@ -7,6 +7,7 @@ const ASSETS = [
     './style.css',
     './script.js',
     './config/pestañas.json',
+    './secciones/bot/IA.html',
     './secciones/juego-biblico/index.html',
     './secciones/juego-biblico/datos/preguntas1.json',
     './secciones/juego-biblico/datos/creditos.json',
