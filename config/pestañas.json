@@ -28,5 +28,11 @@
     "titulo": "Podcast",
     "icono": "🎙️",
     "rutaHTML": "secciones/podcast/podcasts.html"
+  },
+  {
+    "id": "app-ia",
+    "titulo": "Ayuda",
+    "icono": "❔",
+    "rutaHTML": "secciones/bot/IA.html"
   }
 ]
