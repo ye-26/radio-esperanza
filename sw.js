@@ -1,4 +1,4 @@
-const VERSION = '1.0.04';
+const VERSION = '1.0.05';
 const CACHE_NAME = 'radio-esperanza-juego-v' + VERSION;
 
 const ASSETS = [
@@ -17,10 +17,11 @@ const ASSETS = [
     './secciones/recursos/recursos.html',
     './secciones/recursos/recursos/recursos.json',
     './secciones/recursos/recursos/categorias/escuela-sabatica.json',
-    './secciones/sintonizar/sintonizar.html'
+    './secciones/sintonizar/sintonizar.html',
+    './secciones/podcast/podcasts.htnl'
 ];
 
-// Instalar el nuevo caché y forzar al navegador a usarlo de inmediato
+
 self.addEventListener('install', (e) => {
     self.skipWaiting(); 
     e.waitUntil(
