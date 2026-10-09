@@ -7,16 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let windowsList = {};
     let highestZIndex = 100;
 
-    // --- 1. CARGA INICIAL ---
     setTimeout(() => {
         document.getElementById('loading-screen').style.opacity = '0';
         setTimeout(() => document.getElementById('loading-screen').remove(), 800);
         loadApplications();
         updateClock();
         setInterval(updateClock, 60000);
+        showDailyGreeting();
     }, 1500);
 
-    // --- 2. MENÚ DE INICIO ---
     btnStart.addEventListener('click', () => {
         startMenu.classList.toggle('hidden');
     });
@@ -44,13 +43,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 grid.appendChild(shortcut);
             });
         } catch (error) {
-            console.error("Error cargando aplicaciones:", error);
+            console.error(error);
         }
     }
 
-    // --- 3. GESTOR DE VENTANAS ---
+    async function showDailyGreeting() {
+        try {
+            const response = await fetch('config/mensajes.json');
+            const mensajes = await response.json();
+            const day = new Date().getDay();
+            const data = mensajes[day];
+            if (!data) return;
+
+            const popup = document.createElement('div');
+            popup.className = 'greeting-popup';
+            popup.id = 'greeting-popup';
+            popup.innerHTML = `
+                <div class="greeting-header" id="greeting-header">
+                    <span class="greeting-title">${data.titulo}</span>
+                    <button class="greeting-close" id="btn-close-greeting">X</button>
+                </div>
+                <div class="greeting-body">${data.mensaje}</div>
+            `;
+
+            document.body.appendChild(popup);
+
+            document.getElementById('btn-close-greeting').addEventListener('click', () => {
+                popup.remove();
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     function openWindow(app) {
-        
         if (windowsList[app.id]) {
             const win = windowsList[app.id].element;
             win.classList.remove('minimized');
@@ -59,14 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Crear nueva ventana
         const win = document.createElement('div');
         win.className = 'window';
         win.id = app.id;
         highestZIndex++;
         win.style.zIndex = highestZIndex;
 
-        // Offset 
         const offset = (Object.keys(windowsList).length * 30) % 150;
         win.style.top = `${50 + offset}px`;
         win.style.left = `${50 + offset}px`;
@@ -81,17 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <div class="window-content">
-                <!-- Usamos iframe para encapsular CSS/JS de cada módulo y no romper el OS -->
                 <iframe src="${app.rutaHTML}" title="${app.titulo}"></iframe>
             </div>
         `;
 
         desktopArea.appendChild(win);
 
-        // Registro
         windowsList[app.id] = { element: win, minimized: false, maximized: false };
 
-        // Controles
         setupWindowControls(win, app.id);
         makeDraggable(win, document.getElementById(`header-${app.id}`));
         createTaskbarIcon(app);
@@ -129,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTaskbarActive(win.id);
     }
 
-    // --- 4. BARRA DE TAREAS ---
     function createTaskbarIcon(app) {
         const btn = document.createElement('button');
         btn.className = 'taskbar-btn app-icon active';
@@ -156,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeBtn) activeBtn.classList.add('active');
     }
 
-    // --- 5. DRAG & DROP---
     function makeDraggable(win, header) {
         let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         
@@ -201,28 +220,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 6. UTILIDADES ---
     function updateClock() {
-        
         const options = { timeZone: 'America/Bogota', hour: '2-digit', minute: '2-digit' };
         const timeString = new Intl.DateTimeFormat('es-CO', options).format(new Date());
         document.getElementById('taskbar-clock').innerText = timeString;
     }
-    // Lógica de Almacenamiento
-const logoTrigger = document.getElementById('logo-trigger');
-const currentTheme = localStorage.getItem('re_theme') || 'dark';
 
-// Aplicar tema
-if (currentTheme === 'light') {
-    document.body.classList.add('light-theme');
-}
+    const logoTrigger = document.getElementById('logo-trigger');
+    const currentTheme = localStorage.getItem('re_theme') || 'dark';
 
-// Evento táctil
-logoTrigger.addEventListener('click', () => {
-    document.body.classList.toggle('light-theme');
-    
-    // Guardar preferencias
-    const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
-    localStorage.setItem('re_theme', theme);
-});
+    if (currentTheme === 'light') {
+        document.body.classList.add('light-theme');
+    }
+
+    if (logoTrigger) {
+        logoTrigger.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+            localStorage.setItem('re_theme', theme);
+        });
+    }
 });
