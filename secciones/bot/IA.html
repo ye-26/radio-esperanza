@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asistente de IA Radio Esperanza</title>
+<style>
+:root{
+  --ink:#f2f5ff;--mute:rgba(242,245,255,.55);
+  --blue:40,150,255;
+  --gray:205,212,225;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden;background:transparent}
+body{font:15px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;color:var(--ink);
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+input{-webkit-user-select:text;user-select:text} 
+
+#app{height:100%;display:flex;flex-direction:column;max-width:760px;margin:0 auto}
+
+header{padding:16px 16px 12px;text-align:center;position:relative}
+header h1{margin:0;font-size:16px;font-weight:600;letter-spacing:.2px;text-shadow:0 0 14px rgba(var(--blue),.55)}
+header::after{content:"";position:absolute;left:16%;right:16%;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(var(--blue),.7),rgba(var(--gray),.6),transparent);box-shadow:0 0 8px rgba(var(--blue),.6)}
+
+#log{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+#log::-webkit-scrollbar{width:6px}#log::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:9px}
+
+
+.w{display:flex;flex-direction:column;max-width:82%;animation:pop .28s ease-out}
+.w.r-me{align-self:flex-end;align-items:flex-end}
+.w.r-bot{align-self:flex-start;align-items:flex-start}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.97)}}
+
+
+.m{position:relative;padding:10px 16px;border-radius:20px;white-space:pre-wrap;word-wrap:break-word;
+  backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%)}
+.m::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(120% 70% at 10% 0%,rgba(255,255,255,.28),transparent 55%)}
+.m[tabindex]{cursor:pointer}
+
+.me{border-bottom-right-radius:6px;
+  background:linear-gradient(135deg,rgba(var(--blue),.38),rgba(var(--blue),.12));
+  border:1px solid rgba(var(--blue),.95);
+  box-shadow:0 0 6px rgba(var(--blue),.8),0 0 22px rgba(var(--blue),.45),inset 0 0 14px rgba(var(--blue),.25),inset 0 1px 0 rgba(255,255,255,.5)}
+
+.bot{border-bottom-left-radius:6px;
+  background:linear-gradient(135deg,rgba(var(--gray),.22),rgba(var(--gray),.07));
+  border:1px solid rgba(var(--gray),.8);
+  box-shadow:0 0 6px rgba(var(--gray),.55),0 0 20px rgba(var(--gray),.25),inset 0 0 12px rgba(var(--gray),.14),inset 0 1px 0 rgba(255,255,255,.45)}
+
+
+.acts{display:flex;gap:6px;padding:0 4px;max-height:0;opacity:0;visibility:hidden;overflow:hidden;
+  transition:max-height .22s ease,opacity .2s ease,padding .22s ease,visibility .22s}
+.w.open .acts{max-height:44px;opacity:1;visibility:visible;padding:8px 4px 4px}
+.act{width:30px;height:30px;padding:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;color:var(--ink);
+  background:rgba(var(--gray),.08);border:1px solid rgba(var(--gray),.5);box-shadow:0 0 8px rgba(var(--gray),.2);
+  transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+.act svg{width:15px;height:15px}
+.act:hover{transform:translateY(-1px);border-color:rgba(var(--blue),.9);box-shadow:0 0 12px rgba(var(--blue),.55)}
+.act.sel,.act.on{background:rgba(var(--blue),.35);border-color:rgba(var(--blue),.95);box-shadow:0 0 12px rgba(var(--blue),.7)}
+.act.on{animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 4px rgba(var(--blue),.4)}}
+
+
+.typing{display:flex;align-items:center;gap:10px;color:var(--mute);font-size:13px}
+.spin{width:18px;height:18px;border-radius:50%;flex:none;background:conic-gradient(rgb(var(--gray)),rgb(var(--blue)),transparent 75%);
+  -webkit-mask:radial-gradient(circle 6px,transparent 98%,#000);mask:radial-gradient(circle 6px,transparent 98%,#000);animation:rot .9s linear infinite}
+@keyframes rot{to{transform:rotate(1turn)}}
+.dots i{display:inline-block;width:5px;height:5px;margin-left:3px;border-radius:50%;background:currentColor;animation:bl 1.2s infinite}
+.dots i:nth-child(2){animation-delay:.18s}.dots i:nth-child(3){animation-delay:.36s}
+@keyframes bl{0%,80%,100%{opacity:.25}40%{opacity:1}}
+
+.chips{align-self:flex-start;display:flex;flex-wrap:wrap;gap:8px;max-width:92%;animation:pop .3s ease-out}
+.chips button{font:inherit;font-size:13px;color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer;background:rgba(var(--gray),.08);
+  border:1px solid rgba(var(--gray),.55);box-shadow:0 0 8px rgba(var(--gray),.25);transition:transform .15s,box-shadow .15s,border-color .15s}
+.chips button:hover{transform:translateY(-1px);border-color:rgba(var(--blue),.9);box-shadow:0 0 14px rgba(var(--blue),.55)}
+
+footer{padding:0 14px 10px}
+form{display:flex;gap:8px;padding:6px;border-radius:999px;background:rgba(255,255,255,.05);
+  border:1px solid rgba(var(--gray),.5);box-shadow:0 0 12px rgba(var(--gray),.2),inset 0 1px 0 rgba(255,255,255,.3);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:border-color .2s,box-shadow .2s}
+form:focus-within{border-color:rgba(var(--blue),.9);box-shadow:0 0 16px rgba(var(--blue),.5),inset 0 1px 0 rgba(255,255,255,.3)}
+#q{flex:1;min-width:0;font:inherit;color:var(--ink);background:transparent;border:0;padding:8px 14px;outline:0}
+#q::placeholder{color:var(--mute)}
+.send{flex:none;width:40px;height:40px;border:0;border-radius:50%;cursor:pointer;color:#fff;display:grid;place-items:center;
+  background:rgba(var(--blue),.85);box-shadow:0 0 14px rgba(var(--blue),.8),inset 0 1px 0 rgba(255,255,255,.55);transition:transform .15s,opacity .2s}
+.send:hover{transform:scale(1.07)}.send:disabled{opacity:.35;cursor:default;transform:none}
+.send svg{width:18px;height:18px}
+.aviso{margin:8px 0 0;text-align:center;font-size:11.5px;color:var(--mute)}
+:focus-visible{outline:2px solid rgba(var(--blue),.9);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header><h1>Asistente de IA Radio Esperanza</h1></header>
+  <section id="log" aria-live="polite"></section>
+  <footer>
+    <form id="f">
+      <input id="q" placeholder="Escribe tu pregunta…" autocomplete="off" aria-label="Tu pregunta" disabled>
+      <button class="send" aria-label="Enviar" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+    </form>
+    <p class="aviso">Asistente de IA Radio Esperanza. Puede cometer errores.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+const JSON_URL = "faq.json";
+const ERROR_TXT = "Ocurrió un error. Por favor, inténtalo de nuevo más tarde.";
+
+
+let DATA, CFG, FAQ, SIN = {}, STOP = new Set(), docs = [], df = new Map();
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9ñ ]/g," ").replace(/ñ/g,"n");
+
+function feats(text){
+  const f = new Map(), add = (k,w) => f.set(k,(f.get(k)||0)+w);
+  for (let t of norm(text).split(/\s+/)) {
+    if (t.length < 2 || STOP.has(t)) continue;
+    t = SIN[t] || t;
+    add("w:"+t, 2);
+    const p = "#"+t+"#";
+    for (let i=0; i<=p.length-3; i++) add("g:"+p.slice(i,i+3), 1);
+  }
+  return f;
+}
+const idf = k => Math.log(1 + docs.length/(1+(df.get(k)||0)));
+function vec(f){
+  const v = new Map(); let n = 0;
+  f.forEach((c,k)=>{const w=Math.log(1+c)*idf(k); v.set(k,w); n+=w*w;});
+  n = Math.sqrt(n)||1; v.forEach((w,k)=>v.set(k,w/n)); return v;
+}
+const dot = (a,b) => {let s=0; if(a.size>b.size)[a,b]=[b,a]; a.forEach((w,k)=>{const o=b.get(k); if(o)s+=w*o;}); return s;};
+
+function indexar(){
+  const S = {}; for (const k in (DATA.sinonimos||{})) S[norm(k).trim()] = norm(DATA.sinonimos[k]).trim();
+  SIN = S;
+  STOP = new Set((DATA.stopwords || "a al algo como con de del el ella en es esta esto la las lo los me mi mis muy para pero por que se si su sus te tu un una uno y ya yo le quiere quiero puedo puede hay hola buenas favor porfa").toString().split(/[\s,]+/).map(norm));
+  docs = []; df = new Map();
+  FAQ.forEach((e,i)=>[e.titulo,...(e.ejemplos||[])].forEach(x=>docs.push({i,f:feats(x)})));
+  docs.forEach(d=>d.f.forEach((_,k)=>df.set(k,(df.get(k)||0)+1)));
+  docs.forEach(d=>d.v=vec(d.f));
+}
+function buscar(texto){
+  const q = vec(feats(texto)), best = new Map();
+  docs.forEach(d=>{const s=dot(q,d.v); if(s>(best.get(d.i)||0)) best.set(d.i,s);});
+  return [...best].map(([i,s])=>({i,s})).sort((a,b)=>b.s-a.s);
+}
+
+
+let permitir = false;
+["copy","cut","paste","contextmenu","dragstart","selectstart"].forEach(ev =>
+  document.addEventListener(ev, e => {
+    if (permitir || (ev === "selectstart" && e.target === document.getElementById("q"))) return;
+    e.preventDefault();
+  }));
+
+
+const log = document.getElementById("log"), q = document.getElementById("q"), btn = document.querySelector(".send");
+const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
+const TTS = "speechSynthesis" in window;
+let ocupado = false;
+
+const bajar = () => log.scrollTop = log.scrollHeight;
+function burbuja(cls){
+  const w = document.createElement("div"); w.className = "w r-" + cls.split(" ")[0];
+  const d = document.createElement("div"); d.className = "m " + cls;
+  w.appendChild(d); log.appendChild(w); bajar(); return d;
+}
+
+
+const svg = p => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
+const IC = {
+  up:'<path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>',
+  down:'<path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>',
+  copy:'<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  ok:'<polyline points="20 6 9 17 4 12"/>',
+  vol:'<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/>',
+  stop:'<rect x="6" y="6" width="12" height="12" rx="2"/>'
+};
+function accion(tipo, titulo, fn){
+  const b = document.createElement("button"); b.type = "button"; b.className = "act"; b.dataset.k = tipo;
+  b.title = titulo; b.setAttribute("aria-label", titulo); b.innerHTML = svg(IC[tipo]);
+  b.onclick = e => { e.stopPropagation(); fn(b); }; return b;
+}
+
+
+async function copiar(texto, b){
+  let ok = false;
+  try { await navigator.clipboard.writeText(texto); ok = true; }
+  catch (e) {
+    try {
+      const t = document.createElement("textarea"); t.value = texto; t.style.cssText = "position:fixed;opacity:0";
+      document.body.appendChild(t); permitir = true; t.select(); ok = document.execCommand("copy"); permitir = false; t.remove();
+    } catch (_) { permitir = false; }
+  }
+  if (ok) { b.innerHTML = svg(IC.ok); b.classList.add("sel"); setTimeout(()=>{b.innerHTML = svg(IC.copy); b.classList.remove("sel");}, 1400); }
+}
+
+
+let voz = null;
+function elegirVoz(){
+  const v = speechSynthesis.getVoices();
+  voz = v.find(x=>/^es[-_](CO|419|MX|US)/i.test(x.lang)) || v.find(x=>/^es/i.test(x.lang)) || null;
+}
+if (TTS) { elegirVoz(); speechSynthesis.onvoiceschanged = elegirVoz; }
+function pararVoz(){
+  if (!TTS) return; speechSynthesis.cancel();
+  document.querySelectorAll('.act[data-k="vol"].on').forEach(x=>{x.classList.remove("on"); x.innerHTML = svg(IC.vol);});
+}
+function hablar(texto, b){
+  const hablando = b.classList.contains("on");
+  pararVoz(); if (hablando) return;
+  const u = new SpeechSynthesisUtterance(texto);
+  u.lang = voz ? voz.lang : "es-CO"; if (voz) u.voice = voz;
+  const fin = () => { b.classList.remove("on"); b.innerHTML = svg(IC.vol); };
+  u.onend = fin; u.onerror = fin;
+  b.classList.add("on"); b.innerHTML = svg(IC.stop); speechSynthesis.speak(u);
+}
+
+
+function acciones(b, texto, lado){
+  b.dataset.t = ""; b.tabIndex = 0; b.setAttribute("role", "button");
+  const a = document.createElement("div"); a.className = "acts";
+  if (lado === "bot") {
+    const voto = (k) => bt => {
+      const encender = !bt.classList.contains("sel");
+      a.querySelectorAll('[data-k="up"],[data-k="down"]').forEach(x=>{x.classList.remove("sel"); x.setAttribute("aria-pressed","false");});
+      if (encender) { bt.classList.add("sel"); bt.setAttribute("aria-pressed","true"); }
+    };
+    a.appendChild(accion("up", "Me gusta", voto("up")));
+    a.appendChild(accion("down", "No me gusta", voto("down")));
+  }
+  a.appendChild(accion("copy", "Copiar mensaje", bt => copiar(texto, bt)));
+  if (lado === "bot" && TTS) a.appendChild(accion("vol", "Escuchar respuesta", bt => hablar(texto, bt)));
+  b.parentNode.appendChild(a);
+}
+log.addEventListener("click", e => {
+  const m = e.target.closest(".m[data-t]"), abierto = log.querySelector(".w.open");
+  if (m) {
+    const w = m.parentNode;
+    if (abierto && abierto !== w) abierto.classList.remove("open");
+    w.classList.toggle("open");
+    if (w.classList.contains("open") && !w.nextElementSibling) setTimeout(bajar, 240);
+  } else if (!e.target.closest(".acts,.chips") && abierto) abierto.classList.remove("open");
+});
+log.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".m[data-t]")) { e.preventDefault(); e.target.click(); } });
+
+function usuario(t){ const b = burbuja("me"); b.textContent = t; acciones(b, t, "me"); }
+
+async function ia(texto){
+  const tp = burbuja("bot typing");
+  tp.innerHTML = '<span class="spin"></span><span>Generando respuesta</span><span class="dots"><i></i><i></i><i></i></span>';
+  await sleep(reduce ? 200 : 700 + Math.min(texto.length*6, 900) + Math.random()*300);
+  tp.parentNode.remove();
+  const b = burbuja("bot");
+  if (reduce) b.textContent = texto;
+  else for (const p of texto.split(/(\s+)/)) { b.textContent += p; bajar(); if (p.trim()) await sleep(22); }
+  acciones(b, texto, "bot"); bajar();
+}
+function chips(ids){
+  const c = document.createElement("div"); c.className = "chips";
+  ids.forEach(i=>{const b=document.createElement("button"); b.textContent=FAQ[i].titulo;
+    b.onclick=()=>{ if(ocupado) return; c.remove(); preguntar(FAQ[i].titulo, i); }; c.appendChild(b);});
+  log.appendChild(c); bajar();
+}
+function fijar(on){ocupado=on; q.disabled=on; btn.disabled=on; if(!on) q.focus({preventScroll:true});}
+
+async function preguntar(texto, forzado){
+  pararVoz(); fijar(true); usuario(texto);
+  try {
+    const r = buscar(texto), top = r[0];
+    const ok = CFG.umbralDirecto ?? 0.5, sug = CFG.umbralSugerencia ?? 0.22;
+    if (forzado !== undefined || (top && top.s >= ok && (!r[1] || top.s - r[1].s > 0.04))) {
+      await ia(FAQ[forzado ?? top.i].respuesta);
+    } else {
+      const ids = r.filter(x=>x.s>=sug).slice(0,3).map(x=>x.i);
+      if (ids.length) { await ia(CFG.dudaTexto || "No estoy seguro de haber entendido. ¿Es alguna de estas?"); chips(ids); }
+      else { await ia(CFG.sinRespuestaTexto || "No encontré algo parecido. Intenta con otras palabras o elige un tema:"); chips(FAQ.map((_,i)=>i).slice(0,4)); }
+    }
+  } catch (e) { await ia(ERROR_TXT); }
+  fijar(false);
+}
+document.getElementById("f").onsubmit = e => {e.preventDefault(); const t=q.value.trim(); if(!t||ocupado) return; q.value=""; preguntar(t);};
+
+
+(async function(){
+  try {
+    const r = await fetch(JSON_URL, {cache:"no-cache"});
+    if (!r.ok) throw 0;
+    DATA = await r.json();
+    CFG = DATA.config || {}; FAQ = DATA.preguntas || [];
+    if (!FAQ.length) throw 0;
+    indexar();
+  } catch (e) {
+    await ia(ERROR_TXT);
+    return;
+  }
+  await ia(CFG.saludo || "Hola, soy el asistente de Radio Esperanza. ¿En qué te puedo ayudar?");
+  const ini = (CFG.sugerenciasIniciales || []).map(id=>FAQ.findIndex(e=>e.id===id)).filter(i=>i>=0);
+  chips(ini.length ? ini : FAQ.map((_,i)=>i).slice(0,4));
+  fijar(false);
+})();
+})();
+</script>
+</body>
+</html>
