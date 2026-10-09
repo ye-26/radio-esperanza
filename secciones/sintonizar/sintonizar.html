@@ -16,7 +16,7 @@
     }
 
     body {
-      background-color: #0e0d1b;
+      background-color: transparent;
       color: #ffffff;
       min-height: 100vh;
       display: flex;
@@ -62,17 +62,15 @@
       border-radius: 12px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
       overflow: hidden;
-      
       min-height: 250px; 
     }
-
 
     .clock-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 60%; /* 2 */
-      height: 55px; /* 3 */
+      width: 60%;
+      height: 55px;
       background: #7a00e6;
       border-top-right-radius: 20px;
       display: flex;
@@ -90,7 +88,6 @@
       pointer-events: none; 
     }
 
-    
     .footer-text {
       margin-top: 24px;
       font-size: 0.8rem;
@@ -98,7 +95,6 @@
       text-align: center;
     }
 
-    
     .cstrEmbed a {
       display: none;
     }
@@ -123,7 +119,7 @@
       </div>
       <script src="//cdn.cloud.caster.fm//widgets/embed.js"></script>
 
-      <!-- 4 -->
+      <!-- Reloj sobrepuesto -->
       <div class="clock-overlay">
         <span>⏰</span>
         <span id="live-clock">--:--</span>
@@ -151,7 +147,6 @@
         
         liveClock.textContent = `${hours}:${minutes} ${ampm}`;
       }
-      
       
       updateClock();
       setInterval(updateClock, 1000);
