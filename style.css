@@ -21,8 +21,7 @@ body {
 .desktop-background {
     position: absolute;
     inset: 0;
-    /* Fondo */
-    background-image: url('assets/images/fondo.svg');
+    background-image: url('assets/images/fondo.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -30,12 +29,14 @@ body {
     transition: all 0.5s ease;
 }
 
-/* 1 */
+.desktop-logo-container {
+    display: none;
+}
+
 body.light-theme .desktop-background {
     filter: invert(0.9) hue-rotate(180deg);
 }
 
-/* Pantalla de Carga */
 #loading-screen {
     position: fixed; inset: 0; background: var(--bg-dark); z-index: 9999;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -45,10 +46,8 @@ body.light-theme .desktop-background {
 .loader-spinner { width: 40px; height: 40px; border: 3px solid transparent; border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* Área de Ventanas */
 #desktop-area { position: relative; width: 100%; height: calc(100vh - 60px); z-index: 10; }
 
-/* Ventanas Flotantes */
 .window {
     position: absolute;
     top: 50px; left: 50px;
@@ -63,9 +62,8 @@ body.light-theme .desktop-background {
     overflow: hidden;
 }
 .window.minimized { transform: translateY(50px) scale(0.9); opacity: 0; pointer-events: none; }
-.window.maximized { top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; border-radius: 0; }
+.window.maximized { top: 0 !important; left: 0 !important; width: 100% !important; height: calc(100vh - 60px) !important; border-radius: 0; }
 
-/* Cabecera de Ventana */
 .window-header {
     background: var(--window-header);
     padding: 10px 15px;
@@ -82,11 +80,9 @@ body.light-theme .desktop-background {
 .window-controls button:hover { background: rgba(255,255,255,0.2); }
 .btn-close:hover { background: #ff4757 !important; }
 
-/* Contenido de la Ventana */
 .window-content { flex: 1; padding: 15px; overflow-y: auto; background: rgba(0,0,0,0.2); }
 .window-content iframe { width: 100%; height: 100%; border: none; }
 
-/* Barra de Tareas */
 #taskbar {
     position: fixed; bottom: 0; left: 0; width: 100%; height: 60px;
     background: var(--glass-bg); backdrop-filter: var(--glass-blur);
@@ -106,7 +102,6 @@ body.light-theme .desktop-background {
     width: 20px; height: 3px; background: var(--accent); border-radius: 2px;
 }
 
-/* Menú de Inicio */
 #start-menu {
     position: fixed; bottom: 70px; left: 20px;
     width: 350px; min-height: 400px;
@@ -127,10 +122,8 @@ body.light-theme .desktop-background {
 .app-shortcut .icon { font-size: 2rem; }
 .app-shortcut span { font-size: 0.8rem; text-align: center; }
 
-/* Reloj */
 #taskbar-clock { font-size: 0.9rem; text-align: right; }
 
-/* Variables */
 body.light-theme {
     --bg-dark: #f0f0f5;
     --glass-bg: rgba(255, 255, 255, 0.7);
@@ -143,21 +136,77 @@ body.light-theme .desktop-background {
     background: radial-gradient(circle at 50% 50%, #e0e0eb 0%, #f0f0f5 100%);
 }
 
-/* Modificadores */
 body.light-theme .station-logo {
     filter: invert(1) hue-rotate(180deg);
 }
 
-/* RESPONSIVE */
+.greeting-popup {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 998;
+    overflow: hidden;
+    user-select: none;
+}
+.greeting-popup::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/images/notificaciones.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+    z-index: 0;
+}
+.greeting-header {
+    position: relative;
+    z-index: 1;
+    background: var(--window-header);
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--glass-border);
+}
+.greeting-title { font-size: 0.9rem; font-weight: 600; pointer-events: none; }
+.greeting-close {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: background 0.2s;
+}
+.greeting-close:hover { background: #ff4757; }
+.greeting-body {
+    position: relative;
+    z-index: 1;
+    padding: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--text-main);
+    pointer-events: none;
+}
+
 @media (max-width: 768px) {
-    
     #start-menu {
         width: 90%;
         left: 5%;
         bottom: 80px;
     }
     
-    /* Las ventanas se auto-maximizan */
     .window {
         width: 100% !important;
         height: calc(100vh - 60px) !important;
@@ -166,7 +215,6 @@ body.light-theme .station-logo {
         border-radius: 0;
     }
     
-    /* Ocultar botones de redimensionar en móvil */
     .btn-minimize, .btn-maximize {
         display: none;
     }
@@ -174,6 +222,11 @@ body.light-theme .station-logo {
     .app-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .greeting-popup {
+        bottom: 75px;
+        right: 15px;
+        left: 15px;
+        width: auto;
+    }
 }
-
-
