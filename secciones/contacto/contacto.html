@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-color: transparent;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.contact-card {
+    background: rgba(15, 28, 22, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(110, 231, 183, 0.3);
+    border-radius: 20px;
+    padding: 35px 30px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.37), 0 0 20px rgba(110, 231, 183, 0.15);
+}
+
+.contact-title {
+    color: #6ee7b7;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(110, 231, 183, 0.3);
+}
+
+.contact-subtitle {
+    color: #e6fffa;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+    background: rgba(110, 231, 183, 0.1);
+    border: 1.5px solid rgba(110, 231, 183, 0.4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: rgba(110, 231, 183, 0.25);
+    border-color: #6ee7b7;
+    box-shadow: 0 0 15px rgba(110, 231, 183, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #6ee7b7;
+}
+
+.help-notice {
+    color: #a7f3d0;
+    font-size: 0.88rem;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(110, 231, 183, 0.2);
+}
+
+.copyright {
+    color: #9ca3af;
+    font-size: 0.78rem;
+    margin-top: 18px;
+    opacity: 0.75;
+}
+</style>
+</head>
+<body>
+
+<!-- sección contacto -->
+<div class="contact-card">
+    <h2 class="contact-title">Ponte en Contacto</h2>
+    <p class="contact-subtitle">¿Tienes alguna petición, saludo o sugerencia? Contáctanos:</p>
+    
+    <div class="contact-buttons">
+        <!-- contacto uno -->
+        <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="btn">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.13-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.57 0-3.04-.43-4.32-1.18l-.31-.18-3.05.79.82-2.98-.2-.32A7.95 7.95 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/>
+            </svg>
+            <span>Escríbenos por WhatsApp</span>
+        </a>
+        
+        <!-- contacto dos -->
+        <a href="mailto:yprojects.media@gmail.com" class="btn">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            <span>Enviar un Correo</span>
+        </a>
+    </div>
+
+    <p class="help-notice">¿Necesitas ayuda? Busca la sección ayuda en el menú de inicio.</p>
+    <p class="copyright">&copy; 2026 Radio Esperanza. Todos los derechos reservados.</p>
+</div>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('dragstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+    if (e.ctrlKey && ['c', 'C', 'u', 'U', 's', 'S', 'a', 'A', 'i', 'I'].includes(e.key)) {
+        e.preventDefault();
+    }
+});
+</script>
+</body>
+</html>
