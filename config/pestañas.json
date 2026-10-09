@@ -30,6 +30,12 @@
     "rutaHTML": "secciones/podcast/podcasts.html"
   },
   {
+    "id": "app-contacto",
+    "titulo": "Contacto",
+    "icono": "✉️",
+    "rutaHTML": "secciones/contacto/contacto.html"
+  },
+  {
     "id": "app-ia",
     "titulo": "Ayuda",
     "icono": "❔",
