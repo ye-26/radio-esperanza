@@ -1,4 +1,4 @@
-const VERSION = '1.0.15';
+const VERSION = '1.0.19';
 const CACHE_NAME = 'radio-esperanza-v' + VERSION;
 
 const ASSETS = [
