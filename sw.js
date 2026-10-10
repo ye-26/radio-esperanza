@@ -8,6 +8,7 @@ const ASSETS = [
     './script.js',
     './config/pestañas.json',
     './config/mensajes.json',
+    './mensajes.js',
     './config/assets/images/fondo.jpg',
     './config/assets/images/notificaciones.jpg',
     './secciones/bot/IA.html',
