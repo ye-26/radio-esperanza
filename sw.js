@@ -8,6 +8,8 @@ const ASSETS = [
     './script.js',
     './config/pestañas.json',
     './config/mensajes.json',
+    './config/assets/images/fondo.jpg',
+    './config/assets/images/notificaciones.jpg',
     './secciones/bot/IA.html',
     './secciones/juego-biblico/index.html',
     './secciones/juego-biblico/datos/preguntas1.json',
