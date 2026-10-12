@@ -230,3 +230,127 @@ body.light-theme .station-logo {
         width: auto;
     }
 }
+
+:root { --taskbar-height: 60px; --taskbar-gap: 6px; }
+html, body { width: 100%; height: 100%; min-width: 0; }
+body { display:grid; grid-template-rows:minmax(0,1fr) auto; height:100vh; height:100dvh; min-height:100svh; overflow:hidden; }
+.desktop-background { position:fixed; pointer-events:none; }
+#desktop-area { height:auto; min-width:0; min-height:0; overflow:hidden; isolation:isolate; }
+.window { width:min(420px,calc(100% - 24px)); height:min(520px,calc(100% - 24px)); max-width:100%; max-height:100%; min-width:0; min-height:0; backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); }
+.window.maximized { inset:0; width:100%; height:100%; min-width:0; min-height:0; max-width:none; max-height:none; border-radius:0; }
+.window-header { flex:0 0 auto; min-width:0; gap:8px; touch-action:none; }
+.window-title { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.window-controls { display:flex; flex:0 0 auto; gap:3px; }
+.window-controls button { flex:0 0 30px; width:30px; height:30px; color:var(--text-main); }
+.window-content { display:flex; flex:1 1 auto; min-width:0; min-height:0; padding:0; overflow:auto; overscroll-behavior:contain; }
+.window-content iframe { display:block; flex:1 1 auto; width:100%; height:100%; min-width:0; min-height:100%; }
+
+
+#taskbar { position:relative; inset:auto; z-index:1000; width:100%; height:auto; min-height:var(--taskbar-height); min-width:0; padding:6px max(12px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left)); gap:var(--taskbar-gap); display:flex; align-items:center; }
+.taskbar-btn { flex:0 0 45px; width:45px; height:45px; margin:0; color:var(--text-main); }
+#taskbar-apps { display:flex; flex:1 1 auto; min-width:0; gap:var(--taskbar-gap); overflow:hidden; }
+#taskbar-apps .app-icon { flex:0 0 45px; }
+#taskbar-apps .app-icon[hidden], .overflow-app[hidden] { display:none!important; }
+#taskbar-overflow-button { display:none; flex-basis:40px; width:40px; font-size:1.2rem; }
+#taskbar-overflow-button.visible { display:flex; }
+#taskbar-clock { flex:0 0 5ch; width:5ch; min-width:5ch; color:var(--text-main); text-align:right; white-space:nowrap; font-size:.9rem; font-variant-numeric:tabular-nums; }
+.app-icon.minimized:not(.active)::after { content:''; position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:8px; height:3px; background:rgba(240,240,245,.6); border-radius:2px; }
+.app-icon.needs-attention { animation:attention-pulse 1.4s ease-in-out infinite; }
+@keyframes attention-pulse { 50% { box-shadow:0 0 0 2px rgba(194,138,255,.75); } }
+#taskbar-overflow-menu { position:fixed; z-index:1200; right:max(12px,env(safe-area-inset-right)); bottom:calc(var(--taskbar-height) + env(safe-area-inset-bottom) + 10px); width:min(300px,calc(100vw - 24px)); max-height:min(60dvh,420px); overflow:auto; overscroll-behavior:contain; padding:10px; border:1px solid var(--glass-border); border-radius:14px; color:var(--text-main); background:rgba(20,20,35,.94); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 12px 32px rgba(0,0,0,.34),0 0 18px rgba(138,43,226,.12); }
+#taskbar-overflow-menu[hidden] { display:none; }
+.overflow-menu-header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:2px 3px 9px; font-size:.85rem; font-weight:600; }
+.overflow-menu-close { width:32px; height:32px; border:0; border-radius:9px; background:rgba(255,255,255,.08); color:inherit; cursor:pointer; }
+#taskbar-overflow-apps { display:grid; gap:5px; }
+.overflow-app { display:flex; align-items:center; gap:11px; width:100%; min-height:46px; padding:7px 10px; border:1px solid transparent; border-radius:10px; color:inherit; background:transparent; text-align:left; cursor:pointer; }
+.overflow-app:hover, .overflow-app:focus-visible { background:rgba(255,255,255,.1); }
+.overflow-app.active { border-color:rgba(194,138,255,.46); background:rgba(138,43,226,.18); }
+.overflow-app.needs-attention { border-color:#c28aff; }
+.overflow-app-icon { flex:0 0 28px; text-align:center; font-size:1.25rem; }
+.overflow-app-copy { display:grid; flex:1 1 auto; min-width:0; gap:2px; }
+.overflow-app-title { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:.88rem; }
+.overflow-app-status { color:#d1b6f4; font-size:.72rem; }
+body.light-theme #taskbar-overflow-menu { background:rgba(248,248,255,.97); }
+body.light-theme .window-controls button { color:var(--text-main); }
+button:focus-visible, input:focus-visible { outline:2px solid #c28aff; outline-offset:2px; }
+@media (max-width:768px) {
+ #taskbar { --taskbar-gap:4px; padding-inline:max(8px,env(safe-area-inset-left)) max(8px,env(safe-area-inset-right)); }
+ #taskbar .taskbar-btn { flex-basis:42px; width:42px; height:42px; }
+ #taskbar-apps .app-icon { flex-basis:42px; width:42px; height:42px; }
+ #taskbar-overflow-button { flex-basis:38px; width:38px; }
+ #taskbar-clock { font-size:.82rem; }
+ .window:not(.maximized) { top:10px!important; left:10px!important; width:calc(100% - 20px); height:calc(100% - 20px); }
+ .window-header { padding:7px 8px; }
+ .window-controls button { flex-basis:29px; width:29px; height:29px; }
+ #taskbar-overflow-menu { width:min(320px,calc(100vw - 16px)); right:max(8px,env(safe-area-inset-right)); }
+}
+@media (max-width:340px) {
+ #taskbar { --taskbar-gap:3px; padding-inline:max(6px,env(safe-area-inset-left)) max(6px,env(safe-area-inset-right)); }
+ #taskbar .taskbar-btn { flex-basis:38px; width:38px; height:38px; }
+ #taskbar-apps .app-icon { flex-basis:38px; width:38px; height:38px; }
+ #taskbar-overflow-button { flex-basis:34px; width:34px; }
+}
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
+
+
+@media (max-width:768px) {
+    .window:not(.maximized) {
+        inset: 10px auto auto 10px !important;
+        width: calc(100% - 20px) !important;
+        height: calc(100% - 20px) !important;
+        border-radius: 12px !important;
+    }
+    .window.maximized {
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 0 !important;
+    }
+    .window .btn-minimize, .window .btn-maximize { display: flex !important; }
+}
+
+
+#desktop-area .window.maximized {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+}
+
+#start-menu {
+    bottom: calc(var(--taskbar-height) + env(safe-area-inset-bottom) + 10px);
+    max-height: min(70dvh, 600px);
+    overflow: auto;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+.app-shortcut {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-main);
+    font: inherit;
+}
+
+
+#btn-start { position:relative; }
+.start-home-icon { display:block; width:25px; height:25px; object-fit:contain; }
+#taskbar-overflow-button { position:relative; overflow:hidden; }
+.overflow-arrow-icon { position:absolute; inset:0; width:22px; height:22px; margin:auto; object-fit:contain; transition:opacity .18s ease,transform .18s ease; }
+#taskbar-overflow-button .collapsed-icon { opacity:1; transform:rotate(0) scale(1); }
+#taskbar-overflow-button .expanded-icon { opacity:0; transform:rotate(-35deg) scale(.72); }
+#taskbar-overflow-button.expanded .collapsed-icon { opacity:0; transform:rotate(35deg) scale(.72); }
+#taskbar-overflow-button.expanded .expanded-icon { opacity:1; transform:rotate(0) scale(1); }
+.window-control-icon { display:block; width:18px; height:18px; object-fit:contain; }
+.window-controls .btn-close .window-control-icon { width:21px; height:21px; }
+.app-shortcut .icon { display:flex; align-items:center; justify-content:center; width:46px; height:42px; }
+.application-icon { display:block; width:42px; height:42px; object-fit:contain; }
+.app-icon-image { display:block; width:26px; height:26px; object-fit:contain; }
+.window-title-icon { display:inline-block; width:21px; height:21px; object-fit:contain; vertical-align:middle; }
+.overflow-icon-image { display:block; width:28px; height:28px; object-fit:contain; }
+#taskbar-clock { flex-basis:8ch; width:8ch; min-width:8ch; }
+body.light-theme #btn-start .start-home-icon,
+body.light-theme .window-control-icon:not(.close-icon),
+body.light-theme .overflow-arrow-icon { filter:invert(1); }
+@media (prefers-reduced-motion:reduce) { .overflow-arrow-icon { transition:none; } }
