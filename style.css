@@ -354,3 +354,18 @@ body.light-theme #btn-start .start-home-icon,
 body.light-theme .window-control-icon:not(.close-icon),
 body.light-theme .overflow-arrow-icon { filter:invert(1); }
 @media (prefers-reduced-motion:reduce) { .overflow-arrow-icon { transition:none; } }
+img.menu-logo,
+img.start-home-icon,
+img.overflow-arrow-icon,
+img.application-icon,
+img.window-title-icon,
+img.app-icon-image,
+img.window-control-icon,
+img.overflow-icon-image {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+}
+img.menu-logo { pointer-events: auto; }
