@@ -1,4 +1,4 @@
-const VERSION = '1.0.19';
+const VERSION = '1.0.20';
 const CACHE_NAME = 'radio-esperanza-v' + VERSION;
 
 const ASSETS = [
@@ -6,11 +6,11 @@ const ASSETS = [
     './index.html',
     './style.css',
     './script.js',
+    './mensajes.js',
     './config/pestañas.json',
     './config/mensajes.json',
-    './mensajes.js',
-    './config/assets/images/fondo.jpg',
-    './config/assets/images/notificaciones.jpg',
+    './assets/images/fondo.jpg',
+    './assets/images/notificaciones.jpg',
     './secciones/bot/IA.html',
     './secciones/juego-biblico/index.html',
     './secciones/juego-biblico/datos/preguntas1.json',
@@ -24,6 +24,8 @@ const ASSETS = [
     './secciones/recursos/recursos/categorias/escuela-sabatica.json',
     './secciones/sintonizar/sintonizar.html',
     './secciones/podcast/podcasts.html',
+    './secciones/podcast/podcasts/podcasts.json',
+    './secciones/podcast/podcasts/la-fe-de-Jesus/info.json',
     './secciones/contacto/contacto.html'
 ];
 
