@@ -1,4 +1,4 @@
-const VERSION = '1.0.20';
+const VERSION = '1.0.21';
 const CACHE_NAME = 'radio-esperanza-v' + VERSION;
 
 const ASSETS = [
@@ -11,6 +11,21 @@ const ASSETS = [
     './config/mensajes.json',
     './assets/images/fondo.jpg',
     './assets/images/notificaciones.jpg',
+    './assets/win/close.svg',
+    './assets/win/expandir.svg',
+    './assets/win/home.svg',
+    './assets/win/maximize.svg',
+    './assets/win/maximize-pantalla.svg',
+    './assets/win/minimize-pantalla.svg',
+    './assets/win/minimize.svg',
+    './assets/win/no-expandir.svg',
+    './assets/icons/bot.svg',
+    './assets/icons/contacto.svg',
+    './assets/icons/juego-biblico.svg',
+    './assets/icons/podcast.svg',
+    './assets/icons/programacion.svg',
+    './assets/icons/recursos.svg',
+    './assets/icons/sintonizar.svg',
     './secciones/bot/IA.html',
     './secciones/juego-biblico/index.html',
     './secciones/juego-biblico/datos/preguntas1.json',
