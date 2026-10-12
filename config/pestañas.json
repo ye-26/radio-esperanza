@@ -2,43 +2,43 @@
   {
     "id": "app-sintonizar",
     "titulo": "Sintonizar",
-    "icono": "📻",
+    "icono": "assets/icons/sintonizar.svg",
     "rutaHTML": "secciones/sintonizar/sintonizar.html"
   },
   {
     "id": "app-programacion",
     "titulo": "Programación",
-    "icono": "📅",
+    "icono": "assets/icons/programacion.svg",
     "rutaHTML": "secciones/programacion/programacion.html"
   },
   {
     "id": "app-juego",
-    "titulo": "Juego Bíblico",
-    "icono": "🎮",
+    "titulo": "Entre Génesis y Apocalipsis",
+    "icono": "assets/icons/juego-biblico.svg",
     "rutaHTML": "secciones/juego-biblico/index.html"
   },
   {
     "id": "app-recursos",
     "titulo": "Recursos",
-    "icono": "📚",
+    "icono": "assets/icons/recursos.svg",
     "rutaHTML": "secciones/recursos/recursos.html"
   },
   {
     "id": "app-podcast",
     "titulo": "Podcast",
-    "icono": "🎙️",
+    "icono": "assets/icons/podcast.svg",
     "rutaHTML": "secciones/podcast/podcasts.html"
   },
   {
     "id": "app-contacto",
     "titulo": "Contacto",
-    "icono": "✉️",
+    "icono": "assets/icons/contacto.svg",
     "rutaHTML": "secciones/contacto/contacto.html"
   },
   {
     "id": "app-ia",
     "titulo": "Ayuda",
-    "icono": "❔",
+    "icono": "assets/icons/bot.svg",
     "rutaHTML": "secciones/bot/IA.html"
   }
 ]
