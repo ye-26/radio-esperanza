@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         image.className = className;
         image.alt = alt;
         image.draggable = false;
+        image.setAttribute('draggable', 'false');
         return image;
     }
 
@@ -46,6 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     overflowButton.addEventListener('click', () => setOverflowOpen(overflowMenu.hidden));
     overflowMenu.querySelector('.overflow-menu-close').addEventListener('click', () => setOverflowOpen(false));
+    const iconContextSelector = '.menu-logo, .start-home-icon, .overflow-arrow-icon, .application-icon, .window-title-icon, .app-icon-image, .window-control-icon, .overflow-icon-image, .app-shortcut, .app-icon, .overflow-app, .window-title, .window-controls, #btn-start, #taskbar-overflow-button';
+    document.addEventListener('contextmenu', (event) => {
+        if (event.target.closest(iconContextSelector)) event.preventDefault();
+    }, true);
+    document.addEventListener('dragstart', (event) => {
+        if (event.target.closest('img')) event.preventDefault();
+    }, true);
+
     document.addEventListener('pointerdown', (event) => {
         if (!overflowMenu.hidden && !overflowMenu.contains(event.target) && !overflowButton.contains(event.target)) setOverflowOpen(false);
         if (!startMenu.contains(event.target) && !btnStart.contains(event.target)) {
