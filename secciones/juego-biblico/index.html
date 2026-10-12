@@ -401,7 +401,7 @@
         return { data, numArchivo: 1 };
       }
 
-      throw new Error('No se encontraron cuestionarios JSON disponibles.');
+      throw new Error('No se encontraron cuestionarios disponibles.');
     }
 
     // ==========================================
@@ -498,13 +498,13 @@
       const contenedor = document.getElementById('juego-contenedor');
       contenedor.innerHTML = `
         <div class="juego-card">
-          <div class="juego-titulo">JUEGO BÍBLICO</div>
+          <div class="juego-titulo">Entre Génesis y Apocalipsis</div>
           <div class="juego-subtitulo">
             Pon a prueba tus conocimientos de las Sagradas Escrituras
           </div>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <button class="btn-juego-principal" id="btn-iniciar-juego">
-              INICIAR JUEGO BÍBLICO
+              INICIAR
             </button>
             <button class="btn-juego-secundario" id="btn-abrir-creditos">
               CRÉDITOS
