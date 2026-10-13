@@ -23,7 +23,11 @@
     <div id="start-menu" class="hidden">
         <div class="start-header">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 50'%3E%3Cpath d='M20 35 A15 15 0 0 1 20 15 M15 40 A22 22 0 0 1 15 10 M25 30 A8 8 0 0 1 25 20' fill='none' stroke='%239000FF' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='25' r='4' fill='%239000FF'/%3E%3Ctext x='45' y='32' font-family='sans-serif' font-size='20' font-weight='bold' fill='%23ffffff'%3ERADIO%3C/text%3E%3Ctext x='115' y='32' font-family='sans-serif' font-size='20' font-weight='bold' fill='%239000FF'%3EESPERANZA%3C/text%3E%3C/svg%3E" alt="Logo Menú" class="menu-logo" draggable="false">
-            <input type="text" id="app-search" placeholder="Buscar aplicación...">
+            <div class="app-search-box">
+                <input type="text" id="app-search" placeholder="Buscar aplicación..." aria-label="Buscar aplicación" autocomplete="off">
+                <button id="app-search-clear" type="button" aria-label="Limpiar búsqueda" title="Limpiar búsqueda" hidden><img src="assets/win/x.svg" alt="" aria-hidden="true"></button>
+                <button id="app-search-submit" type="button" aria-label="Buscar aplicaciones" title="Buscar aplicaciones"><img src="assets/win/lupa.svg" alt="" aria-hidden="true"></button>
+            </div>
         </div>
         <div id="start-grid" class="app-grid"></div>
     </div>
@@ -45,6 +49,7 @@
                 navigator.serviceWorker.register('./sw.js')
                     .then(reg => console.log('Caché activado correctamente'))
                     .catch(err => console.error('Error al iniciar caché:', err));
+                if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
                 
                 let refreshing = false;
                 navigator.serviceWorker.addEventListener('controllerchange', () => {
