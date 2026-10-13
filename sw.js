@@ -1,20 +1,18 @@
-const VERSION = '1.0.23';
-const CACHE_NAME = 'radio-esperanza-v' + VERSION;
-
-const ASSETS = [
+const VERSION = '1.0.25';
+const CACHE_PREFIX = 'radio-esperanza-v';
+const CACHE_NAME = CACHE_PREFIX + VERSION;
+const SHELL_ASSETS = [
     './',
     './index.html',
     './style.css',
     './script.js',
-    './mensajes.js',
-    './config/pestañas.json',
-    './config/mensajes.json',
     './assets/images/fondo.jpg',
     './assets/images/notificaciones.jpg',
     './assets/win/close.svg',
     './assets/win/expandir.svg',
     './assets/win/home.svg',
-    './assets/win/maximize.svg',
+    './assets/win/lupa.svg',
+    './assets/win/x.svg',
     './assets/win/maximize-pantalla.svg',
     './assets/win/minimize-pantalla.svg',
     './assets/win/minimize.svg',
@@ -26,52 +24,68 @@ const ASSETS = [
     './assets/icons/programacion.svg',
     './assets/icons/recursos.svg',
     './assets/icons/sintonizar.svg',
-    './secciones/bot/IA.html',
-    './secciones/juego-biblico/index.html',
-    './secciones/juego-biblico/datos/preguntas1.json',
-    './secciones/juego-biblico/datos/creditos.json',
-    './secciones/juego-biblico/datos/preguntas.json',
-    './secciones/programacion/programacion.html',
-    './secciones/programacion/horarios.json',
-    './secciones/programacion/eventos.json',
-    './secciones/recursos/recursos.html',
-    './secciones/recursos/recursos/recursos.json',
-    './secciones/recursos/recursos/categorias/escuela-sabatica.json',
-    './secciones/sintonizar/sintonizar.html',
-    './secciones/podcast/podcasts.html',
-    './secciones/podcast/podcasts/podcasts.json',
-    './secciones/podcast/podcasts/la-fe-de-Jesus/info.json',
-    './secciones/contacto/contacto.html'
+    './config/pestañas.json',
+    './config/mensajes.json',
+    './mensajes.js'
 ];
 
-self.addEventListener('install', (e) => {
-    self.skipWaiting(); 
-    e.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            const requests = ASSETS.map(url => new Request(url, { cache: 'reload' }));
-            return cache.addAll(requests);
-        })
-    );
+function isSameOrigin(request) {
+    return new URL(request.url).origin === self.location.origin;
+}
+
+function isLazyAppResource(request) {
+    const url = new URL(request.url);
+    if (!url.pathname.includes('/secciones/')) return false;
+    if (!['GET', 'HEAD'].includes(request.method)) return false;
+    if (request.destination === 'audio' || request.destination === 'video' || request.destination === 'document' && /\.(pdf|mp3|mp4|m4a|ogg|wav|webm)$/i.test(url.pathname)) return false;
+    return /\.(html?|json|css|js|svg|png|jpe?g|webp|gif|woff2?)$/i.test(url.pathname);
+}
+
+async function cachedResponse(request) {
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(request);
+    if (cached) return cached;
+    const url = new URL(request.url);
+    if (/\/podcasts\/podcasts\.json$/i.test(url.pathname)) {
+        const normalized = new Request(url.origin + url.pathname, { method: 'GET' });
+        const fallback = await cache.match(normalized);
+        if (fallback) return fallback;
+    }
+    return null;
+}
+
+async function cacheFirst(request) {
+    const cached = await cachedResponse(request);
+    if (cached) return cached;
+    const response = await fetch(request);
+    if (response.ok && response.type === 'basic') {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(request, response.clone());
+        const url = new URL(request.url);
+        if (/\/podcasts\/podcasts\.json$/i.test(url.pathname)) {
+            await cache.put(new Request(url.origin + url.pathname), response.clone());
+        }
+    }
+    return response;
+}
+
+self.addEventListener('install', (event) => {
+    event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_ASSETS)).then(() => self.skipWaiting()));
 });
 
-self.addEventListener('activate', (e) => {
-    e.waitUntil(
-        caches.keys().then((keys) => {
-            return Promise.all(
-                keys.map((key) => {
-                    if (key !== CACHE_NAME) {
-                        return caches.delete(key);
-                    }
-                })
-            );
-        }).then(() => self.clients.claim()) 
-    );
+self.addEventListener('activate', (event) => {
+    event.waitUntil(caches.keys().then((keys) => Promise.all(
+        keys.filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME).map((key) => caches.delete(key))
+    )).then(() => self.clients.claim()));
 });
 
-self.addEventListener('fetch', (e) => {
-    e.respondWith(
-        caches.match(e.request).then((res) => {
-            return res || fetch(e.request);
-        })
-    );
+self.addEventListener('fetch', (event) => {
+    const request = event.request;
+    if (request.method !== 'GET' || !isSameOrigin(request)) return;
+    const url = new URL(request.url);
+    if (url.pathname.includes('/secciones/') && isLazyAppResource(request)) {
+        event.respondWith(cacheFirst(request).catch(async () => (await cachedResponse(request)) || Response.error()));
+        return;
+    }
+    event.respondWith(caches.match(request).then((cached) => cached || fetch(request)));
 });
