@@ -65,6 +65,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.key === 'Escape') { setOverflowOpen(false); startMenu.classList.add('hidden'); btnStart.setAttribute('aria-expanded', 'false'); }
     });
 
+    const appSearch = document.getElementById('app-search');
+    const appSearchSubmit = document.getElementById('app-search-submit');
+    const appSearchClear = document.getElementById('app-search-clear');
+    const startGrid = document.getElementById('start-grid');
+
+    function normalizeSearch(value) {
+        return value.toLocaleLowerCase('es-CO').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+    }
+
+    function filterApplications() {
+        const query = normalizeSearch(appSearch.value);
+        appSearchClear.hidden = !appSearch.value;
+        startGrid.querySelectorAll('.app-shortcut').forEach((shortcut) => {
+            shortcut.hidden = !normalizeSearch(shortcut.dataset.search).includes(query);
+        });
+    }
+
+    appSearch.addEventListener('input', filterApplications);
+    appSearch.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') { event.preventDefault(); filterApplications(); }
+    });
+    appSearchSubmit.addEventListener('click', () => { filterApplications(); appSearch.focus(); });
+    appSearchClear.addEventListener('click', () => { appSearch.value = ''; filterApplications(); appSearch.focus(); });
+
     async function loadApplications() {
         try {
             const response = await fetch('config/pestañas.json');
@@ -72,12 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const apps = await response.json(), grid = document.getElementById('start-grid');
             grid.replaceChildren();
             apps.forEach((app) => {
-                const shortcut = document.createElement('button'); shortcut.type = 'button'; shortcut.className = 'app-shortcut';
+                const shortcut = document.createElement('button'); shortcut.type = 'button'; shortcut.className = 'app-shortcut'; shortcut.dataset.search = app.titulo + ' ' + app.id;
                 const icon = document.createElement('div'); icon.className = 'icon'; icon.appendChild(appIconImage(app.icono, 'application-icon')); icon.setAttribute('aria-hidden', 'true');
                 const title = document.createElement('span'); title.textContent = app.titulo; shortcut.append(icon, title);
                 shortcut.addEventListener('click', () => { openWindow(app); startMenu.classList.add('hidden'); btnStart.setAttribute('aria-expanded', 'false'); });
                 grid.appendChild(shortcut);
             });
+            filterApplications();
         } catch (error) { console.error(error); }
     }
 
