@@ -6,7 +6,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskbarApps = document.getElementById('taskbar-apps');
     const taskbarClock = document.getElementById('taskbar-clock');
     const windowsList = new Map();
+    const protectedDocuments = new WeakSet();
     let activeWindowId = null, highestZIndex = 100, layoutFrame = 0;
+
+    function installBasicProtection(targetDocument) {
+        if (!targetDocument || protectedDocuments.has(targetDocument)) return;
+        protectedDocuments.add(targetDocument);
+        targetDocument.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
+        }, true);
+        targetDocument.addEventListener('keydown', (event) => {
+            const key = (event.key || '').toLowerCase();
+            const control = event.ctrlKey || event.metaKey;
+            const blocked = event.key === 'F12' ||
+                (control && event.shiftKey && ['i', 'j', 'c'].includes(key)) ||
+                (control && !event.shiftKey && key === 'u') ||
+                (event.metaKey && event.altKey && ['i', 'j', 'u'].includes(key));
+            if (blocked) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        }, true);
+    }
+
+    installBasicProtection(document);
 
     function appIconImage(src, className, alt = '') {
         const image = document.createElement('img');
@@ -120,7 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const minimize = control('btn-minimize', 'Minimizar'), maximize = control('btn-maximize', 'Maximizar'), close = control('btn-close', 'Cerrar');
         controls.append(minimize, maximize, close); header.append(title, controls);
         const content = document.createElement('div'); content.className = 'window-content';
-        const frame = document.createElement('iframe'); frame.src = app.rutaHTML; frame.title = app.titulo; frame.loading = 'lazy'; content.appendChild(frame);
+        const frame = document.createElement('iframe'); frame.src = app.rutaHTML; frame.title = app.titulo; frame.loading = 'lazy';
+        frame.addEventListener('load', () => {
+            try { installBasicProtection(frame.contentDocument); } catch (error) {}
+        });
+        content.appendChild(frame);
         win.append(header, content); desktopArea.appendChild(win);
 
         const taskButton = document.createElement('button'); taskButton.type = 'button';
