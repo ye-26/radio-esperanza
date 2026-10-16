@@ -1,6 +1,11 @@
-const VERSION = '1.0.25';
+const VERSION = '1.0.26';
 const CACHE_PREFIX = 'radio-esperanza-v';
 const CACHE_NAME = CACHE_PREFIX + VERSION;
+const DYNAMIC_JSON_PATHS = new Set([
+    '/secciones/programacion/horarios.json',
+    '/secciones/programacion/eventos.json',
+    '/secciones/tv/programacion.json'
+]);
 const SHELL_ASSETS = [
     './',
     './index.html',
@@ -24,6 +29,8 @@ const SHELL_ASSETS = [
     './assets/icons/programacion.svg',
     './assets/icons/recursos.svg',
     './assets/icons/sintonizar.svg',
+    './assets/icons/sobre-nosotros.svg',
+    './assets/icons/tv.svg',
     './config/pestañas.json',
     './config/mensajes.json',
     './mensajes.js'
@@ -31,6 +38,12 @@ const SHELL_ASSETS = [
 
 function isSameOrigin(request) {
     return new URL(request.url).origin === self.location.origin;
+}
+
+function isDynamicScheduleJson(url) {
+    const scopePath = new URL(self.registration.scope).pathname;
+    const appPath = url.pathname.startsWith(scopePath) ? url.pathname.slice(scopePath.length) : url.pathname.replace(/^\/+/, '');
+    return DYNAMIC_JSON_PATHS.has('/' + appPath.toLowerCase());
 }
 
 function isLazyAppResource(request) {
@@ -69,6 +82,19 @@ async function cacheFirst(request) {
     return response;
 }
 
+async function networkFirst(request) {
+    try {
+        const response = await fetch(request, { cache: 'no-store' });
+        if (response.ok && response.type === 'basic') {
+            const cache = await caches.open(CACHE_NAME);
+            await cache.put(request, response.clone());
+        }
+        return response;
+    } catch (error) {
+        return (await cachedResponse(request)) || Response.error();
+    }
+}
+
 self.addEventListener('install', (event) => {
     event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_ASSETS)).then(() => self.skipWaiting()));
 });
@@ -83,6 +109,10 @@ self.addEventListener('fetch', (event) => {
     const request = event.request;
     if (request.method !== 'GET' || !isSameOrigin(request)) return;
     const url = new URL(request.url);
+    if (isDynamicScheduleJson(url)) {
+        event.respondWith(networkFirst(request));
+        return;
+    }
     if (url.pathname.includes('/secciones/') && isLazyAppResource(request)) {
         event.respondWith(cacheFirst(request).catch(async () => (await cachedResponse(request)) || Response.error()));
         return;
