@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sobre nosotros · Radio Esperanza</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  background: transparent;
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  color: #fff;
+  cursor: default;
+}
+
+.glass {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  padding: 48px 44px 40px;
+  border-radius: 36px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.06) 45%, rgba(255,255,255,.12) 100%),
+    rgba(18, 24, 44, .38);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255,255,255,.38);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,.65),
+    inset 0 -1.5px 0 rgba(255,255,255,.12),
+    inset 14px 0 30px -18px rgba(255,255,255,.35),
+    inset -14px 0 30px -18px rgba(255,255,255,.2),
+    0 30px 70px -20px rgba(0,0,0,.55);
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 55%;
+  background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,0));
+  border-radius: 36px 36px 50% 50% / 36px 36px 28% 28%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: .75;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.blob.a {
+  width: 260px; height: 260px;
+  top: -80px; left: -60px;
+  background: #ffb347;
+  animation: drift 16s ease-in-out infinite alternate;
+}
+
+.blob.b {
+  width: 300px; height: 300px;
+  bottom: -110px; right: -80px;
+  background: #3fc1c9;
+  animation: drift 20s ease-in-out infinite alternate-reverse;
+}
+
+.blob.c {
+  width: 180px; height: 180px;
+  top: 38%; left: 52%;
+  background: #ff6f91;
+  opacity: .5;
+  animation: drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(40px, 30px) scale(1.15); }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.wave {
+  flex: none;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 8px 20px -8px rgba(0,0,0,.4);
+}
+
+.wave svg {
+  width: 30px;
+  height: 30px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.wave .w2 { animation: pulse 2.4s ease-in-out infinite; }
+.wave .w3 { animation: pulse 2.4s ease-in-out .4s infinite; }
+
+@keyframes pulse {
+  0%, 100% { opacity: .25; }
+  50% { opacity: 1; }
+}
+
+h1 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  text-shadow: 0 2px 18px rgba(0,0,0,.35);
+}
+
+.sub {
+  margin-top: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.8);
+}
+
+.info {
+  max-width: 62ch;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,.94);
+  text-shadow: 0 1px 10px rgba(0,0,0,.3);
+}
+
+.info p + p {
+  margin-top: 1em;
+}
+
+.contact {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.28);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.contact h2 {
+  max-width: 24ch;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  text-shadow: 0 1px 12px rgba(0,0,0,.3);
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 34px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.02rem;
+  text-decoration: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.38), rgba(255,255,255,.12));
+  border: 1px solid rgba(255,255,255,.65);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,.8),
+    inset 0 -6px 14px rgba(255,255,255,.1),
+    0 12px 26px -10px rgba(0,0,0,.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,.2));
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,.9),
+    inset 0 -6px 14px rgba(255,255,255,.14),
+    0 18px 30px -10px rgba(0,0,0,.55);
+}
+
+.btn:active {
+  transform: translateY(0) scale(.98);
+}
+
+.btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+  .glass { padding: 34px 24px 30px; border-radius: 28px; }
+  .head { gap: 14px; }
+  .wave { width: 48px; height: 48px; }
+  .contact { flex-direction: column; align-items: flex-start; }
+  .btn { width: 100%; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob, .wave .w2, .wave .w3 { animation: none; }
+  .btn { transition: none; }
+}
+
+@media print {
+  body { display: none; }
+}
+</style>
+</head>
+<body>
+
+<main class="glass">
+  <span class="blob a"></span>
+  <span class="blob b"></span>
+  <span class="blob c"></span>
+
+  <header class="head">
+    <div class="wave">
+      <svg viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="2.5" fill="#fff" stroke="none"/>
+        <path class="w2" d="M10.5 10.5a7.8 7.8 0 0 0 0 11M21.5 10.5a7.8 7.8 0 0 1 0 11"/>
+        <path class="w3" d="M6.5 6.5a13.5 13.5 0 0 0 0 19M25.5 6.5a13.5 13.5 0 0 1 0 19"/>
+      </svg>
+    </div>
+    <div>
+      <h1>¿Quiénes somos?</h1>
+      <p class="sub">Radio Esperanza</p>
+    </div>
+  </header>
+
+  <section class="info">
+    <p>Radio Esperanza es una emisora cristiana sin fines de lucro, creada con un propósito sencillo: llevar un mensaje de fe, ánimo y esperanza a todas las personas que lo necesiten. Creemos que una palabra a tiempo puede cambiar un día, y a veces una vida.</p>
+    <p>Nuestra programación incluye música, reflexiones, mensajes y espacios para toda la familia. Estamos aquí para acompañarte, sin importar dónde estés ni qué estés viviendo. Aquí siempre hay un lugar para ti.</p>
+   <p>Radio Esperanza es un proyecto sin fines de lucro que se sostiene gracias a las donaciones voluntarias de personas que creen en esta misión. Cada aportación nos ayuda a seguir creciendo y a llevar esperanza a más personas.</p>
+  </section>
+
+  <footer class="contact">
+    <h2>¿Tienes algún comentario o quieres apoyar este proyecto?</h2>
+
+    <a class="btn" href="mailto: yprojects.media@gmail.com">Contáctanos</a>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var stop = function (e) { e.preventDefault(); e.stopPropagation(); return false; };
+
+  ['contextmenu', 'copy', 'cut', 'paste', 'selectstart', 'dragstart', 'drop', 'beforeprint'].forEach(function (t) {
+    document.addEventListener(t, stop, true);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    var k = (e.key || '').toLowerCase();
+    var allowed = ['tab', 'enter', ' ', 'shift', 'escape'];
+    if (e.ctrlKey || e.metaKey || e.altKey || k === 'f12' || k.length === 1 && allowed.indexOf(k) === -1) {
+      return stop(e);
+    }
+  }, true);
+
+  document.addEventListener('keyup', function (e) {
+    if (e.key === 'PrintScreen') {
+      try { navigator.clipboard.writeText(''); } catch (err) {}
+    }
+  }, true);
+
+  document.addEventListener('mousedown', function (e) {
+    if (e.detail > 1) e.preventDefault();
+  }, true);
+
+  document.querySelectorAll('img, a, svg').forEach(function (el) {
+    el.setAttribute('draggable', 'false');
+  });
+
+  var clear = function () {
+    var s = window.getSelection && window.getSelection();
+    if (s && s.removeAllRanges) s.removeAllRanges();
+  };
+  document.addEventListener('selectionchange', clear);
+})();
+</script>
+</body>
+</html>
