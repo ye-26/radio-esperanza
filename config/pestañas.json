@@ -46,5 +46,11 @@
     "titulo": "Ayuda",
     "icono": "assets/icons/bot.svg",
     "rutaHTML": "secciones/bot/IA.html"
+  },
+  {
+    "id": "app-nosotros",
+    "titulo": "Sobre Nosotros",
+    "icono": "assets/icons/sobre-nosotros.svg",
+    "rutaHTML": "secciones/sobre-nosotros/sobre-nosotros.html"
   }
 ]
