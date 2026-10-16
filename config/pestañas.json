@@ -18,6 +18,12 @@
     "rutaHTML": "secciones/juego-biblico/index.html"
   },
   {
+    "id": "app-tv",
+    "titulo": "TV",
+    "icono": "assets/icons/tv.svg",
+    "rutaHTML": "secciones/tv/tv.html"
+  },
+  {
     "id": "app-recursos",
     "titulo": "Recursos",
     "icono": "assets/icons/recursos.svg",
