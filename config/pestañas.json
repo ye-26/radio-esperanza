@@ -5,6 +5,12 @@
     "icono": "assets/icons/sintonizar.svg",
     "rutaHTML": "secciones/sintonizar/sintonizar.html"
   },
+ {
+    "id": "app-tv",
+    "titulo": "TV",
+    "icono": "assets/icons/tv.svg",
+    "rutaHTML": "secciones/tv/tv.html"
+  },
   {
     "id": "app-programacion",
     "titulo": "Programación",
@@ -16,12 +22,6 @@
     "titulo": "Entre Génesis y Apocalipsis",
     "icono": "assets/icons/juego-biblico.svg",
     "rutaHTML": "secciones/juego-biblico/index.html"
-  },
-  {
-    "id": "app-tv",
-    "titulo": "TV",
-    "icono": "assets/icons/tv.svg",
-    "rutaHTML": "secciones/tv/tv.html"
   },
   {
     "id": "app-recursos",
