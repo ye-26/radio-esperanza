@@ -206,6 +206,7 @@
         // Variables globales
         let programasDatos = [];
         let eventosDatos = [];
+        let datosCargados = false;
         const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         const BOGOTA_TZ = "America/Bogota";
 
@@ -231,34 +232,36 @@
         };
 
         
-        async function initApp() {
-            tzInfo.innerHTML = `Horarios mostrados en tu hora local:<br><strong>${localTimeZone}</strong>`;
-            
+        async function refreshScheduleData() {
             try {
-                
                 const [resHorarios, resEventos] = await Promise.all([
-                    fetch('horarios.json'),
-                    fetch('eventos.json')
+                    fetch('horarios.json', { cache: 'no-store' }),
+                    fetch('eventos.json', { cache: 'no-store' })
                 ]);
 
                 if (!resHorarios.ok || !resEventos.ok) throw new Error("Error en red al cargar JSON");
 
                 programasDatos = await resHorarios.json();
                 eventosDatos = await resEventos.json();
-
-                
+                datosCargados = true;
                 contentArea.innerHTML = '';
-                
-                
                 updateLiveStatus();
-                setInterval(updateLiveStatus, 60000);
-
+                if (btnHorarios.classList.contains('active')) renderProgramas();
+                if (btnEventos.classList.contains('active')) renderEventos();
             } catch (error) {
                 console.error(error);
-                contentArea.innerHTML = `<div class="message error">Error al cargar los horarios. Asegúrese de estar usando un servidor local (ej. Live Server).</div>`;
-                statusIndicator.className = 'status-badge status-offline';
-                statusIndicator.innerText = 'Error de conexión';
+                if (!datosCargados) {
+                    contentArea.innerHTML = `<div class="message error">Error al cargar los horarios. Asegúrese de estar usando un servidor local (ej. Live Server).</div>`;
+                    statusIndicator.className = 'status-badge status-offline';
+                    statusIndicator.innerText = 'Error de conexión';
+                }
             }
+        }
+
+        async function initApp() {
+            tzInfo.innerHTML = `Horarios mostrados en tu hora local:<br><strong>${localTimeZone}</strong>`;
+            await refreshScheduleData();
+            setInterval(updateLiveStatus, 60000);
         }
 
         // --- FUNCIONES DE CONVERSIÓN DE ZONA HORARIA --- //
@@ -464,6 +467,10 @@
 
         
         window.addEventListener('DOMContentLoaded', initApp);
+        setInterval(refreshScheduleData, 60 * 60 * 1000);
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) refreshScheduleData();
+        });
 
     </script>
 </body>
