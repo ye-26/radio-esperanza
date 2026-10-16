@@ -426,7 +426,7 @@ img, svg, a { -webkit-user-drag: none; user-drag: none; }
 
  
   <section class="schedule glass" id="programacion" aria-labelledby="sch-title">
-    <h2 id="sch-title">Horarios de transmisión en vivo</h2>
+    <h2 id="sch-title">Horarios de transmisión en vivo por YouTube</h2>
     <p class="tz-note" id="tz-note"></p>
     <p class="now-line" id="now-line"></p>
     <ul class="days" id="days"></ul>
@@ -598,7 +598,6 @@ img, svg, a { -webkit-user-drag: none; user-drag: none; }
       ? 'GMT-5'
       : 'Horarios convertidos automáticamente a tu hora local' + (tz ? ' (' + tz.replace(/_/g, ' ') + ')' : '') + '.';
     renderSchedule();
-    setInterval(renderSchedule, 30000);
   }
 
 
@@ -747,9 +746,16 @@ img, svg, a { -webkit-user-drag: none; user-drag: none; }
   if ('ResizeObserver' in window) new ResizeObserver(postHeight).observe(document.body);
 
   initSchedule();
+  setInterval(initSchedule, 60 * 60 * 1000);
+  setInterval(renderSchedule, 30000);
   refresh();
   setInterval(refresh, CONFIG.CHECK_EVERY_MS);
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      refresh();
+      initSchedule();
+    }
+  });
 })();
 </script>
 <script>
