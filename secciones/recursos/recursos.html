@@ -277,6 +277,52 @@
       overflow: auto;
       padding: 8px;
     }
+    .pdf-toolbar {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: rgba(23,19,33,.62);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+    }
+    .pdf-toolbar[hidden] { display: none; }
+    .pdf-toolbar button, .pdf-toolbar input {
+      min-height: 36px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 9px;
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      font: inherit;
+    }
+    .pdf-toolbar button { min-width: 40px; padding: 6px 11px; cursor: pointer; }
+    .pdf-toolbar button:hover:not(:disabled) { background: rgba(156,39,176,.35); }
+    .pdf-toolbar button:disabled { opacity: .4; cursor: default; }
+    .pdf-toolbar input { width: 54px; padding: 5px; text-align: center; }
+    .pdf-page-label { color: rgba(255,255,255,.78); font-size: .82rem; }
+    .pdf-canvas-wrap {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+      min-height: 100%;
+      padding: 8px;
+      overflow: auto;
+    }
+    .pdf-canvas-wrap canvas {
+      display: block;
+      max-width: none;
+      flex: 0 0 auto;
+      height: auto;
+      border-radius: 4px;
+      background: white;
+      box-shadow: 0 18px 55px rgba(0,0,0,.38);
+    }
+    .pdf-loading { color: rgba(255,255,255,.8); text-align: center; }
     .visor-body iframe {
       display: block;
       width: 100%;
@@ -361,6 +407,9 @@
       .visor-body {
         padding: 0;
       }
+      .pdf-toolbar { gap: 6px; padding: 7px 6px; }
+      .pdf-toolbar button { min-width: 36px; padding: 5px 8px; }
+      .pdf-canvas-wrap { padding: 4px; }
       .visor-body iframe {
         border-radius: 0;
       }
@@ -423,6 +472,16 @@
       </div>
     </header>
 
+    <nav class="pdf-toolbar" id="pdf-toolbar" aria-label="Controles del visor PDF" hidden>
+      <button type="button" id="pdf-prev" aria-label="Página anterior">‹</button>
+      <input id="pdf-page" type="number" min="1" value="1" aria-label="Número de página">
+      <span class="pdf-page-label">de <span id="pdf-total">—</span></span>
+      <button type="button" id="pdf-next" aria-label="Página siguiente">›</button>
+      <button type="button" id="pdf-zoom-out" aria-label="Reducir zoom">−</button>
+      <span class="pdf-page-label" id="pdf-zoom-label">100%</span>
+      <button type="button" id="pdf-zoom-in" aria-label="Aumentar zoom">+</button>
+    </nav>
+
     <div class="visor-body" id="visor-body"></div>
   </section>
 
@@ -438,6 +497,18 @@
       const visorBody = document.getElementById('visor-body');
       const visorTitulo = document.getElementById('visor-titulo');
       const descargar = document.getElementById('btn-visor-descargar');
+      const pdfToolbar = document.getElementById('pdf-toolbar');
+      const pdfPageInput = document.getElementById('pdf-page');
+      const pdfTotal = document.getElementById('pdf-total');
+      const pdfZoomLabel = document.getElementById('pdf-zoom-label');
+
+      let pdfDocument = null;
+      let pdfPageNumber = 1;
+      let pdfScale = 1;
+      let pdfRenderTask = null;
+      let pdfLoadToken = 0;
+      let pdfLibraryPromise = null;
+      const PDFJS_VERSION = '3.11.174';
 
       let urlTemporalActual = null;
       let focoAnterior = null;
@@ -626,23 +697,6 @@
           ruta = rutaSegura(`${categoria.carpetaBase}/${nombre}`);
           const tipo = String(recurso.tipo || '').toLowerCase();
 
-          /*
-            Android abre el PDF por la URL real del archivo.
-            Los PDF abiertos desde blob: dentro de iframe pueden
-            fallar en Chrome y otros navegadores de Android.
-          */
-          if (tipo === 'pdf' && esAndroid()) {
-            const ventana = window.open(`${ruta}#view=FitH`, '_blank');
-
-            if (ventana) {
-              ventana.opener = null;
-            } else {
-              window.location.href = `${ruta}#view=FitH`;
-            }
-
-            return;
-          }
-
           button.disabled = true;
           button.textContent = '⏳ Cargando...';
 
@@ -664,7 +718,7 @@
           }
 
           urlTemporalActual = URL.createObjectURL(blob);
-          abrirVisor(urlTemporalActual, nombre, tipo, recurso.nombre || nombre);
+          abrirVisor(urlTemporalActual, nombre, tipo, recurso.nombre || nombre, blob);
         } catch (error) {
           alert(`No se pudo abrir "${nombre}". Comprueba que el archivo exista en su carpeta.`);
         } finally {
@@ -673,20 +727,24 @@
         }
       }
 
-      function abrirVisor(url, archivo, tipo, titulo) {
+      function abrirVisor(url, archivo, tipo, titulo, blob) {
         visorTitulo.textContent = titulo;
         descargar.href = url;
         descargar.download = archivo;
 
         visorBody.replaceChildren();
+        pdfToolbar.hidden = true;
+        pdfDocument = null;
+        if (pdfRenderTask) { pdfRenderTask.cancel(); pdfRenderTask = null; }
 
         const t = tipo.toLowerCase();
         let elemento;
 
         if (t === 'pdf') {
-          elemento = document.createElement('iframe');
-          elemento.title = 'Visor PDF';
-          elemento.src = `${url}#view=FitH`;
+          pdfToolbar.hidden = false;
+          elemento = document.createElement('div');
+          elemento.className = 'pdf-canvas-wrap';
+          elemento.innerHTML = '<p class="pdf-loading" role="status">Preparando el visor PDF…</p>';
 
         } else if (['imagen', 'img', 'jpg', 'jpeg', 'png', 'webp', 'gif'].includes(t)) {
           elemento = document.createElement('img');
@@ -730,9 +788,96 @@
 
         document.getElementById('btn-visor-cerrar').focus();
         document.body.style.overflow = 'hidden';
+        if (t === 'pdf') cargarPdf(blob);
       }
 
+      function cargarPdfJs() {
+        if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+        if (pdfLibraryPromise) return pdfLibraryPromise;
+
+        pdfLibraryPromise = new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.min.js`;
+          script.crossOrigin = 'anonymous';
+          script.onload = () => {
+            if (!window.pdfjsLib) return reject(new Error('No se pudo iniciar PDF.js.'));
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.worker.min.js`;
+            resolve(window.pdfjsLib);
+          };
+          script.onerror = () => reject(new Error('No se pudo cargar el motor del visor PDF.'));
+          document.head.appendChild(script);
+        });
+        return pdfLibraryPromise;
+      }
+
+      async function cargarPdf(blob) {
+        const token = ++pdfLoadToken;
+        const wrap = visorBody.querySelector('.pdf-canvas-wrap');
+        if (!wrap) return;
+        try {
+          const pdfjs = await cargarPdfJs();
+          const bytes = await blob.arrayBuffer();
+          const documento = await pdfjs.getDocument({ data: new Uint8Array(bytes) }).promise;
+          if (token !== pdfLoadToken || modal.getAttribute('aria-hidden') === 'true') return;
+          pdfDocument = documento;
+          pdfPageNumber = 1;
+          pdfScale = 1;
+          pdfTotal.textContent = String(documento.numPages);
+          pdfPageInput.max = String(documento.numPages);
+          await dibujarPagina(token);
+        } catch (error) {
+          if (token !== pdfLoadToken || modal.getAttribute('aria-hidden') === 'true') return;
+          wrap.replaceChildren();
+          const mensaje = document.createElement('div');
+          mensaje.className = 'mensaje-error';
+          mensaje.textContent = 'No se pudo mostrar este PDF. Comprueba que el archivo sea válido y que haya conexión para cargar el visor.';
+          wrap.append(mensaje);
+        }
+      }
+
+      async function dibujarPagina(token = pdfLoadToken) {
+        if (!pdfDocument) return;
+        if (pdfRenderTask) { pdfRenderTask.cancel(); pdfRenderTask = null; }
+        const pagina = await pdfDocument.getPage(pdfPageNumber);
+        if (token !== pdfLoadToken || modal.getAttribute('aria-hidden') === 'true') return;
+        const wrap = visorBody.querySelector('.pdf-canvas-wrap');
+        if (!wrap) return;
+        const viewportBase = pagina.getViewport({ scale: 1 });
+        const anchoDisponible = Math.max(240, wrap.clientWidth - 24);
+        const escalaAjustada = Math.min(anchoDisponible / viewportBase.width, 1.5) * pdfScale;
+        const viewport = pagina.getViewport({ scale: escalaAjustada });
+        const canvas = document.createElement('canvas');
+        const contexto = canvas.getContext('2d', { alpha: false });
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(viewport.width * pixelRatio);
+        canvas.height = Math.floor(viewport.height * pixelRatio);
+        canvas.style.width = `${Math.floor(viewport.width)}px`;
+        canvas.style.height = `${Math.floor(viewport.height)}px`;
+        wrap.replaceChildren(canvas);
+        pdfPageInput.value = String(pdfPageNumber);
+        pdfZoomLabel.textContent = `${Math.round(escalaAjustada * 100)}%`;
+        document.getElementById('pdf-prev').disabled = pdfPageNumber <= 1;
+        document.getElementById('pdf-next').disabled = pdfPageNumber >= pdfDocument.numPages;
+        pdfRenderTask = pagina.render({ canvasContext: contexto, viewport, transform: pixelRatio === 1 ? null : [pixelRatio, 0, 0, pixelRatio, 0, 0] });
+        try { await pdfRenderTask.promise; } catch (error) { if (error.name !== 'RenderingCancelledException') throw error; }
+        if (token === pdfLoadToken) pdfRenderTask = null;
+      }
+
+      document.getElementById('pdf-prev').addEventListener('click', () => { if (pdfDocument && pdfPageNumber > 1) { pdfPageNumber--; dibujarPagina(); } });
+      document.getElementById('pdf-next').addEventListener('click', () => { if (pdfDocument && pdfPageNumber < pdfDocument.numPages) { pdfPageNumber++; dibujarPagina(); } });
+      document.getElementById('pdf-zoom-in').addEventListener('click', () => { pdfScale = Math.min(2.5, pdfScale + .2); dibujarPagina(); });
+      document.getElementById('pdf-zoom-out').addEventListener('click', () => { pdfScale = Math.max(.6, pdfScale - .2); dibujarPagina(); });
+      pdfPageInput.addEventListener('change', () => {
+        if (!pdfDocument) return;
+        pdfPageNumber = Math.min(pdfDocument.numPages, Math.max(1, Number(pdfPageInput.value) || 1));
+        dibujarPagina();
+      });
+
       function cerrarVisor() {
+        pdfLoadToken++;
+        if (pdfRenderTask) { pdfRenderTask.cancel(); pdfRenderTask = null; }
+        pdfDocument = null;
+        pdfToolbar.hidden = true;
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
         visorBody.replaceChildren();
