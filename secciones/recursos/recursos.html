@@ -218,6 +218,28 @@
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
     }
+    #visor-modal.pdf-activo .visor-header {
+      display: flex;
+      align-items: flex-start;
+      min-height: 0;
+      padding-top: calc(12px + env(safe-area-inset-top));
+    }
+    #visor-modal.pdf-activo .visor-titulo {
+      overflow: visible;
+      text-overflow: clip;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      line-height: 1.35;
+    }
+    #visor-modal.pdf-activo .visor-acciones { display: none; }
+    #visor-modal.pdf-activo .visor-body {
+      align-items: flex-start;
+      justify-content: flex-start;
+      overflow: auto;
+      overscroll-behavior: contain;
+      touch-action: pan-x pan-y;
+      -webkit-overflow-scrolling: touch;
+    }
     .visor-header {
       flex: 0 0 auto;
       display: flex;
@@ -274,19 +296,28 @@
       justify-content: center;
       align-items: center;
       min-height: 0;
-      overflow: auto;
-      padding: 8px;
+      overflow: hidden;
+      padding: 0;
+      touch-action: pan-x pan-y;
     }
     .pdf-toolbar {
-      flex: 0 0 auto;
+      position: absolute;
+      z-index: 4;
+      left: 50%;
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 9px 12px;
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      background: rgba(23,19,33,.62);
+      flex-wrap: nowrap;
+      gap: clamp(2px, 1vw, 7px);
+      width: max-content;
+      max-width: calc(100vw - 8px);
+      padding: 7px clamp(5px, 1.5vw, 10px);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 18px;
+      background: rgba(23,19,33,.56);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
       backdrop-filter: blur(18px) saturate(150%);
       -webkit-backdrop-filter: blur(18px) saturate(150%);
     }
@@ -294,24 +325,28 @@
     .pdf-toolbar button, .pdf-toolbar input {
       min-height: 36px;
       border: 1px solid rgba(255,255,255,.2);
-      border-radius: 9px;
+      border-radius: 50%;
       color: #fff;
       background: rgba(255,255,255,.08);
       font: inherit;
     }
-    .pdf-toolbar button { min-width: 40px; padding: 6px 11px; cursor: pointer; }
+    .pdf-toolbar button { width: clamp(26px, 8vw, 38px); min-width: clamp(26px, 8vw, 38px); padding: 3px; cursor: pointer; }
+    .pdf-toolbar > .btn-visor { width: clamp(26px, 8vw, 38px); min-width: clamp(26px, 8vw, 38px); min-height: 36px; padding: 3px; }
     .pdf-toolbar button:hover:not(:disabled) { background: rgba(156,39,176,.35); }
     .pdf-toolbar button:disabled { opacity: .4; cursor: default; }
-    .pdf-toolbar input { width: 54px; padding: 5px; text-align: center; }
-    .pdf-page-label { color: rgba(255,255,255,.78); font-size: .82rem; }
+    .pdf-toolbar input { width: clamp(30px, 9vw, 42px); padding: 4px 2px; text-align: center; border-radius: 9px; }
+    .pdf-page-label { color: rgba(255,255,255,.78); font-size: clamp(.68rem, 2.5vw, .82rem); white-space: nowrap; }
     .pdf-canvas-wrap {
       display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      width: 100%;
+      align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: max-content;
+      min-width: 100%;
       min-height: 100%;
-      padding: 8px;
-      overflow: auto;
+      padding: 24px;
+      overflow: visible;
+      transform-origin: 0 0;
     }
     .pdf-canvas-wrap canvas {
       display: block;
@@ -407,9 +442,12 @@
       .visor-body {
         padding: 0;
       }
-      .pdf-toolbar { gap: 6px; padding: 7px 6px; }
-      .pdf-toolbar button { min-width: 36px; padding: 5px 8px; }
-      .pdf-canvas-wrap { padding: 4px; }
+      .pdf-toolbar { gap: 1.5px; padding: 6px 4px; bottom: calc(8px + env(safe-area-inset-bottom)); }
+      .pdf-toolbar button { width: clamp(26px, 8vw, 32px); min-width: clamp(26px, 8vw, 32px); padding: 3px; }
+      .pdf-toolbar > .btn-visor { width: clamp(26px, 8vw, 32px); min-width: clamp(26px, 8vw, 32px); }
+      .pdf-page-label { font-size: .62rem; }
+      #pdf-zoom-label { font-size: .62rem; }
+      .pdf-canvas-wrap { padding: 18px; }
       .visor-body iframe {
         border-radius: 0;
       }
@@ -467,8 +505,8 @@
     <header class="visor-header">
       <div class="visor-titulo" id="visor-titulo">Nombre del archivo</div>
       <div class="visor-acciones">
-        <a href="#" id="btn-visor-descargar" class="btn-visor btn-descargar" download>⬇ Descargar</a>
-        <button id="btn-visor-cerrar" class="btn-visor btn-cerrar" type="button">✕ Cerrar</button>
+        <a href="#" id="btn-visor-descargar" class="btn-visor btn-descargar" download aria-label="Descargar">⬇</a>
+        <button id="btn-visor-cerrar" class="btn-visor btn-cerrar" type="button" aria-label="Cerrar">✕</button>
       </div>
     </header>
 
@@ -480,6 +518,8 @@
       <button type="button" id="pdf-zoom-out" aria-label="Reducir zoom">−</button>
       <span class="pdf-page-label" id="pdf-zoom-label">100%</span>
       <button type="button" id="pdf-zoom-in" aria-label="Aumentar zoom">+</button>
+      <a href="#" id="pdf-download" class="btn-visor btn-descargar" download aria-label="Descargar PDF">⬇</a>
+      <button type="button" id="pdf-close" class="btn-visor btn-cerrar" aria-label="Cerrar visor">✕</button>
     </nav>
 
     <div class="visor-body" id="visor-body"></div>
@@ -501,6 +541,8 @@
       const pdfPageInput = document.getElementById('pdf-page');
       const pdfTotal = document.getElementById('pdf-total');
       const pdfZoomLabel = document.getElementById('pdf-zoom-label');
+      const pdfDownload = document.getElementById('pdf-download');
+      const pdfClose = document.getElementById('pdf-close');
 
       let pdfDocument = null;
       let pdfPageNumber = 1;
@@ -731,6 +773,8 @@
         visorTitulo.textContent = titulo;
         descargar.href = url;
         descargar.download = archivo;
+        pdfDownload.href = url;
+        pdfDownload.download = archivo;
 
         visorBody.replaceChildren();
         pdfToolbar.hidden = true;
@@ -741,23 +785,27 @@
         let elemento;
 
         if (t === 'pdf') {
+          modal.classList.add('pdf-activo');
           pdfToolbar.hidden = false;
           elemento = document.createElement('div');
           elemento.className = 'pdf-canvas-wrap';
           elemento.innerHTML = '<p class="pdf-loading" role="status">Preparando el visor PDF…</p>';
 
         } else if (['imagen', 'img', 'jpg', 'jpeg', 'png', 'webp', 'gif'].includes(t)) {
+          modal.classList.remove('pdf-activo');
           elemento = document.createElement('img');
           elemento.src = url;
           elemento.alt = titulo;
 
         } else if (['audio', 'mp3', 'ogg', 'wav', 'm4a'].includes(t)) {
+          modal.classList.remove('pdf-activo');
           elemento = document.createElement('audio');
           elemento.src = url;
           elemento.controls = true;
           elemento.autoplay = true;
 
         } else if (['video', 'mp4', 'webm', 'ogv'].includes(t)) {
+          modal.classList.remove('pdf-activo');
           elemento = document.createElement('video');
           elemento.src = url;
           elemento.controls = true;
@@ -765,12 +813,14 @@
           elemento.playsInline = true;
 
         } else if (t === 'html') {
+          modal.classList.remove('pdf-activo');
           elemento = document.createElement('iframe');
           elemento.title = 'Vista previa HTML';
           elemento.src = url;
           elemento.setAttribute('sandbox', 'allow-scripts');
 
         } else {
+          modal.classList.remove('pdf-activo');
           const mensaje = document.createElement('div');
           mensaje.className = 'mensaje-error';
           mensaje.innerHTML = `
@@ -835,49 +885,139 @@
         }
       }
 
-      async function dibujarPagina(token = pdfLoadToken) {
+      async function dibujarPagina(token = pdfLoadToken, irAPagina = pdfPageNumber) {
         if (!pdfDocument) return;
         if (pdfRenderTask) { pdfRenderTask.cancel(); pdfRenderTask = null; }
-        const pagina = await pdfDocument.getPage(pdfPageNumber);
-        if (token !== pdfLoadToken || modal.getAttribute('aria-hidden') === 'true') return;
         const wrap = visorBody.querySelector('.pdf-canvas-wrap');
         if (!wrap) return;
-        const viewportBase = pagina.getViewport({ scale: 1 });
-        const anchoDisponible = Math.max(240, wrap.clientWidth - 24);
-        const escalaAjustada = Math.min(anchoDisponible / viewportBase.width, 1.5) * pdfScale;
-        const viewport = pagina.getViewport({ scale: escalaAjustada });
-        const canvas = document.createElement('canvas');
-        const contexto = canvas.getContext('2d', { alpha: false });
+        const anchoDisponible = Math.max(240, visorBody.clientWidth - 48);
         const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = Math.floor(viewport.width * pixelRatio);
-        canvas.height = Math.floor(viewport.height * pixelRatio);
-        canvas.style.width = `${Math.floor(viewport.width)}px`;
-        canvas.style.height = `${Math.floor(viewport.height)}px`;
-        wrap.replaceChildren(canvas);
+        wrap.replaceChildren();
+        try {
+          for (let numero = 1; numero <= pdfDocument.numPages; numero++) {
+            if (token !== pdfLoadToken || modal.getAttribute('aria-hidden') === 'true') return;
+            const pagina = await pdfDocument.getPage(numero);
+            const viewportBase = pagina.getViewport({ scale: 1 });
+            const escalaAjustada = Math.min(anchoDisponible / viewportBase.width, 1.15) * pdfScale;
+            const viewport = pagina.getViewport({ scale: escalaAjustada });
+            const canvas = document.createElement('canvas');
+            const contexto = canvas.getContext('2d', { alpha: false });
+            canvas.dataset.pageNumber = String(numero);
+            canvas.width = Math.floor(viewport.width * pixelRatio);
+            canvas.height = Math.floor(viewport.height * pixelRatio);
+            canvas.style.width = `${Math.floor(viewport.width)}px`;
+            canvas.style.height = `${Math.floor(viewport.height)}px`;
+            canvas.style.margin = '0 auto 16px';
+            wrap.append(canvas);
+            pdfRenderTask = pagina.render({ canvasContext: contexto, viewport, transform: pixelRatio === 1 ? null : [pixelRatio, 0, 0, pixelRatio, 0, 0] });
+            await pdfRenderTask.promise;
+            pdfRenderTask = null;
+          }
+        } catch (error) {
+          if (error.name !== 'RenderingCancelledException') throw error;
+          return;
+        }
+        if (token !== pdfLoadToken) return;
+        const paginas = wrap.querySelectorAll('canvas');
+        const seleccionada = paginas[Math.max(0, Math.min(paginas.length - 1, irAPagina - 1))];
+        pdfPageNumber = irAPagina;
         pdfPageInput.value = String(pdfPageNumber);
-        pdfZoomLabel.textContent = `${Math.round(escalaAjustada * 100)}%`;
+        pdfZoomLabel.textContent = `${Math.round(Math.min(anchoDisponible / (await pdfDocument.getPage(1)).getViewport({ scale: 1 }).width, 1.15) * pdfScale * 100)}%`;
         document.getElementById('pdf-prev').disabled = pdfPageNumber <= 1;
         document.getElementById('pdf-next').disabled = pdfPageNumber >= pdfDocument.numPages;
-        pdfRenderTask = pagina.render({ canvasContext: contexto, viewport, transform: pixelRatio === 1 ? null : [pixelRatio, 0, 0, pixelRatio, 0, 0] });
-        try { await pdfRenderTask.promise; } catch (error) { if (error.name !== 'RenderingCancelledException') throw error; }
-        if (token === pdfLoadToken) pdfRenderTask = null;
+        if (seleccionada) visorBody.scrollTop = seleccionada.offsetTop;
       }
 
-      document.getElementById('pdf-prev').addEventListener('click', () => { if (pdfDocument && pdfPageNumber > 1) { pdfPageNumber--; dibujarPagina(); } });
-      document.getElementById('pdf-next').addEventListener('click', () => { if (pdfDocument && pdfPageNumber < pdfDocument.numPages) { pdfPageNumber++; dibujarPagina(); } });
-      document.getElementById('pdf-zoom-in').addEventListener('click', () => { pdfScale = Math.min(2.5, pdfScale + .2); dibujarPagina(); });
-      document.getElementById('pdf-zoom-out').addEventListener('click', () => { pdfScale = Math.max(.6, pdfScale - .2); dibujarPagina(); });
+      function navegarPagina(numero) {
+        if (!pdfDocument) return;
+        pdfPageNumber = Math.min(pdfDocument.numPages, Math.max(1, numero));
+        pdfPageInput.value = String(pdfPageNumber);
+        const canvas = visorBody.querySelector(`canvas[data-page-number="${pdfPageNumber}"]`);
+        if (canvas) visorBody.scrollTo({ top: canvas.offsetTop, behavior: 'smooth' });
+      }
+
+      document.getElementById('pdf-prev').addEventListener('click', () => navegarPagina(pdfPageNumber - 1));
+      document.getElementById('pdf-next').addEventListener('click', () => navegarPagina(pdfPageNumber + 1));
+      document.getElementById('pdf-zoom-in').addEventListener('click', () => { pdfScale = Math.min(3.5, pdfScale + .2); dibujarPagina(pdfLoadToken, pdfPageNumber); });
+      document.getElementById('pdf-zoom-out').addEventListener('click', () => { pdfScale = Math.max(.5, pdfScale - .2); dibujarPagina(pdfLoadToken, pdfPageNumber); });
       pdfPageInput.addEventListener('change', () => {
         if (!pdfDocument) return;
-        pdfPageNumber = Math.min(pdfDocument.numPages, Math.max(1, Number(pdfPageInput.value) || 1));
-        dibujarPagina();
+        navegarPagina(Number(pdfPageInput.value) || 1);
       });
+
+      visorBody.addEventListener('scroll', () => {
+        if (!pdfDocument) return;
+        const punto = visorBody.scrollTop + visorBody.clientHeight * .35;
+        const paginas = [...visorBody.querySelectorAll('canvas[data-page-number]')];
+        let visible = paginas[0];
+        for (const pagina of paginas) {
+          if (pagina.offsetTop <= punto) visible = pagina;
+          else break;
+        }
+        if (visible) {
+          pdfPageNumber = Number(visible.dataset.pageNumber);
+          pdfPageInput.value = String(pdfPageNumber);
+          document.getElementById('pdf-prev').disabled = pdfPageNumber <= 1;
+          document.getElementById('pdf-next').disabled = pdfPageNumber >= pdfDocument.numPages;
+        }
+      }, { passive: true });
+
+      pdfClose.addEventListener('click', cerrarVisor);
+      pdfDownload.addEventListener('click', event => { if (!pdfDownload.href || pdfDownload.getAttribute('href') === '#') event.preventDefault(); });
+
+      let gesto = null;
+      let distanciaPinza = null;
+      let escalaAlIniciarPinza = 1;
+      let temporizadorZoomRueda = null;
+      visorBody.addEventListener('pointerdown', event => {
+        if (!pdfDocument || event.pointerType !== 'mouse' || event.target.tagName !== 'CANVAS') return;
+        visorBody.setPointerCapture(event.pointerId);
+        gesto = { x: event.clientX, y: event.clientY, left: visorBody.scrollLeft, top: visorBody.scrollTop };
+      });
+      visorBody.addEventListener('pointermove', event => {
+        if (!gesto) return;
+        visorBody.scrollLeft = gesto.left - (event.clientX - gesto.x);
+        visorBody.scrollTop = gesto.top - (event.clientY - gesto.y);
+      });
+      ['pointerup', 'pointercancel', 'pointerleave'].forEach(tipo => visorBody.addEventListener(tipo, () => { gesto = null; }));
+      visorBody.addEventListener('touchstart', event => {
+        if (event.touches.length === 2 && pdfDocument) {
+          const [a, b] = event.touches;
+          distanciaPinza = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+          escalaAlIniciarPinza = pdfScale;
+        }
+      }, { passive: true });
+      visorBody.addEventListener('touchmove', event => {
+        if (event.touches.length !== 2 || !pdfDocument || !distanciaPinza) return;
+        event.preventDefault();
+        const [a, b] = event.touches;
+        const nuevaDistancia = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+        const cambio = nuevaDistancia / distanciaPinza;
+        pdfScale = Math.min(3.5, Math.max(.5, escalaAlIniciarPinza * cambio));
+        const wrap = visorBody.querySelector('.pdf-canvas-wrap');
+        if (wrap) wrap.style.transform = `scale(${pdfScale / escalaAlIniciarPinza})`;
+      }, { passive: false });
+      visorBody.addEventListener('touchend', () => {
+        if (!distanciaPinza) return;
+        distanciaPinza = null;
+        const wrap = visorBody.querySelector('.pdf-canvas-wrap');
+        if (wrap) wrap.style.transform = '';
+        dibujarPagina(pdfLoadToken, pdfPageNumber);
+      }, { passive: true });
+      visorBody.addEventListener('wheel', event => {
+        if (!pdfDocument || (!event.ctrlKey && !event.metaKey)) return;
+        event.preventDefault();
+        pdfScale = Math.min(3.5, Math.max(.5, pdfScale + (event.deltaY < 0 ? .12 : -.12)));
+        clearTimeout(temporizadorZoomRueda);
+        temporizadorZoomRueda = setTimeout(() => dibujarPagina(pdfLoadToken, pdfPageNumber), 140);
+      }, { passive: false });
 
       function cerrarVisor() {
         pdfLoadToken++;
         if (pdfRenderTask) { pdfRenderTask.cancel(); pdfRenderTask = null; }
         pdfDocument = null;
         pdfToolbar.hidden = true;
+        modal.classList.remove('pdf-activo');
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
         visorBody.replaceChildren();
