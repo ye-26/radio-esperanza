@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.remove(), 800); }
         loadApplications(); updateClock(); setInterval(updateClock, 60000);
         if (typeof showDailyGreeting === 'function') showDailyGreeting();
+        showWelcomeGuideIfNeeded();
     }, 1500);
 
     btnStart.addEventListener('click', () => {
@@ -93,6 +94,183 @@ document.addEventListener('DOMContentLoaded', () => {
     const appSearchClear = document.getElementById('app-search-clear');
     const startGrid = document.getElementById('start-grid');
 
+    async function showWelcomeGuideIfNeeded() {
+        try {
+            const version = await getWelcomeGuideVersion();
+            if (!version) return;
+            try {
+                if (localStorage.getItem('radioEsperanzaGuideSeenVersion') === version) return;
+            } catch (error) {}
+            const response = await fetch('config/guia.json', { cache: 'no-cache' });
+            if (!response.ok) throw new Error('No se pudo cargar la guía.');
+            const guide = await response.json();
+            renderWelcomeGuide(guide, version);
+        } catch (error) {
+            console.error('No se pudo mostrar la guía de bienvenida:', error);
+        }
+    }
+
+    async function getWelcomeGuideVersion() {
+        const worker = navigator.serviceWorker && navigator.serviceWorker.controller;
+        if (worker && typeof MessageChannel !== 'undefined') {
+            const activeVersion = await new Promise((resolve) => {
+                const channel = new MessageChannel();
+                let settled = false;
+                const finish = (version) => {
+                    if (settled) return;
+                    settled = true;
+                    clearTimeout(timeout);
+                    channel.port1.close();
+                    resolve(version || null);
+                };
+                const timeout = setTimeout(() => finish(null), 900);
+                channel.port1.onmessage = (event) => finish(event.data && event.data.version);
+                try {
+                    worker.postMessage({ type: 'GET_APP_VERSION' }, [channel.port2]);
+                } catch (error) {
+                    finish(null);
+                }
+            });
+            if (activeVersion) return activeVersion;
+        }
+        const response = await fetch('sw.js', { cache: 'no-store' });
+        if (!response.ok) return null;
+        const source = await response.text();
+        const match = source.match(/const\s+VERSION\s*=\s*['"]([^'"]+)['"]/);
+        return match ? match[1] : null;
+    }
+
+    function renderWelcomeGuide(guide, version) {
+        const steps = Array.isArray(guide.pasos) ? guide.pasos : [];
+        if (!steps.length) return;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'welcome-guide';
+        overlay.innerHTML = [
+            '<section class="guide-window" role="dialog" aria-modal="true" aria-labelledby="guide-title" aria-describedby="guide-intro">',
+            '  <header class="guide-header">',
+            '    <div class="guide-brand"><img class="guide-brand-mark" src="assets/guia/info-icon.svg" alt="" aria-hidden="true" draggable="false"><div>',
+            '      <p class="guide-kicker">RADIO ESPERANZA · GUÍA RÁPIDA</p>',
+            '      <h1 class="guide-title" id="guide-title"></h1>',
+            '      <p class="guide-intro" id="guide-intro"></p>',
+            '    </div></div>',
+            '    <button class="guide-close" type="button" aria-label="Cerrar guía" title="Cerrar guía">×</button>',
+            '  </header>',
+            '  <main class="guide-content">',
+            '    <div class="guide-media-frame" aria-live="polite"></div>',
+            '    <div class="guide-copy" aria-live="polite">',
+            '      <p class="guide-step-label"></p>',
+            '      <h2 class="guide-step-title"></h2>',
+            '      <p class="guide-step-text"></p>',
+            '      <p class="guide-blessing" hidden></p>',
+            '    </div>',
+            '  </main>',
+            '  <footer class="guide-footer">',
+            '    <div class="guide-progress" aria-label="Progreso de la guía"></div>',
+            '    <div class="guide-navigation">',
+            '      <button class="guide-previous" type="button">Anterior</button>',
+            '      <button class="guide-next" type="button">Siguiente</button>',
+            '    </div>',
+            '  </footer>',
+            '</section>'
+        ].join('');
+        const mediaFrame = overlay.querySelector('.guide-media-frame');
+        const progress = overlay.querySelector('.guide-progress');
+        const previous = overlay.querySelector('.guide-previous');
+        const next = overlay.querySelector('.guide-next');
+        let currentStep = 0;
+
+        overlay.querySelector('.guide-title').textContent = guide.titulo || 'Bienvenido';
+        overlay.querySelector('.guide-intro').textContent = guide.introduccion || '';
+        steps.forEach((step, index) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'guide-progress-dot';
+            dot.setAttribute('aria-label', 'Ir al paso ' + (index + 1) + ': ' + (step.titulo || ''));
+            dot.addEventListener('click', () => showStep(index));
+            progress.appendChild(dot);
+        });
+
+        function showStep(index) {
+            currentStep = Math.max(0, Math.min(index, steps.length - 1));
+            const step = steps[currentStep];
+            const number = String(currentStep + 1).padStart(2, '0');
+            overlay.querySelector('.guide-step-label').textContent = 'PASO ' + number + ' DE ' + String(steps.length).padStart(2, '0');
+            overlay.querySelector('.guide-step-title').textContent = step.titulo || '';
+            overlay.querySelector('.guide-step-text').textContent = step.texto || '';
+        const blessing = overlay.querySelector('.guide-blessing');
+        blessing.hidden = !step.cierre;
+        blessing.textContent = step.cierre || '';
+            mediaFrame.replaceChildren();
+            const media = step.multimedia;
+            if (media && media.ruta) {
+                if (media.tipo === 'video') {
+                    const video = document.createElement('video');
+                    video.src = media.ruta;
+                    video.autoplay = true;
+                    video.loop = true;
+                    video.muted = true;
+                    video.playsInline = true;
+                    video.controls = true;
+                    video.preload = 'metadata';
+                    video.setAttribute('aria-label', media.alt || step.titulo || 'Animación de la guía');
+                    mediaFrame.appendChild(video);
+                } else {
+                    const image = document.createElement('img');
+                    image.className = 'guide-scene';
+                    image.src = media.ruta;
+                    image.alt = media.alt || step.titulo || '';
+                    image.draggable = false;
+                    mediaFrame.appendChild(image);
+                    if (media.icono) {
+                        const icon = document.createElement('img');
+                        icon.className = 'guide-media-icon';
+                        icon.src = media.icono;
+                        icon.alt = '';
+                        icon.draggable = false;
+                        icon.dataset.position = media.iconoPosicion || 'app-card-icon';
+                        icon.setAttribute('aria-hidden', 'true');
+                        mediaFrame.appendChild(icon);
+                    }
+                }
+            }
+            progress.querySelectorAll('.guide-progress-dot').forEach((dot, dotIndex) => {
+                dot.classList.toggle('current', dotIndex === currentStep);
+                dot.setAttribute('aria-current', dotIndex === currentStep ? 'step' : 'false');
+            });
+            previous.disabled = currentStep === 0;
+            next.textContent = currentStep === steps.length - 1 ? 'Finalizar guía' : 'Siguiente';
+        }
+
+        function dismissGuide() {
+            try {
+                localStorage.setItem('radioEsperanzaGuideSeenVersion', version);
+            } catch (error) {}
+            document.removeEventListener('keydown', onGuideKeydown);
+            overlay.remove();
+        }
+
+        function onGuideKeydown(event) {
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                dismissGuide();
+            }
+        }
+
+        overlay.querySelector('.guide-close').addEventListener('click', dismissGuide);
+        overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) dismissGuide();
+        });
+        previous.addEventListener('click', () => showStep(currentStep - 1));
+        next.addEventListener('click', () => {
+            if (currentStep === steps.length - 1) dismissGuide();
+            else showStep(currentStep + 1);
+        });
+        document.addEventListener('keydown', onGuideKeydown);
+        showStep(0);
+        document.body.appendChild(overlay);
+        overlay.querySelector('.guide-close').focus();
+    }
     function normalizeSearch(value) {
         return value.toLocaleLowerCase('es-CO').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
     }
