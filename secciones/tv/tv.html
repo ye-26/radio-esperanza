@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radio Esperanza TV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #ffffff;
+  --ink-soft: rgba(255, 255, 255, .78);
+  --amber: #ffc46b;
+  --amber-soft: #ffe0ae;
+  --sky: #8fd0ff;
+  --live: #ff4d5e;
+  --deep: #070b1d;
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: transparent;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 16px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.glass {
+  position: relative;
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,.05) 38%, rgba(18,28,72,.34) 100%);
+  -webkit-backdrop-filter: blur(22px) saturate(1.7);
+          backdrop-filter: blur(22px) saturate(1.7);
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,.55),
+    inset 0 -1px 0 rgba(255,255,255,.12),
+    inset 0 0 34px rgba(255,255,255,.07),
+    0 22px 50px rgba(6,12,40,.38);
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from 215deg,
+    rgba(255,255,255,.95), rgba(255,196,107,.45), rgba(143,208,255,.6),
+    rgba(255,255,255,.12), rgba(255,255,255,.95));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(120% 70% at 12% -10%, rgba(255,255,255,.30), transparent 55%),
+    radial-gradient(60% 40% at 100% 110%, rgba(143,208,255,.16), transparent 70%);
+  pointer-events: none;
+}
+.glass > * { position: relative; z-index: 1; }
+
+
+.hero {
+  padding: 22px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.7rem, 5vw, 2.7rem);
+  line-height: 1.05;
+  letter-spacing: -.015em;
+  text-shadow: 0 2px 18px rgba(255,196,107,.35);
+}
+.welcome {
+  margin-top: 6px;
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 600;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+}
+.status i {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+.status[data-state="live"] i {
+  background: var(--live);
+  box-shadow: 0 0 0 0 rgba(255,77,94,.7);
+  animation: pulse 1.8s infinite;
+}
+.status[data-state="offline"] i { background: rgba(255,255,255,.5); }
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,77,94,.65); }
+  70%  { box-shadow: 0 0 0 10px rgba(255,77,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,77,94,0); }
+}
+
+
+.player-frame { padding: 12px; border-radius: 32px; }
+
+.screen {
+  position: relative;
+  border-radius: 21px;
+  overflow: hidden;
+  background: var(--deep);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+}
+.screen[data-state="checking"],
+.screen[data-state="live"] { aspect-ratio: 16 / 9; }
+
+.screen iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--deep);
+  color: var(--ink-soft);
+  font-size: .95rem;
+  z-index: 2;
+}
+.screen[data-state="checking"] .loading { display: flex; }
+.spinner {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255,255,255,.2);
+  border-top-color: var(--amber);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+
+.offline {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  aspect-ratio: 16 / 9;
+  padding: clamp(18px, 4vw, 44px);
+  background:
+    radial-gradient(70% 90% at 15% 0%, rgba(255,196,107,.22), transparent 60%),
+    radial-gradient(60% 80% at 90% 100%, rgba(143,208,255,.20), transparent 60%),
+    linear-gradient(160deg, #101a4a, var(--deep));
+}
+.screen[data-state="offline"] .offline { display: flex; }
+
+.offline svg { width: 46px; height: 46px; color: var(--amber); flex: none; }
+.offline h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 3.4vw, 1.6rem);
+  line-height: 1.2;
+}
+.offline p {
+  max-width: 56ch;
+  font-size: clamp(.85rem, 2.4vw, 1rem);
+  color: var(--ink-soft);
+}
+.next-up {
+  font-size: .88rem;
+  color: var(--amber-soft);
+  font-weight: 500;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+.btn {
+  appearance: none;
+  cursor: pointer;
+  text-decoration: none;
+  font: 600 .9rem var(--font-body);
+  color: var(--ink);
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.32);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 6px 16px rgba(0,0,0,.25);
+  transition: background .2s, transform .2s;
+}
+.btn:hover { background: rgba(255,255,255,.24); transform: translateY(-1px); }
+.btn.primary {
+  background: linear-gradient(180deg, rgba(255,214,150,.95), rgba(255,176,70,.9));
+  color: #2a1700;
+  border-color: rgba(255,255,255,.6);
+}
+.btn.primary:hover { background: linear-gradient(180deg, #ffe2b4, #ffb957); }
+.btn:focus-visible, .screen iframe:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
+}
+
+
+.tv-note {
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: .95rem;
+}
+.tv-note svg { width: 30px; height: 30px; flex: none; color: var(--sky); }
+.tv-note strong { color: var(--amber-soft); font-weight: 600; }
+
+
+.schedule { padding: 24px 24px 26px; scroll-margin-top: 12px; }
+.schedule h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.3rem, 3.6vw, 1.75rem);
+  letter-spacing: -.01em;
+}
+.tz-note {
+  margin-top: 4px;
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+.now-line {
+  margin: 14px 0 4px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: .9rem;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+}
+.now-line:empty { display: none; }
+.now-line b { color: var(--amber-soft); font-weight: 600; }
+
+.days {
+  list-style: none;
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+.day {
+  padding: 14px 16px 8px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+}
+.day.is-today {
+  background: rgba(255,196,107,.12);
+  border-color: rgba(255,196,107,.5);
+}
+.day h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+.chip {
+  font: 600 .7rem var(--font-body);
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--amber);
+  color: #2a1700;
+}
+.slots { list-style: none; }
+.slot {
+  display: grid;
+  gap: 1px;
+  padding: 9px 8px;
+  margin: 0 -8px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+}
+.slot:first-child { border-top: 0; }
+.slot-time {
+  font-size: .82rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--amber-soft);
+}
+.slot-name { font-weight: 600; font-size: .95rem; }
+.slot-tag {
+  justify-self: start;
+  margin-top: 3px;
+  font: 600 .68rem var(--font-body);
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.18);
+}
+.slot.is-now {
+  background: rgba(255,77,94,.20);
+  box-shadow: inset 3px 0 0 var(--live);
+}
+.slot.is-now .slot-tag { background: var(--live); }
+
+
+.foot { text-align: center; }
+.foot span {
+  display: inline-block;
+  padding: 4px 0;
+  font-size: .8rem;
+  color: var(--ink-soft);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .55);
+}
+
+@media (max-width: 520px) {
+  .hero { padding: 18px; }
+  .player-frame { padding: 8px; border-radius: 26px; }
+  .screen { border-radius: 18px; }
+  .schedule { padding: 20px 16px; }
+  .tv-note { padding: 14px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status[data-state="live"] i, .spinner { animation: none; }
+  .btn { transition: none; }
+}
+
+html, body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+          user-select: none;          
+  -webkit-touch-callout: none;        
+}
+img, svg, a { -webkit-user-drag: none; user-drag: none; }
+@media print { body { display: none !important; } }   
+
+/* ---- Nuevo: aviso de audio + botón de búsqueda en YouTube ---- */
+.audio-tip svg { color: var(--amber); }
+.tv-note { flex-wrap: wrap; }
+.tv-note p { flex: 1 1 240px; }
+.tv-note .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  padding: 9px 16px;
+  font-size: .85rem;
+}
+.tv-note .btn svg { width: 16px; height: 16px; color: currentColor; }
+#tv-name { cursor: pointer; }
+</style>
+</head>
+
+<body>
+<main class="wrap">
+
+  
+  <header class="hero glass">
+    <div>
+      <h1>Radio Esperanza TV</h1>
+      <p class="welcome">Bienvenido una vez más…</p>
+    </div>
+    <span class="status" id="status" data-state="checking" role="status" aria-live="polite">
+      <i></i><b>Conectando…</b>
+    </span>
+  </header>
+
+  <aside class="tv-note audio-tip glass" role="note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M11 5 6 9H3v6h3l5 4V5z"/>
+      <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>
+    </svg>
+    <p>¿Al reproducir la transmisión no tienes audio? <strong>Haz clic sobre el video, ponlo en pantalla completa y activa el audio.</strong> Por defecto, el navegador bloquea el sonido.</p>
+  </aside>
+
+  
+  <section class="player-frame glass" aria-label="Transmisión en vivo">
+    <div class="screen" id="screen" data-state="checking">
+      <div class="loading"><span class="spinner"></span> Buscando la transmisión…</div>
+
+      <div class="offline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="1.6"/>
+          <path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7"/>
+          <path d="M5.6 5.6a9 9 0 0 0 0 12.8M18.4 5.6a9 9 0 0 1 0 12.8"/>
+        </svg>
+        <h2>En este momento no hay programación a través de este medio</h2>
+        <p>Te invitamos a verificar los próximos programas en la sección de programación que se encuentra en la parte de abajo, o a explorar la transmisión radial y su programación.</p>
+        <p class="next-up" id="next-up"></p>
+        <div class="actions">
+          <button class="btn primary" type="button" id="go-schedule">Ver programación</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <aside class="tv-note glass">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2.5" y="4" width="19" height="13" rx="2.5"/>
+      <path d="M8 20.5h8M12 17v3.5"/>
+    </svg>
+    <p>También puedes vernos desde tu Smart TV en YouTube, solo tienes que buscar <strong id="tv-name">RadioEsperanza-w4e</strong>.</p>
+    <button class="btn primary" type="button" id="yt-search" title="Buscar el canal en YouTube">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/>
+      </svg>
+      <span>Buscar en YouTube</span>
+    </button>
+  </aside>
+
+ 
+  <section class="schedule glass" id="programacion" aria-labelledby="sch-title">
+    <h2 id="sch-title">Horarios de transmisión en vivo</h2>
+    <p class="tz-note" id="tz-note"></p>
+    <p class="now-line" id="now-line"></p>
+    <ul class="days" id="days"></ul>
+  </section>
+
+  <footer class="foot"><span>© 2026 Radio Esperanza</span></footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ==========================================================
+     CONFIGURACIÓN DEL CANAL DE YOUTUBE
+     ========================================================== */
+  const CONFIG = {
+    CHANNEL_ID: 'UC0GjHyMIUvml1SeBaqguy9w',
+
+    API_KEY: '',
+
+    CHECK_EVERY_MS: 180000,
+
+    SMARTTV_NAME: 'RadioEsperanza-w4e',
+
+    SCHEDULE_URL: 'programacion.json'
+  };
+
+  const COL_OFFSET_H = 5;
+
+
+
+
+  const $ = (s) => document.querySelector(s);
+  const screenEl = $('#screen');
+  const statusEl = $('#status');
+  const DAYS = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  const DAY_KEYS = { domingo: 0, lunes: 1, martes: 2, miercoles: 3, jueves: 4, viernes: 5, sabado: 6 };
+  const norm = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fmtTime = (ms) => new Date(ms).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+
+  $('#tv-name').textContent = CONFIG.SMARTTV_NAME;
+
+  $('#go-schedule').addEventListener('click', () => {
+    $('#programacion').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+
+  let events = [];
+
+  async function loadSchedule() {
+    const r = await fetch(CONFIG.SCHEDULE_URL, { cache: 'no-store' });
+    if (!r.ok) throw new Error('No se pudo leer ' + CONFIG.SCHEDULE_URL + ' (' + r.status + ')');
+    return await r.json();
+  }
+
+  function expand(data) {
+    const out = [];
+    let id = 0;
+    (data.programas || []).forEach((p) => {
+      const raw = [].concat(p.dias || []).map(norm);
+      let days = [];
+      if (raw.includes('todos') || raw.includes('todos los dias')) {
+        days = [0, 1, 2, 3, 4, 5, 6];
+      } else {
+        raw.forEach((d) => {
+          const n = /^[1-7]$/.test(d) ? Number(d) - 1 : DAY_KEYS[d];
+          if (n !== undefined && !days.includes(n)) days.push(n);
+        });
+      }
+      const [h1, m1] = String(p.inicio).split(':').map(Number);
+      const [h2, m2] = String(p.fin).split(':').map(Number);
+      let dur = (h2 * 60 + m2) - (h1 * 60 + m1);
+      if (dur <= 0) dur += 1440;
+      days.forEach((d) => {
+        out.push({ id: id++, name: p.nombre, colDay: d, startMin: h1 * 60 + m1, dur });
+      });
+    });
+    return out;
+  }
+
+  function colSunday() {
+    const c = new Date(Date.now() - COL_OFFSET_H * 36e5);
+    return Date.UTC(c.getUTCFullYear(), c.getUTCMonth(), c.getUTCDate() - c.getUTCDay());
+  }
+
+
+  function instant(ev, weekShift) {
+    return colSunday() + (ev.colDay + 7 * weekShift) * 864e5 + ev.startMin * 6e4 + COL_OFFSET_H * 36e5;
+  }
+
+  function dayLabel(ms) {
+    const d = new Date(ms), t = new Date();
+    const a = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    const b = new Date(t.getFullYear(), t.getMonth(), t.getDate());
+    const diff = Math.round((a - b) / 864e5);
+    if (diff === 0) return 'hoy';
+    if (diff === 1) return 'mañana';
+    return 'el ' + DAYS[d.getDay()].toLowerCase();
+  }
+
+  let nextText = '';
+
+  function renderSchedule() {
+    const now = Date.now();
+
+
+    let nowEv = null, next = null;
+    events.forEach((ev) => {
+      [-1, 0, 1].forEach((w) => {
+        const s = instant(ev, w), e = s + ev.dur * 6e4;
+        if (s <= now && now < e) nowEv = { ev, e };
+        else if (s > now && (!next || s < next.s)) next = { ev, s };
+      });
+    });
+
+
+    const groups = [[], [], [], [], [], [], []];
+    events.forEach((ev) => {
+      const s = instant(ev, 0), d = new Date(s);
+      groups[d.getDay()].push({ ev, s, e: s + ev.dur * 6e4, tod: d.getHours() * 60 + d.getMinutes() });
+    });
+    const todayIdx = new Date().getDay();
+
+    const html = groups.map((list, i) => {
+      if (!list.length) return '';
+      list.sort((a, b) => a.tod - b.tod);
+      const rows = list.map((x) => {
+        const isNow = nowEv && nowEv.ev.id === x.ev.id;
+        const isNext = !isNow && next && next.ev.id === x.ev.id;
+        const tag = isNow ? '<span class="slot-tag">En vivo ahora</span>' : (isNext ? '<span class="slot-tag">Sigue</span>' : '');
+        return `<li class="slot${isNow ? ' is-now' : ''}">
+          <span class="slot-time">${fmtTime(x.s)} – ${fmtTime(x.e)}</span>
+          <span class="slot-name">${esc(x.ev.name)}</span>${tag}
+        </li>`;
+      }).join('');
+      return `<li class="day${i === todayIdx ? ' is-today' : ''}">
+        <h3>${DAYS[i]}${i === todayIdx ? '<span class="chip">Hoy</span>' : ''}</h3>
+        <ul class="slots">${rows}</ul>
+      </li>`;
+    }).join('');
+
+    $('#days').innerHTML = html || '<li class="day"><p>Pronto publicaremos los horarios.</p></li>';
+
+  
+    const line = $('#now-line');
+    if (nowEv) {
+      line.innerHTML = `Según la lista de programas, ahora va <b>${esc(nowEv.ev.name)}</b> (hasta las ${fmtTime(nowEv.e)}).`;
+    } else if (next) {
+      line.innerHTML = `Próxima transmisión: <b>${esc(next.ev.name)}</b>, ${dayLabel(next.s)} a las ${fmtTime(next.s)}.`;
+    } else {
+      line.innerHTML = '';
+    }
+
+    nextText = next ? `Próxima transmisión: ${next.ev.name}, ${dayLabel(next.s)} a las ${fmtTime(next.s)}.` : '';
+    $('#next-up').textContent = nextText;
+    postHeight();
+  }
+
+  async function initSchedule() {
+    try {
+      events = expand(await loadSchedule());
+    } catch (e) {
+      console.error('Error leyendo los horarios', e);
+      events = [];
+    }
+    const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+    $('#tz-note').textContent = tz === 'America/Bogota'
+      ? 'GMT-5'
+      : 'Horarios convertidos automáticamente a tu hora local' + (tz ? ' (' + tz.replace(/_/g, ' ') + ')' : '') + '.';
+    renderSchedule();
+  }
+
+
+  const hasChannel = /^UC[\w-]{22}$/.test(CONFIG.CHANNEL_ID);
+  const current = { state: 'checking', mode: null, videoId: null };
+  let busy = false;
+
+  function setState(state) {
+    current.state = state;
+    screenEl.dataset.state = state;
+    statusEl.dataset.state = state;
+    statusEl.querySelector('b').textContent =
+      state === 'live' ? 'En vivo' : state === 'offline' ? 'Sin transmisión' : 'Conectando…';
+    postHeight();
+  }
+
+  function clearFrame() {
+    const f = screenEl.querySelector('iframe');
+    if (f) f.remove();
+    current.videoId = null;
+  }
+
+  function mountIframe(src) {
+    const f = document.createElement('iframe');
+    f.src = src;
+    f.title = 'Transmisión en vivo de Radio Esperanza TV';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    screenEl.prepend(f);
+    return f;
+  }
+
+  const originParam = /^https?:$/.test(location.protocol) ? '&origin=' + encodeURIComponent(location.origin) : '';
+  const baseParams = 'autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1' + originParam;
+
+
+  async function checkByApi() {
+    const key = encodeURIComponent(CONFIG.API_KEY);
+    const uploads = 'UU' + CONFIG.CHANNEL_ID.slice(2);
+    const r1 = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=5&playlistId=${uploads}&key=${key}`);
+    if (!r1.ok) throw new Error('playlistItems ' + r1.status);
+    const ids = ((await r1.json()).items || []).map((i) => i.contentDetails.videoId).join(',');
+    if (!ids) return null;
+    const r2 = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${ids}&key=${key}`);
+    if (!r2.ok) throw new Error('videos ' + r2.status);
+    const live = ((await r2.json()).items || []).find((v) => v.snippet.liveBroadcastContent === 'live');
+    return live ? live.id : null;
+  }
+
+  function showLive(videoId) {
+    if (current.state === 'live' && current.videoId === videoId) return;
+    clearFrame();
+    mountIframe(`https://www.youtube.com/embed/${videoId}?${baseParams}`);
+    current.videoId = videoId;
+    current.mode = 'api';
+    setState('live');
+  }
+
+  function showOffline() {
+    clearFrame();
+    current.mode = null;
+    setState('offline');
+  }
+
+
+  let ytApi;
+  function loadYT() {
+    if (ytApi) return ytApi;
+    ytApi = new Promise((resolve) => {
+      if (window.YT && window.YT.Player) return resolve();
+      const prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => { if (prev) prev(); resolve(); };
+      const s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      s.onerror = () => resolve();
+      document.head.appendChild(s);
+    });
+    return ytApi;
+  }
+
+  async function checkByEmbed() {
+    if (busy) return;
+    busy = true;
+    clearFrame();
+    setState('checking');
+    await loadYT();
+
+    const frame = mountIframe(`https://www.youtube.com/embed/live_stream?channel=${CONFIG.CHANNEL_ID}&${baseParams}`);
+    current.mode = 'embed';
+
+
+    if (!(window.YT && window.YT.Player)) { busy = false; setState('live'); return; }
+
+    let decided = false, player = null, timer = null;
+    const decide = (isLive) => {
+      if (decided) return;
+      decided = true;
+      clearTimeout(timer);
+      busy = false;
+      if (isLive) setState('live'); else showOffline();
+    };
+
+    timer = setTimeout(() => {
+      let vd = null;
+      try { vd = player && player.getVideoData && player.getVideoData(); } catch (e) {}
+      decide(!!(vd && vd.video_id && vd.isLive));
+    }, 12000);
+
+    player = new YT.Player(frame, {
+      events: {
+        onStateChange: (e) => {
+          if (e.data === 1 || e.data === 3) decide(true);
+          if (e.data === 0 && decided) { current.state = 'checking'; setTimeout(refresh, 1500); }
+        },
+        onError: () => decide(false)
+      }
+    });
+  }
+
+
+  async function refresh() {
+    if (!hasChannel) {
+      console.warn('ERROR 3418');
+      showOffline();
+      return;
+    }
+    if (CONFIG.API_KEY) {
+      try {
+        const id = await checkByApi();
+        if (id) showLive(id); else showOffline();
+        return;
+      } catch (err) {
+        console.warn('Solucionando problemas...', err);
+      }
+    }
+    if (current.state === 'live' && current.mode === 'embed') return;
+    checkByEmbed();
+  }
+
+  function postHeight() {
+    try {
+      parent.postMessage({ source: 'radio-esperanza-tv', height: document.documentElement.scrollHeight }, '*');
+    } catch (e) {}
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(postHeight).observe(document.body);
+
+  initSchedule();
+  setInterval(initSchedule, 60 * 60 * 1000);
+  setInterval(renderSchedule, 30000);
+  refresh();
+  setInterval(refresh, CONFIG.CHECK_EVERY_MS);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      refresh();
+      initSchedule();
+    }
+  });
+})();
+</script>
+<script>
+
+(function () {
+  'use strict';
+  const stop = (e) => { e.preventDefault(); return false; };
+
+  ['contextmenu', 'copy', 'cut', 'dragstart', 'selectstart'].forEach((ev) => {
+    document.addEventListener(ev, stop);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const k = (e.key || '').toLowerCase();
+    const ctrl = e.ctrlKey || e.metaKey;
+    const blocked =
+      e.key === 'F12' ||
+      (ctrl && ['c', 'x', 's', 'u', 'p', 'a'].includes(k)) ||
+      (ctrl && e.shiftKey && ['i', 'j', 'c', 'k'].includes(k)) ||
+      (e.metaKey && e.altKey && ['i', 'j', 'u'].includes(k));
+    if (blocked) stop(e);
+  });
+})();
+</script>
+<script>
+/* Buscar el canal en YouTube y copiar SOLO el nombre del canal */
+(function () {
+  'use strict';
+  const btn = document.getElementById('yt-search');
+  const nameEl = document.getElementById('tv-name');
+  if (!btn || !nameEl) return;
+  const label = btn.querySelector('span');
+  const idle = label.textContent;
+  let allowed = null;   // solo se permite copiar el nombre del canal, mientras este valor esté activo
+
+  ['copy', 'selectstart'].forEach((ev) => {
+    document.addEventListener(ev, (e) => {
+      if (allowed === null) return;
+      e.stopImmediatePropagation();
+      if (ev === 'copy' && e.clipboardData) {
+        e.clipboardData.setData('text/plain', allowed);
+        e.preventDefault();
+      }
+    }, true);
+  });
+
+  function legacyCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;-webkit-user-select:text;user-select:text;';
+    document.body.appendChild(ta);
+    allowed = text;
+    let ok = false;
+    try { ta.select(); ta.setSelectionRange(0, text.length); ok = document.execCommand('copy'); } catch (e) {}
+    allowed = null;
+    ta.remove();
+    return ok;
+  }
+
+  let t;
+  function flash(msg) {
+    label.textContent = msg;
+    clearTimeout(t);
+    t = setTimeout(() => { label.textContent = idle; }, 2200);
+  }
+
+  function go() {
+    const name = nameEl.textContent.trim();
+    if (!name) return;
+    if (legacyCopy(name)) {
+      flash('Nombre copiado ✓');
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(name).then(() => flash('Nombre copiado ✓'), () => {});
+    }
+    const a = document.createElement('a');
+    a.href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(name);
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  btn.addEventListener('click', go);
+  nameEl.addEventListener('click', go);
+})();
+</script>
+</body>
+</html>
