@@ -222,17 +222,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     image.alt = media.alt || step.titulo || '';
                     image.draggable = false;
                     mediaFrame.appendChild(image);
-                    if (media.icono) {
+                    mediaFrame.dataset.guideScene = media.escena || '';
+                    const sceneWidth = Number(media.anchoEscena) || 710;
+                    const sceneHeight = Number(media.altoEscena) || 480;
+                    (Array.isArray(media.iconos) ? media.iconos : []).forEach((definition) => {
+                        if (!definition || !definition.ruta) return;
+                        const values = [definition.x, definition.y, definition.ancho, definition.alto].map(Number);
+                        if (!values.every(Number.isFinite)) return;
                         const icon = document.createElement('img');
                         icon.className = 'guide-media-icon';
-                        icon.src = media.icono;
+                        icon.src = definition.ruta;
                         icon.alt = '';
                         icon.draggable = false;
-                        icon.dataset.position = media.iconoPosicion || 'app-card-icon';
+                        icon.setAttribute('draggable', 'false');
                         icon.setAttribute('aria-hidden', 'true');
+                        icon.dataset.stage = definition.etapa || 'always';
+                        icon.style.left = (values[0] / sceneWidth * 100) + '%';
+                        icon.style.top = (values[1] / sceneHeight * 100) + '%';
+                        icon.style.width = (values[2] / sceneWidth * 100) + '%';
+                        icon.style.height = (values[3] / sceneHeight * 100) + '%';
                         mediaFrame.appendChild(icon);
-                    }
-                }
+                    });                }
             }
             progress.querySelectorAll('.guide-progress-dot').forEach((dot, dotIndex) => {
                 dot.classList.toggle('current', dotIndex === currentStep);
