@@ -1,4 +1,4 @@
-const VERSION = '1.0.26';
+const VERSION = '1.0.31';
 const CACHE_PREFIX = 'radio-esperanza-v';
 const CACHE_NAME = CACHE_PREFIX + VERSION;
 const DYNAMIC_JSON_PATHS = new Set([
@@ -13,6 +13,14 @@ const SHELL_ASSETS = [
     './script.js',
     './assets/images/fondo.jpg',
     './assets/images/notificaciones.jpg',
+    './assets/guia/media/inicio.svg',
+    './assets/guia/media/busqueda.svg',
+    './assets/guia/media/ventana.svg',
+    './assets/guia/media/barra-tareas.svg',
+    './assets/guia/info-icon.svg',
+    './assets/guia/media/radio.svg',
+    './assets/guia/media/proximamente.svg',
+    './config/guia.json',
     './assets/win/close.svg',
     './assets/win/expandir.svg',
     './assets/win/home.svg',
@@ -105,6 +113,11 @@ self.addEventListener('activate', (event) => {
     )).then(() => self.clients.claim()));
 });
 
+self.addEventListener('message', (event) => {
+    if (!event.data || event.data.type !== 'GET_APP_VERSION') return;
+    const reply = event.ports && event.ports[0];
+    if (reply) reply.postMessage({ type: 'APP_VERSION', version: VERSION });
+});
 self.addEventListener('fetch', (event) => {
     const request = event.request;
     if (request.method !== 'GET' || !isSameOrigin(request)) return;
