@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 480" role="img" aria-labelledby="title desc">
+<title id="title">Recuperar Sintonizar desde la barra de tareas</title><desc id="desc">La radio está minimizada y su icono permanece en la barra de tareas. El cursor lo pulsa para recuperar la ventana y luego la minimiza otra vez. El estado final coincide con el inicial.</desc>
+<defs>
+  <linearGradient id="taskbar" x2="0" y2="1"><stop stop-color="#4b572b" stop-opacity=".9"/><stop offset=".55" stop-color="#303329" stop-opacity=".84"/><stop offset="1" stop-color="#5a642b" stop-opacity=".94"/></linearGradient>
+  <linearGradient id="window" x2="1" y2="1"><stop stop-color="#20283a"/><stop offset="1" stop-color="#17212c"/></linearGradient>
+  <linearGradient id="titlebar" x2="1"><stop stop-color="#252335"/><stop offset="1" stop-color="#171b28"/></linearGradient>
+  <linearGradient id="purple" x2="1"><stop stop-color="#8500e9"/><stop offset="1" stop-color="#7900d6"/></linearGradient>
+  <linearGradient id="green" x2="0" y2="1"><stop stop-color="#48e98a"/><stop offset="1" stop-color="#16c964"/></linearGradient>
+  <style>
+    .window{opacity:0;transform:translateY(18px);animation:restoreCycle 8s cubic-bezier(.2,.75,.2,1) infinite}
+    .cursor{animation:cursorCycle 8s cubic-bezier(.45,0,.2,1) infinite}
+    .task-highlight{opacity:0;animation:taskHighlight 8s ease-out infinite}
+    .ripple{fill:none;stroke:#fff;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:rippleCycle 8s ease-out infinite}
+    @keyframes restoreCycle{0%,25%,69%,100%{opacity:0;transform:translateY(18px)}32%,58%{opacity:1;transform:translateY(0)}64%{opacity:.9;transform:translateY(4px)}}
+    @keyframes cursorCycle{0%,20%{transform:translate(548px,150px)}27%,33%{transform:translate(70px,451px)}56%,63%{transform:translate(488px,34px)}88%,100%{transform:translate(548px,150px)}}
+    @keyframes taskHighlight{0%,25%,38%,100%{opacity:0}29%,34%{opacity:.75}}
+    @keyframes rippleCycle{0%,26%,100%{opacity:0;transform:scale(.35)}30%{opacity:.8;transform:scale(.6)}36%{opacity:0;transform:scale(1.7)}}
+    @media(prefers-reduced-motion:reduce){.window{animation:none;opacity:0}.cursor,.task-highlight,.ripple{display:none}}
+  </style>
+</defs>
+<image href="../../images/fondo.jpg" x="0" y="0" width="710" height="480" preserveAspectRatio="xMidYMid slice"/>
+<rect width="710" height="480" fill="#07101a" opacity=".06"/>
+<g class="window">
+  <rect x="143" y="40" width="430" height="380" rx="15" fill="url(#window)" stroke="#fff" stroke-opacity=".31"/>
+  <path d="M158 40H558a15 15 0 0 1 15 15v33H143V55a15 15 0 0 1 15-15Z" fill="url(#titlebar)"/><path d="M144 89H572" stroke="#fff" stroke-opacity=".12"/>
+  <text x="187" y="68" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#f4f0fa">Sintonizar</text>
+  
+  <text x="357" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#fff">Radio Esperanza</text>
+  <text x="357" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#b8b6c5">Sintoniza nuestra señal digital en vivo</text>
+  <rect x="160" y="164" width="395" height="188" rx="12" fill="#0d0c15" stroke="#9000ff" stroke-opacity=".35" stroke-width="2"/><rect x="168" y="172" width="379" height="172" rx="8" fill="#1b1b1d"/>
+  <rect x="318" y="182" width="80" height="72" rx="6" fill="#dedee0"/><circle cx="358" cy="218" r="18" fill="none" stroke="#fff" stroke-width="3"/><circle cx="358" cy="218" r="8" fill="none" stroke="#fff" stroke-width="2"/>
+  <text x="357" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#fff">Broadcast is currently offline</text><rect x="335" y="286" width="44" height="18" rx="5" fill="#ff665f"/><text x="357" y="299" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#260b0b">Off Air</text>
+  <rect x="168" y="322" width="218" height="42" fill="url(#purple)"/><text x="184" y="349" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">⏰ 6:44 PM</text><rect x="394" y="326" width="145" height="34" rx="6" fill="url(#green)"/><path d="M412 334v18l14-9z" fill="#fff"/><text x="478" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#fff">PLAY</text>
+  <text x="160" y="395" font-family="Arial,sans-serif" font-size="10" fill="#898796">© 2026 Radio Esperanza</text>
+</g>
+<rect x="0" y="440" width="710" height="40" fill="url(#taskbar)"/><path d="M0 440H710" stroke="#fff" stroke-opacity=".22"/>
+<rect x="7" y="443" width="48" height="34" rx="9" fill="#fff" fill-opacity=".08"/>
+<rect x="57" y="443" width="42" height="34" rx="9" fill="#fff" fill-opacity=".14" stroke="#d5bdff" stroke-opacity=".62"/>
+<rect class="task-highlight" x="57" y="443" width="42" height="34" rx="9" fill="#d5bdff" fill-opacity=".4"/>
+<path d="M64 477h28" stroke="#9700ff" stroke-width="3" stroke-linecap="round"/>
+<circle class="ripple" cx="78" cy="459" r="11"/>
+<text x="687" y="465" text-anchor="end" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#f4f0e8">6:44 PM</text>
+<g class="cursor" pointer-events="none"><path d="M0 0v27l7-7 5 12 6-3-5-12 10-1z" fill="#fff" stroke="#272332" stroke-width="1.7" stroke-linejoin="round"/></g>
+</svg>

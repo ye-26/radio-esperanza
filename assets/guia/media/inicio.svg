@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 480" role="img" aria-labelledby="title desc">
+<title id="title">Abrir el menú Inicio</title><desc id="desc">El cursor pulsa Inicio, el menú de Radio Esperanza aparece y se cierra al pulsar el escritorio. La escena vuelve al principio para repetir.</desc>
+<defs>
+  <linearGradient id="taskbar" x2="0" y2="1"><stop stop-color="#4b572b" stop-opacity=".9"/><stop offset=".55" stop-color="#303329" stop-opacity=".84"/><stop offset="1" stop-color="#5a642b" stop-opacity=".94"/></linearGradient>
+  <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#252b3b" stop-opacity=".91"/><stop offset=".55" stop-color="#17232c" stop-opacity=".84"/><stop offset="1" stop-color="#525248" stop-opacity=".86"/></linearGradient>
+  <linearGradient id="search" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".17"/><stop offset="1" stop-color="#fff" stop-opacity=".07"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feGaussianBlur stdDeviation="13"/></filter>
+  <style>
+    .menu{opacity:0;transform:translateY(8px);transform-box:fill-box;transform-origin:left bottom;animation:menuCycle 8s cubic-bezier(.2,.75,.2,1) infinite}
+    .cursor{animation:cursorCycle 8s cubic-bezier(.45,0,.2,1) infinite}
+    .start-glow{opacity:0;animation:startGlow 8s linear infinite}
+    .ripple{fill:none;stroke:#fff;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:startRipple 8s ease-out infinite}
+    @keyframes menuCycle{0%,27%,83%,100%{opacity:0;transform:translateY(8px)}32%,73%{opacity:1;transform:translateY(0)}78%{opacity:.95;transform:translateY(0)}}
+    @keyframes cursorCycle{0%,18%{transform:translate(548px,150px)}28%,36%{transform:translate(23px,446px)}56%,74%{transform:translate(510px,238px)}92%,100%{transform:translate(548px,150px)}}
+    @keyframes startGlow{0%,26%,34%,100%{opacity:0}28%,31%{opacity:.8}}
+    @keyframes startRipple{0%,27%,100%{opacity:0;transform:scale(.35)}29%{opacity:.8;transform:scale(.6)}34%{opacity:0;transform:scale(1.7)}}
+    @media(prefers-reduced-motion:reduce){.menu{animation:none;opacity:1;transform:none}.cursor,.start-glow,.ripple{display:none}}
+  </style>
+</defs>
+<image href="../../images/fondo.jpg" x="0" y="0" width="710" height="480" preserveAspectRatio="xMidYMid slice"/>
+<rect width="710" height="480" fill="#07101a" opacity=".06"/>
+<g id="menu" class="menu">
+  <rect x="18" y="103" width="354" height="337" rx="19" fill="#000" opacity=".3" filter="url(#shadow)"/>
+  <rect x="20" y="101" width="350" height="337" rx="18" fill="url(#glass)" stroke="#fff" stroke-opacity=".28"/>
+  <rect x="21" y="102" width="348" height="335" rx="17" fill="none" stroke="#91e7ed" stroke-opacity=".13"/>
+  <g transform="translate(36 113)">
+    <path d="M20 35 A15 15 0 0 1 20 15 M15 40 A22 22 0 0 1 15 10 M25 30 A8 8 0 0 1 25 20" fill="none" stroke="#9000ff" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="30" cy="25" r="4" fill="#9000ff"/>
+    <text x="45" y="32" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#fff">RADIO</text>
+    <text x="115" y="32" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#9000ff">ESPERANZA</text>
+  </g>
+  <rect x="41" y="174" width="309" height="38" rx="10" fill="url(#search)" stroke="#fff" stroke-opacity=".17"/>
+  <text x="56" y="198" fill="#f4f1f8" fill-opacity=".64" font-family="Arial,sans-serif" font-size="13">Buscar aplicación...</text>
+  
+  <g>
+    <rect x="41" y="220" width="89" height="67" rx="12" fill="#fff" fill-opacity=".13" stroke="#fff" stroke-opacity=".12"/>
+    
+    <text x="85.5" y="279" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fff">Sintonizar</text>
+    
+    <text x="190.5" y="279" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fff">TV</text>
+    
+    <text x="295.5" y="279" text-anchor="middle" font-family="Arial,sans-serif" font-size="11.5" fill="#fff">Programación</text>
+    
+    <text x="85.5" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fff"><tspan x="85.5">Entre Génesis y</tspan><tspan x="85.5" dy="13">Apocalipsis</tspan></text>
+    
+    <text x="190.5" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fff">Recursos</text>
+    
+    <text x="295.5" y="345" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fff">Podcast</text>
+    
+    <text x="85.5" y="417" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fff">Contacto</text>
+    
+    <text x="190.5" y="417" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fff">Ayuda</text>
+    
+    <text x="295.5" y="414" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#fff"><tspan x="295.5">Sobre</tspan><tspan x="295.5" dy="12">Nosotros</tspan></text>
+  </g>
+</g>
+<rect x="0" y="440" width="710" height="40" fill="url(#taskbar)"/>
+<path d="M0 440H710" stroke="#fff" stroke-opacity=".22"/>
+<rect x="7" y="443" width="48" height="34" rx="9" fill="#fff" fill-opacity=".08"/>
+<rect class="start-glow" x="7" y="443" width="48" height="34" rx="9" fill="#fff" fill-opacity=".32"/>
+
+<circle class="ripple" cx="31" cy="459" r="11"/>
+<text x="687" y="465" text-anchor="end" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#f4f0e8">6:43 PM</text>
+<g class="cursor" pointer-events="none"><path d="M0 0v27l7-7 5 12 6-3-5-12 10-1z" fill="#fff" stroke="#272332" stroke-width="1.7" stroke-linejoin="round"/></g>
+</svg>

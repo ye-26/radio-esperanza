@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 480" role="img" aria-labelledby="title desc">
+<title id="title">Reproductor de Radio Esperanza</title><desc id="desc">La ventana Sintonizar se muestra sobre el escritorio de la captura y el cursor pulsa PLAY. El reproductor conserva el aspecto y los controles reales de la página.</desc>
+<defs>
+  <linearGradient id="taskbar" x2="0" y2="1"><stop stop-color="#4b572b" stop-opacity=".9"/><stop offset=".55" stop-color="#303329" stop-opacity=".84"/><stop offset="1" stop-color="#5a642b" stop-opacity=".94"/></linearGradient>
+  <linearGradient id="titlebar" x2="1"><stop stop-color="#252335"/><stop offset="1" stop-color="#171b28"/></linearGradient>
+  <linearGradient id="purple" x2="1"><stop stop-color="#8500e9"/><stop offset="1" stop-color="#7900d6"/></linearGradient>
+  <linearGradient id="green" x2="0" y2="1"><stop stop-color="#48e98a"/><stop offset="1" stop-color="#16c964"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feGaussianBlur stdDeviation="12"/></filter>
+  <style>
+    .cursor{animation:cursorCycle 6.5s cubic-bezier(.45,0,.2,1) infinite}
+    .play-flash{opacity:0;animation:playFlash 6.5s ease-out infinite}
+    .ripple{fill:none;stroke:#fff;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:rippleCycle 6.5s ease-out infinite}
+    @keyframes cursorCycle{0%,12%{transform:translate(646px,112px)}40%,55%{transform:translate(418px,334px)}88%,100%{transform:translate(646px,112px)}}
+    @keyframes playFlash{0%,38%,100%{opacity:0}43%,49%{opacity:.5}}
+    @keyframes rippleCycle{0%,39%,100%{opacity:0;transform:scale(.35)}42%{opacity:.9;transform:scale(.55)}49%{opacity:0;transform:scale(1.7)}}
+    @media(prefers-reduced-motion:reduce){.cursor,.play-flash,.ripple{display:none}}
+  </style>
+</defs>
+<image href="../../images/fondo.jpg" x="0" y="0" width="710" height="480" preserveAspectRatio="xMidYMid slice"/>
+<rect width="710" height="480" fill="#07101a" opacity=".06"/>
+<g>
+  <rect x="98" y="14" width="514" height="419" rx="15" fill="#090b12" opacity=".45" filter="url(#shadow)"/>
+  <rect x="101" y="15" width="508" height="415" rx="15" fill="#141821" stroke="#fff" stroke-opacity=".27"/>
+  <path d="M116 15H594a15 15 0 0 1 15 15v31H101V30a15 15 0 0 1 15-15Z" fill="url(#titlebar)"/><path d="M102 62H608" stroke="#fff" stroke-opacity=".1"/>
+  <text x="148" y="45" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#f4f0fa">Sintonizar</text>
+  
+  <rect x="102" y="62" width="506" height="368" fill="#202435"/>
+  <text x="355" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="29" font-weight="700" fill="#fff">Radio Esperanza</text>
+  <text x="355" y="123" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#b8b6c5">Haz clic en PLAY para sintonizar nuestra señal digital</text><text x="355" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#b8b6c5">en vivo</text>
+  <rect x="122" y="151" width="466" height="220" rx="14" fill="#0d0c15" stroke="#9000ff" stroke-opacity=".35" stroke-width="2"/><rect x="130" y="159" width="450" height="204" rx="9" fill="#1b1b1d"/>
+  <rect x="269" y="169" width="101" height="91" rx="7" fill="#dedee0"/><circle cx="319.5" cy="214" r="21" fill="none" stroke="#fff" stroke-width="3"/><circle cx="319.5" cy="214" r="10" fill="none" stroke="#fff" stroke-width="2"/><circle cx="319.5" cy="214" r="3" fill="#fff"/>
+  <text x="355" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#fff">Broadcast is currently offline</text><rect x="332" y="293" width="46" height="19" rx="5" fill="#ff665f"/><text x="355" y="307" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#260b0b">Off Air</text>
+  <rect x="130" y="338" width="261" height="52" fill="url(#purple)"/><text x="151" y="371" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#fff">⏰ 6:44 PM</text>
+  <rect x="399" y="342" width="172" height="42" rx="7" fill="url(#green)"/><rect class="play-flash" x="399" y="342" width="172" height="42" rx="7" fill="#fff"/><path d="M423 353v20l16-10z" fill="#fff"/><text x="498" y="369" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">PLAY</text>
+  <circle class="ripple" cx="486" cy="363" r="12"/>
+  <text x="124" y="414" font-family="Arial,sans-serif" font-size="11" fill="#8b8999">© 2026 Radio Esperanza. Todos los derechos reservados.</text>
+  <rect x="595" y="63" width="13" height="366" rx="2" fill="#f6f7f8"/><rect x="597" y="78" width="9" height="346" rx="4" fill="#7d8189"/><rect x="597" y="82" width="9" height="132" rx="4" fill="#aeb2ba"/>
+</g>
+<rect x="0" y="440" width="710" height="40" fill="url(#taskbar)"/><path d="M0 440H710" stroke="#fff" stroke-opacity=".22"/><rect x="7" y="443" width="48" height="34" rx="9" fill="#fff" fill-opacity=".08"/>
+<rect x="57" y="443" width="42" height="34" rx="9" fill="#d5bdff" fill-opacity=".34" stroke="#fff" stroke-opacity=".18"/><path d="M64 477h28" stroke="#9700ff" stroke-width="3" stroke-linecap="round"/>
+<text x="687" y="465" text-anchor="end" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#f4f0e8">6:44 PM</text>
+<g class="cursor" pointer-events="none"><path d="M0 0v27l7-7 5 12 6-3-5-12 10-1z" fill="#fff" stroke="#272332" stroke-width="1.7" stroke-linejoin="round"/></g>
+</svg>
