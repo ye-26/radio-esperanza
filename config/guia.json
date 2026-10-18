@@ -1,0 +1,125 @@
+{
+  "titulo": "¡BIENVENIDO A RADIO ESPERANZA!",
+  "introduccion": "Descubre cómo explorar Radio Esperanza y sintonizar nuestros contenidos.",
+  "pasos": [
+    {
+      "titulo": "Abre el menú Inicio",
+      "texto": "Pulsa el botón de Inicio en la barra inferior para descubrir las aplicaciones disponibles. Has clic sobre cualquier app para abrirla. Pulsa el escritorio para cerrar el menú.",
+      "multimedia": {
+        "tipo": "imagen",
+        "ruta": "assets/guia/media/inicio.svg",
+        "alt": "El cursor pulsa Inicio y abre el menú de aplicaciones.",
+        "escena": "inicio",
+        "iconos": [
+          { "ruta": "assets/win/home.svg", "x": 19, "y": 448, "ancho": 24, "alto": 24, "etapa": "always" },
+          { "ruta": "assets/win/lupa.svg", "x": 322, "y": 182, "ancho": 22, "alto": 22, "etapa": "menu" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 66, "y": 224, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/tv.svg", "x": 171, "y": 225, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/programacion.svg", "x": 276, "y": 225, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/juego-biblico.svg", "x": 66, "y": 294, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/recursos.svg", "x": 171, "y": 294, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/podcast.svg", "x": 276, "y": 294, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/contacto.svg", "x": 66, "y": 365, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/bot.svg", "x": 171, "y": 365, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/sobre-nosotros.svg", "x": 276, "y": 365, "ancho": 39, "alto": 39, "etapa": "menu" }
+        ]
+      }
+    },
+    {
+      "titulo": "Encuentra una aplicación",
+      "texto": "Escribe el nombre en Buscar aplicación. Por ejemplo, al escribir «programación», y se te mostrara al instante la sección que buscas. Haz clic en el escritorio para cerrar el menú.",
+      "multimedia": {
+        "tipo": "imagen",
+        "ruta": "assets/guia/media/busqueda.svg",
+        "alt": "El menú filtra las aplicaciones mientras se escribe Programación.",
+        "escena": "busqueda",
+        "iconos": [
+          { "ruta": "assets/win/home.svg", "x": 19, "y": 448, "ancho": 24, "alto": 24, "etapa": "always" },
+          { "ruta": "assets/win/lupa.svg", "x": 322, "y": 182, "ancho": 22, "alto": 22, "etapa": "menu" },
+          { "ruta": "assets/win/x.svg", "x": 299, "y": 184, "ancho": 17, "alto": 17, "etapa": "typed" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 66, "y": 224, "ancho": 39, "alto": 39, "etapa": "secondary" },
+          { "ruta": "assets/icons/tv.svg", "x": 171, "y": 225, "ancho": 39, "alto": 39, "etapa": "secondary" },
+          { "ruta": "assets/icons/programacion.svg", "x": 276, "y": 225, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/juego-biblico.svg", "x": 66, "y": 294, "ancho": 39, "alto": 39, "etapa": "secondary" },
+          { "ruta": "assets/icons/recursos.svg", "x": 171, "y": 294, "ancho": 39, "alto": 39, "etapa": "secondary" },
+          { "ruta": "assets/icons/podcast.svg", "x": 276, "y": 294, "ancho": 39, "alto": 39, "etapa": "secondary" },
+          { "ruta": "assets/icons/contacto.svg", "x": 66, "y": 365, "ancho": 39, "alto": 39, "etapa": "secondary" },
+          { "ruta": "assets/icons/bot.svg", "x": 171, "y": 365, "ancho": 39, "alto": 39, "etapa": "secondary" },
+          { "ruta": "assets/icons/sobre-nosotros.svg", "x": 276, "y": 365, "ancho": 39, "alto": 39, "etapa": "secondary" }
+        ]
+      }
+    },
+    {
+      "titulo": "Amplía y administra las ventanas",
+      "texto": "Una vez abierta una ventana cualquiera, prueba los controles de la barra superior: amplía la ventana, restáurala, minimízala y ciérrala cuando termines.",
+      "multimedia": {
+        "tipo": "imagen",
+        "ruta": "assets/guia/media/ventana.svg",
+        "alt": "Sintonizar con los controles reales de ventana y los iconos del escritorio.",
+        "escena": "ventana",
+        "iconos": [
+          { "ruta": "assets/win/home.svg", "x": 19, "y": 448, "ancho": 24, "alto": 24, "etapa": "always" },
+          { "ruta": "assets/win/lupa.svg", "x": 322, "y": 182, "ancho": 22, "alto": 22, "etapa": "menu" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 66, "y": 224, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/tv.svg", "x": 171, "y": 225, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/programacion.svg", "x": 276, "y": 225, "ancho": 39, "alto": 39, "etapa": "menu" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 117, "y": 28, "ancho": 25, "alto": 25, "etapa": "normal" },
+          { "ruta": "assets/win/minimize.svg", "x": 491, "y": 27, "ancho": 23, "alto": 23, "etapa": "normal" },
+          { "ruta": "assets/win/maximize-pantalla.svg", "x": 530, "y": 27, "ancho": 23, "alto": 23, "etapa": "normal" },
+          { "ruta": "assets/win/close.svg", "x": 570, "y": 26, "ancho": 25, "alto": 25, "etapa": "normal" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 20, "y": 17, "ancho": 25, "alto": 25, "etapa": "max" },
+          { "ruta": "assets/win/minimize.svg", "x": 600, "y": 16, "ancho": 23, "alto": 23, "etapa": "max" },
+          { "ruta": "assets/win/minimize-pantalla.svg", "x": 641, "y": 16, "ancho": 23, "alto": 23, "etapa": "max" },
+          { "ruta": "assets/win/close.svg", "x": 677, "y": 15, "ancho": 25, "alto": 25, "etapa": "max" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 65, "y": 448, "ancho": 26, "alto": 25, "etapa": "task" }
+        ]
+      }
+    },
+    {
+      "titulo": "Restaura las ventanas desde la barra de tareas",
+      "texto": "Al minimizar una ventana, su icono permanece en la barra de tareas. Pulsa ese icono para volver a abrir la ventana y continuar explorando su contenido.",
+      "multimedia": {
+        "tipo": "imagen",
+        "ruta": "assets/guia/media/barra-tareas.svg",
+        "alt": "El cursor restaura Sintonizar desde la barra de tareas y vuelve a minimizar la ventana.",
+        "escena": "barra",
+        "iconos": [
+          { "ruta": "assets/win/home.svg", "x": 19, "y": 448, "ancho": 24, "alto": 24, "etapa": "always" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 65, "y": 448, "ancho": 26, "alto": 25, "etapa": "always" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 157, "y": 51, "ancho": 24, "alto": 24, "etapa": "window" },
+          { "ruta": "assets/win/minimize.svg", "x": 474, "y": 51, "ancho": 22, "alto": 22, "etapa": "window" },
+          { "ruta": "assets/win/maximize-pantalla.svg", "x": 510, "y": 51, "ancho": 22, "alto": 22, "etapa": "window" },
+          { "ruta": "assets/win/close.svg", "x": 544, "y": 50, "ancho": 24, "alto": 24, "etapa": "window" }
+        ]
+      }
+    },
+    {
+      "titulo": "Sintoniza la radio",
+      "texto": "En la ventana Sintonizar, pulsa PLAY para iniciar la señal digital en vivo. La animación muestra el reproductor tal como aparece en la página. También puedes explorar la sección TV y verificar si hay contenido de video en vivo",
+      "multimedia": {
+        "tipo": "imagen",
+        "ruta": "assets/guia/media/radio.svg",
+        "alt": "La ventana Sintonizar de Radio Esperanza, con los iconos originales y el cursor sobre PLAY.",
+        "escena": "radio",
+        "iconos": [
+          { "ruta": "assets/win/home.svg", "x": 19, "y": 448, "ancho": 24, "alto": 24, "etapa": "always" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 117, "y": 27, "ancho": 25, "alto": 25, "etapa": "always" },
+          { "ruta": "assets/win/minimize.svg", "x": 492, "y": 26, "ancho": 23, "alto": 23, "etapa": "always" },
+          { "ruta": "assets/win/maximize-pantalla.svg", "x": 531, "y": 26, "ancho": 23, "alto": 23, "etapa": "always" },
+          { "ruta": "assets/win/close.svg", "x": 571, "y": 25, "ancho": 25, "alto": 25, "etapa": "always" },
+          { "ruta": "assets/icons/sintonizar.svg", "x": 65, "y": 448, "ancho": 26, "alto": 25, "etapa": "always" }
+        ]
+      }
+    },
+    {
+      "titulo": "Programación y próximos contenidos",
+      "texto": "Te recomendamos consultar la sección Sintonizar para explorar qué programas estarán disponibles próximamente.",
+      "cierre": "Dios te bendiga y gracias por acompañarnos en Radio Esperanza.",
+      "multimedia": {
+        "tipo": "imagen",
+        "ruta": "assets/guia/media/proximamente.png",
+        "alt": "Aviso de próximos programas que invita a consultar la sección Sintonizar."
+      }
+    }
+  ]
+}
