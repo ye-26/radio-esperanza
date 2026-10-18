@@ -409,9 +409,39 @@ body.light-theme #app-search::placeholder { color:rgba(26,26,46,.58); }
 .guide-close:hover { transform: rotate(5deg); background: rgba(255, 85, 110, .3); }
 .guide-content { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); align-items: center; gap: clamp(22px, 4vw, 38px); flex: 1 1 auto; min-height: 0; padding: 24px 30px; }
 .guide-media-frame { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 1.48; overflow: hidden; background: linear-gradient(rgba(7, 10, 19, .2), rgba(7, 10, 19, .48)), url('assets/images/fondo.jpg') center / cover; border: 1px solid rgba(218, 193, 255, .18); border-radius: 17px; box-shadow: inset 0 0 32px rgba(0, 0, 0, .22); }
-.guide-media-frame .guide-scene, .guide-media-frame video { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: fill; }
+.guide-media-frame .guide-scene, .guide-media-frame video { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: contain; }
 .guide-media-frame video { object-fit: cover; }
-.guide-media-icon { position: absolute; z-index: 2; width: 14%; height: 30%; object-fit: contain; pointer-events: none; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .48)); }
+.guide-media-icon { position: absolute; z-index: 2; display: block; object-fit: contain; pointer-events: none; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .48)); }
+.guide-media-frame[data-guide-scene="inicio"] .guide-media-icon[data-stage="menu"],
+.guide-media-frame[data-guide-scene="busqueda"] .guide-media-icon[data-stage="menu"] { animation: guideMenuIcons 8s linear infinite; }
+.guide-media-frame[data-guide-scene="busqueda"] .guide-media-icon[data-stage="secondary"] { animation: guideSearchSecondary 9s linear infinite; }
+.guide-media-frame[data-guide-scene="busqueda"] .guide-media-icon[data-stage="typed"] { animation: guideSearchTyped 9s linear infinite; }
+.guide-media-frame[data-guide-scene="ventana"] .guide-media-icon[data-stage="menu"] { animation: guideWindowMenuIcons 10s linear infinite; }
+.guide-media-frame[data-guide-scene="ventana"] .guide-media-icon[data-stage="normal"] { animation: guideWindowNormalIcons 10s linear infinite; }
+.guide-media-frame[data-guide-scene="ventana"] .guide-media-icon[data-stage="max"] { animation: guideWindowMaxIcons 10s linear infinite; }
+.guide-media-frame[data-guide-scene="ventana"] .guide-media-icon[data-stage="task"] { animation: guideWindowTaskIcons 10s linear infinite; }
+.guide-media-frame[data-guide-scene="barra"] .guide-media-icon[data-stage="window"] { animation: guideRestoreIcons 8s linear infinite; }
+@keyframes guideMenuIcons { 0%,27%,83%,100% { opacity: 0; } 32%,73% { opacity: 1; } 78% { opacity: .95; } }
+@keyframes guideSearchSecondary { 0%,10%,91%,100% { opacity: 0; } 15%,48% { opacity: 1; } 58%,82% { opacity: .08; } 85% { opacity: .04; } }
+@keyframes guideSearchTyped { 0%,25%,88%,100% { opacity: 0; } 30%,82% { opacity: 1; } }
+@keyframes guideWindowMenuIcons { 0%,6%,19%,100% { opacity: 0; } 9%,16% { opacity: 1; } }
+@keyframes guideWindowNormalIcons { 0%,19%,32%,45%,58%,67%,81%,100% { opacity: 0; } 22%,29%,48%,55%,70%,78% { opacity: 1; } }
+@keyframes guideWindowMaxIcons { 0%,31%,45%,100% { opacity: 0; } 34%,42% { opacity: 1; } }
+@keyframes guideWindowTaskIcons { 0%,19%,82%,100% { opacity: 0; } 22%,79% { opacity: 1; } }
+@keyframes guideRestoreIcons { 0%,25%,69%,100% { opacity: 0; } 32%,58% { opacity: 1; } 64% { opacity: .9; } }
+@media (prefers-reduced-motion: reduce) {
+    .guide-media-frame[data-guide-scene="inicio"] .guide-media-icon[data-stage="menu"],
+    .guide-media-frame[data-guide-scene="busqueda"] .guide-media-icon[data-stage="menu"],
+    .guide-media-frame[data-guide-scene="ventana"] .guide-media-icon[data-stage="normal"],
+    .guide-media-frame[data-guide-scene="radio"] .guide-media-icon,
+    .guide-media-frame[data-guide-scene="barra"] .guide-media-icon[data-stage="always"] { animation: none; opacity: 1; }
+    .guide-media-frame[data-guide-scene="busqueda"] .guide-media-icon[data-stage="secondary"] { animation: none; opacity: .12; }
+    .guide-media-frame[data-guide-scene="busqueda"] .guide-media-icon[data-stage="typed"] { animation: none; opacity: 1; }
+    .guide-media-frame[data-guide-scene="ventana"] .guide-media-icon[data-stage="task"],
+    .guide-media-frame[data-guide-scene="barra"] .guide-media-icon[data-stage="window"],
+    .guide-media-frame[data-guide-scene="ventana"] .guide-media-icon[data-stage="menu"],
+    .guide-media-frame[data-guide-scene="ventana"] .guide-media-icon[data-stage="max"] { animation: none; opacity: 0; }
+}
 .guide-media-icon[data-position="taskbar-start"] { left: 1.5%; bottom: 5%; width: 8%; height: 18%; }
 .guide-media-icon[data-position="search-icon"] { left: 7%; top: 31%; width: 8%; height: 16%; }
 .guide-media-icon[data-position="taskbar-app"] { left: 12%; bottom: 5%; width: 9%; height: 18%; }
