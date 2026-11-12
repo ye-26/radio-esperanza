@@ -1,0 +1,1822 @@
+{
+  "version": 1,
+  "books": [
+    {
+      "id": "egw-001",
+      "title": "A Fin de Conocerle",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "A",
+        "Fin",
+        "de",
+        "Conocerle"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/A Fin de Conocerle.pdf",
+      "filename": "A Fin de Conocerle.pdf"
+    },
+    {
+      "id": "egw-002",
+      "title": "Alza tus Ojos",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Alza",
+        "tus",
+        "Ojos"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Alza tus Ojos.pdf",
+      "filename": "Alza tus Ojos.pdf"
+    },
+    {
+      "id": "egw-003",
+      "title": "Cada Día con Dios",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Cada",
+        "Día",
+        "con",
+        "Dios"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Cada Día con Dios.pdf",
+      "filename": "Cada Día con Dios.pdf"
+    },
+    {
+      "id": "egw-004",
+      "title": "Conflicto y Valor",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Conflicto",
+        "y",
+        "Valor"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Conflicto y Valor.pdf",
+      "filename": "Conflicto y Valor.pdf"
+    },
+    {
+      "id": "egw-005",
+      "title": "Dios nos Cuida",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Dios",
+        "nos",
+        "Cuida"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Dios nos Cuida.pdf",
+      "filename": "Dios nos Cuida.pdf"
+    },
+    {
+      "id": "egw-006",
+      "title": "El Cristo Triunfante",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "El",
+        "Cristo",
+        "Triunfante"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/El Cristo Triunfante.pdf",
+      "filename": "El Cristo Triunfante.pdf"
+    },
+    {
+      "id": "egw-007",
+      "title": "En los Lugares Celestiales",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "En",
+        "los",
+        "Lugares",
+        "Celestiales"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/En los Lugares Celestiales.pdf",
+      "filename": "En los Lugares Celestiales.pdf"
+    },
+    {
+      "id": "egw-008",
+      "title": "Exaltad a Jesús",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Exaltad",
+        "a",
+        "Jesús"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Exaltad a Jesús.pdf",
+      "filename": "Exaltad a Jesús.pdf"
+    },
+    {
+      "id": "egw-009",
+      "title": "Hijos e Hijas de Dios",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Hijos",
+        "e",
+        "Hijas",
+        "de",
+        "Dios"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Hijos e Hijas de Dios.pdf",
+      "filename": "Hijos e Hijas de Dios.pdf"
+    },
+    {
+      "id": "egw-010",
+      "title": "La Fe por la Cual Vivo",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "La",
+        "Fe",
+        "por",
+        "la",
+        "Cual",
+        "Vivo"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/La Fe por la Cual Vivo.pdf",
+      "filename": "La Fe por la Cual Vivo.pdf"
+    },
+    {
+      "id": "egw-011",
+      "title": "La Maravillosa Gracia de Dios",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "La",
+        "Maravillosa",
+        "Gracia",
+        "de",
+        "Dios"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/La Maravillosa Gracia de Dios.pdf",
+      "filename": "La Maravillosa Gracia de Dios.pdf"
+    },
+    {
+      "id": "egw-012",
+      "title": "Maranata, El Señor Viene",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Maranata",
+        "El",
+        "Señor",
+        "Viene"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Maranata, El Señor Viene.pdf",
+      "filename": "Maranata, El Señor Viene.pdf"
+    },
+    {
+      "id": "egw-013",
+      "title": "Nuestra Elevada Vocacion",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Nuestra",
+        "Elevada",
+        "Vocacion"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Nuestra Elevada Vocacion.pdf",
+      "filename": "Nuestra Elevada Vocacion.pdf"
+    },
+    {
+      "id": "egw-014",
+      "title": "Recibiréis Poder",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Recibiréis",
+        "Poder"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Recibiréis Poder.pdf",
+      "filename": "Recibiréis Poder.pdf"
+    },
+    {
+      "id": "egw-015",
+      "title": "Reflejemos a Jesús",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Reflejemos",
+        "a",
+        "Jesús"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Reflejemos a Jesús.pdf",
+      "filename": "Reflejemos a Jesús.pdf"
+    },
+    {
+      "id": "egw-016",
+      "title": "Ser Semejante a Jesús",
+      "author": "Elena G. de White",
+      "category": "Colección Devocionales",
+      "description": "Libro de la colección Colección Devocionales.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Colección Devocionales",
+        "Ser",
+        "Semejante",
+        "a",
+        "Jesús"
+      ],
+      "pdf": "libros/EGW/Colección Devocionales/Ser Semejante a Jesús.pdf",
+      "filename": "Ser Semejante a Jesús.pdf"
+    },
+    {
+      "id": "egw-017",
+      "title": "Cartas a Jóvenes Enamorados",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Cartas",
+        "a",
+        "Jóvenes",
+        "Enamorados"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Cartas a Jóvenes Enamorados.pdf",
+      "filename": "Cartas a Jóvenes Enamorados.pdf"
+    },
+    {
+      "id": "egw-018",
+      "title": "Conducción del Niño",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Conducción",
+        "del",
+        "Niño"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Conducción del Niño.pdf",
+      "filename": "Conducción del Niño.pdf"
+    },
+    {
+      "id": "egw-019",
+      "title": "Consejos para la Iglesia",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Consejos",
+        "para",
+        "la",
+        "Iglesia"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Consejos para la Iglesia.pdf",
+      "filename": "Consejos para la Iglesia.pdf"
+    },
+    {
+      "id": "egw-020",
+      "title": "Consejos para los Maestros",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Consejos",
+        "para",
+        "los",
+        "Maestros"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Consejos para los Maestros.pdf",
+      "filename": "Consejos para los Maestros.pdf"
+    },
+    {
+      "id": "egw-021",
+      "title": "Consejos Sobre el Régimen Alimenticio (1)",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Consejos",
+        "Sobre",
+        "el",
+        "Régimen",
+        "Alimenticio",
+        "(1)"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Consejos Sobre el Régimen Alimenticio (1).pdf",
+      "filename": "Consejos Sobre el Régimen Alimenticio (1).pdf"
+    },
+    {
+      "id": "egw-022",
+      "title": "Consejos Sobre el Régimen Alimenticio",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Consejos",
+        "Sobre",
+        "el",
+        "Régimen",
+        "Alimenticio"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Consejos Sobre el Régimen Alimenticio.pdf",
+      "filename": "Consejos Sobre el Régimen Alimenticio.pdf"
+    },
+    {
+      "id": "egw-023",
+      "title": "Consejos Sobre la Obra de la Escuela Sabatica",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Consejos",
+        "Sobre",
+        "la",
+        "Obra",
+        "de",
+        "la",
+        "Escuela",
+        "Sabatica"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Consejos Sobre la Obra de la Escuela Sabatica.pdf",
+      "filename": "Consejos Sobre la Obra de la Escuela Sabatica.pdf"
+    },
+    {
+      "id": "egw-024",
+      "title": "Consejos Sobre la Salud",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Consejos",
+        "Sobre",
+        "la",
+        "Salud"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Consejos Sobre la Salud.pdf",
+      "filename": "Consejos Sobre la Salud.pdf"
+    },
+    {
+      "id": "egw-025",
+      "title": "Consejos sobre Mayordomía Cristiana",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Consejos",
+        "sobre",
+        "Mayordomía",
+        "Cristiana"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Consejos sobre Mayordomía Cristiana.pdf",
+      "filename": "Consejos sobre Mayordomía Cristiana.pdf"
+    },
+    {
+      "id": "egw-026",
+      "title": "Cristo en Su Santuario",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Cristo",
+        "en",
+        "Su",
+        "Santuario"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Cristo en Su Santuario.pdf",
+      "filename": "Cristo en Su Santuario.pdf"
+    },
+    {
+      "id": "egw-027",
+      "title": "Cristo Nuestro Salvador",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Cristo",
+        "Nuestro",
+        "Salvador"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Cristo Nuestro Salvador.pdf",
+      "filename": "Cristo Nuestro Salvador.pdf"
+    },
+    {
+      "id": "egw-028",
+      "title": "De la Cuidad al Campo",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "De",
+        "la",
+        "Cuidad",
+        "al",
+        "Campo"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/De la Cuidad al Campo.pdf",
+      "filename": "De la Cuidad al Campo.pdf"
+    },
+    {
+      "id": "egw-029",
+      "title": "El Colportor Evangélico",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Colportor",
+        "Evangélico"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Colportor Evangélico.pdf",
+      "filename": "El Colportor Evangélico.pdf"
+    },
+    {
+      "id": "egw-030",
+      "title": "El Conflicto Inminente",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Conflicto",
+        "Inminente"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Conflicto Inminente.pdf",
+      "filename": "El Conflicto Inminente.pdf"
+    },
+    {
+      "id": "egw-031",
+      "title": "El Discurso Maestro de Jesucristo",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Discurso",
+        "Maestro",
+        "de",
+        "Jesucristo"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Discurso Maestro de Jesucristo.pdf",
+      "filename": "El Discurso Maestro de Jesucristo.pdf"
+    },
+    {
+      "id": "egw-032",
+      "title": "El Evangelismo",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Evangelismo"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Evangelismo.pdf",
+      "filename": "El Evangelismo.pdf"
+    },
+    {
+      "id": "egw-033",
+      "title": "El Hogar Cristiano",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Hogar",
+        "Cristiano"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Hogar Cristiano.pdf",
+      "filename": "El Hogar Cristiano.pdf"
+    },
+    {
+      "id": "egw-034",
+      "title": "El Ministerio de Curación",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Ministerio",
+        "de",
+        "Curación"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Ministerio de Curación.pdf",
+      "filename": "El Ministerio de Curación.pdf"
+    },
+    {
+      "id": "egw-035",
+      "title": "El Ministerio de la Bondad",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Ministerio",
+        "de",
+        "la",
+        "Bondad"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Ministerio de la Bondad.pdf",
+      "filename": "El Ministerio de la Bondad.pdf"
+    },
+    {
+      "id": "egw-036",
+      "title": "El Ministerio de Publicaciones",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Ministerio",
+        "de",
+        "Publicaciones"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Ministerio de Publicaciones.pdf",
+      "filename": "El Ministerio de Publicaciones.pdf"
+    },
+    {
+      "id": "egw-037",
+      "title": "El Ministerio Médico",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Ministerio",
+        "Médico"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Ministerio Médico.pdf",
+      "filename": "El Ministerio Médico.pdf"
+    },
+    {
+      "id": "egw-038",
+      "title": "El Ministerio Pastoral",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Ministerio",
+        "Pastoral"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Ministerio Pastoral.pdf",
+      "filename": "El Ministerio Pastoral.pdf"
+    },
+    {
+      "id": "egw-039",
+      "title": "El otro Poder",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "otro",
+        "Poder"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El otro Poder.pdf",
+      "filename": "El otro Poder.pdf"
+    },
+    {
+      "id": "egw-040",
+      "title": "El Verdadero Reavivamiento - Elena G. de White-ok",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "El",
+        "Verdadero",
+        "Reavivamiento",
+        "-",
+        "Elena",
+        "G.",
+        "de",
+        "White-ok"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/El Verdadero Reavivamiento - Elena G. de White-ok.pdf",
+      "filename": "El Verdadero Reavivamiento - Elena G. de White-ok.pdf"
+    },
+    {
+      "id": "egw-041",
+      "title": "Elena de White, Mujer de visión",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Elena",
+        "de",
+        "White",
+        "Mujer",
+        "de",
+        "visión"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Elena de White, Mujer de visión.pdf",
+      "filename": "Elena de White, Mujer de visión.pdf"
+    },
+    {
+      "id": "egw-042",
+      "title": "Elena G. de White en Europa",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Elena",
+        "G.",
+        "de",
+        "White",
+        "en",
+        "Europa"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Elena G. de White en Europa.pdf",
+      "filename": "Elena G. de White en Europa.pdf"
+    },
+    {
+      "id": "egw-043",
+      "title": "Eventos de los Últimos Días",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Eventos",
+        "de",
+        "los",
+        "Últimos",
+        "Días"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Eventos de los Últimos Días.pdf",
+      "filename": "Eventos de los Últimos Días.pdf"
+    },
+    {
+      "id": "egw-044",
+      "title": "Fe y Obras",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Fe",
+        "y",
+        "Obras"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Fe y Obras.pdf",
+      "filename": "Fe y Obras.pdf"
+    },
+    {
+      "id": "egw-045",
+      "title": "Gemas de EGW",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Gemas",
+        "de",
+        "EGW"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Gemas de EGW.pdf",
+      "filename": "Gemas de EGW.pdf"
+    },
+    {
+      "id": "egw-046",
+      "title": "Hijas de Dios",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Hijas",
+        "de",
+        "Dios"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Hijas de Dios.pdf",
+      "filename": "Hijas de Dios.pdf"
+    },
+    {
+      "id": "egw-047",
+      "title": "Joyas de los Testimonios 1",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Joyas",
+        "de",
+        "los",
+        "Testimonios",
+        "1"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Joyas de los Testimonios 1.pdf",
+      "filename": "Joyas de los Testimonios 1.pdf"
+    },
+    {
+      "id": "egw-048",
+      "title": "Joyas de los Testimonios 2",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Joyas",
+        "de",
+        "los",
+        "Testimonios",
+        "2"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Joyas de los Testimonios 2.pdf",
+      "filename": "Joyas de los Testimonios 2.pdf"
+    },
+    {
+      "id": "egw-049",
+      "title": "Joyas de los Testimonios 3",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Joyas",
+        "de",
+        "los",
+        "Testimonios",
+        "3"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Joyas de los Testimonios 3.pdf",
+      "filename": "Joyas de los Testimonios 3.pdf"
+    },
+    {
+      "id": "egw-050",
+      "title": "La Edificación del Carácter",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Edificación",
+        "del",
+        "Carácter"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Edificación del Carácter.pdf",
+      "filename": "La Edificación del Carácter.pdf"
+    },
+    {
+      "id": "egw-051",
+      "title": "La Educación Cristiana",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Educación",
+        "Cristiana"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Educación Cristiana.pdf",
+      "filename": "La Educación Cristiana.pdf"
+    },
+    {
+      "id": "egw-052",
+      "title": "La Educación",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Educación"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Educación.pdf",
+      "filename": "La Educación.pdf"
+    },
+    {
+      "id": "egw-053",
+      "title": "La Historia de la Redención",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Historia",
+        "de",
+        "la",
+        "Redención"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Historia de la Redención.pdf",
+      "filename": "La Historia de la Redención.pdf"
+    },
+    {
+      "id": "egw-054",
+      "title": "La Iglesia Remanente",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Iglesia",
+        "Remanente"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Iglesia Remanente.pdf",
+      "filename": "La Iglesia Remanente.pdf"
+    },
+    {
+      "id": "egw-055",
+      "title": "La Música",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Música"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Música.pdf",
+      "filename": "La Música.pdf"
+    },
+    {
+      "id": "egw-056",
+      "title": "La Oración",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Oración"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Oración.pdf",
+      "filename": "La Oración.pdf"
+    },
+    {
+      "id": "egw-057",
+      "title": "La Segunda Venida y el Cielo",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Segunda",
+        "Venida",
+        "y",
+        "el",
+        "Cielo"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Segunda Venida y el Cielo.pdf",
+      "filename": "La Segunda Venida y el Cielo.pdf"
+    },
+    {
+      "id": "egw-058",
+      "title": "La Temperancia",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Temperancia"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Temperancia.pdf",
+      "filename": "La Temperancia.pdf"
+    },
+    {
+      "id": "egw-059",
+      "title": "La Única Esperanza (1)",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Única",
+        "Esperanza",
+        "(1)"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Única Esperanza (1).pdf",
+      "filename": "La Única Esperanza (1).pdf"
+    },
+    {
+      "id": "egw-060",
+      "title": "La Única Esperanza",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Única",
+        "Esperanza"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Única Esperanza.pdf",
+      "filename": "La Única Esperanza.pdf"
+    },
+    {
+      "id": "egw-061",
+      "title": "La Verdad acerca de los Angeles",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Verdad",
+        "acerca",
+        "de",
+        "los",
+        "Angeles"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Verdad acerca de los Angeles.pdf",
+      "filename": "La Verdad acerca de los Angeles.pdf"
+    },
+    {
+      "id": "egw-062",
+      "title": "La Voz, Su Educación y Uso Correcto",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "La",
+        "Voz",
+        "Su",
+        "Educación",
+        "y",
+        "Uso",
+        "Correcto"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/La Voz, Su Educación y Uso Correcto.pdf",
+      "filename": "La Voz, Su Educación y Uso Correcto.pdf"
+    },
+    {
+      "id": "egw-063",
+      "title": "Liderazgo Cristiano",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Liderazgo",
+        "Cristiano"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Liderazgo Cristiano.pdf",
+      "filename": "Liderazgo Cristiano.pdf"
+    },
+    {
+      "id": "egw-064",
+      "title": "Manuscritos ineditos Tomo 1",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Manuscritos",
+        "ineditos",
+        "Tomo",
+        "1"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Manuscritos ineditos Tomo 1.pdf",
+      "filename": "Manuscritos ineditos Tomo 1.pdf"
+    },
+    {
+      "id": "egw-065",
+      "title": "Mensajes para los Jóvenes",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Mensajes",
+        "para",
+        "los",
+        "Jóvenes"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Mensajes para los Jóvenes.pdf",
+      "filename": "Mensajes para los Jóvenes.pdf"
+    },
+    {
+      "id": "egw-066",
+      "title": "Mensajes Selectos Tomo 1",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Mensajes",
+        "Selectos",
+        "Tomo",
+        "1"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Mensajes Selectos Tomo 1.pdf",
+      "filename": "Mensajes Selectos Tomo 1.pdf"
+    },
+    {
+      "id": "egw-067",
+      "title": "Mensajes Selectos Tomo 2",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Mensajes",
+        "Selectos",
+        "Tomo",
+        "2"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Mensajes Selectos Tomo 2.pdf",
+      "filename": "Mensajes Selectos Tomo 2.pdf"
+    },
+    {
+      "id": "egw-068",
+      "title": "Mensajes Selectos Tomo 3",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Mensajes",
+        "Selectos",
+        "Tomo",
+        "3"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Mensajes Selectos Tomo 3.pdf",
+      "filename": "Mensajes Selectos Tomo 3.pdf"
+    },
+    {
+      "id": "egw-069",
+      "title": "Mente, Carácter y Personalidad 1",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Mente",
+        "Carácter",
+        "y",
+        "Personalidad",
+        "1"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Mente, Carácter y Personalidad 1.pdf",
+      "filename": "Mente, Carácter y Personalidad 1.pdf"
+    },
+    {
+      "id": "egw-070",
+      "title": "Notas biográficas de Elena G. de White",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Notas",
+        "biográficas",
+        "de",
+        "Elena",
+        "G.",
+        "de",
+        "White"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Notas biográficas de Elena G. de White.pdf",
+      "filename": "Notas biográficas de Elena G. de White.pdf"
+    },
+    {
+      "id": "egw-071",
+      "title": "Obreros Evangélicos",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Obreros",
+        "Evangélicos"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Obreros Evangélicos.pdf",
+      "filename": "Obreros Evangélicos.pdf"
+    },
+    {
+      "id": "egw-072",
+      "title": "Padres preparados, hijos vencedores Tomo 1 - Elena G. de White",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Padres",
+        "preparados",
+        "hijos",
+        "vencedores",
+        "Tomo",
+        "1",
+        "-",
+        "Elena",
+        "G.",
+        "de",
+        "White"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Padres preparados, hijos vencedores Tomo 1 - Elena G. de White.pdf",
+      "filename": "Padres preparados, hijos vencedores Tomo 1 - Elena G. de White.pdf"
+    },
+    {
+      "id": "egw-073",
+      "title": "Padres preparados, hijos vencedores Tomo 2 - Elena G. de White",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Padres",
+        "preparados",
+        "hijos",
+        "vencedores",
+        "Tomo",
+        "2",
+        "-",
+        "Elena",
+        "G.",
+        "de",
+        "White"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Padres preparados, hijos vencedores Tomo 2 - Elena G. de White.pdf",
+      "filename": "Padres preparados, hijos vencedores Tomo 2 - Elena G. de White.pdf"
+    },
+    {
+      "id": "egw-074",
+      "title": "Palabras de Vida del Gran Maestro",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Palabras",
+        "de",
+        "Vida",
+        "del",
+        "Gran",
+        "Maestro"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Palabras de Vida del Gran Maestro.pdf",
+      "filename": "Palabras de Vida del Gran Maestro.pdf"
+    },
+    {
+      "id": "egw-075",
+      "title": "Primeros Escritos",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Primeros",
+        "Escritos"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Primeros Escritos.pdf",
+      "filename": "Primeros Escritos.pdf"
+    },
+    {
+      "id": "egw-076",
+      "title": "PromesasParaLosUltimosDias",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "PromesasParaLosUltimosDias"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/PromesasParaLosUltimosDias.pdf",
+      "filename": "PromesasParaLosUltimosDias.pdf"
+    },
+    {
+      "id": "egw-077",
+      "title": "Reavivamientos Modernos",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Reavivamientos",
+        "Modernos"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Reavivamientos Modernos.pdf",
+      "filename": "Reavivamientos Modernos.pdf"
+    },
+    {
+      "id": "egw-078",
+      "title": "Sermones Escogidos Tomo 1",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Sermones",
+        "Escogidos",
+        "Tomo",
+        "1"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Sermones Escogidos Tomo 1.pdf",
+      "filename": "Sermones Escogidos Tomo 1.pdf"
+    },
+    {
+      "id": "egw-079",
+      "title": "Sermones Escogidos Tomo 2",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Sermones",
+        "Escogidos",
+        "Tomo",
+        "2"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Sermones Escogidos Tomo 2.pdf",
+      "filename": "Sermones Escogidos Tomo 2.pdf"
+    },
+    {
+      "id": "egw-080",
+      "title": "Servicio Cristiano",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Servicio",
+        "Cristiano"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Servicio Cristiano.pdf",
+      "filename": "Servicio Cristiano.pdf"
+    },
+    {
+      "id": "egw-081",
+      "title": "Testimonios Acerca de Conducta Sexual, Adulterio y Divorcio",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "Acerca",
+        "de",
+        "Conducta",
+        "Sexual",
+        "Adulterio",
+        "y",
+        "Divorcio"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios Acerca de Conducta Sexual, Adulterio y Divorcio.pdf",
+      "filename": "Testimonios Acerca de Conducta Sexual, Adulterio y Divorcio.pdf"
+    },
+    {
+      "id": "egw-082",
+      "title": "Testimonios para la Iglesia, Tomo 1",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "la",
+        "Iglesia",
+        "Tomo",
+        "1"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para la Iglesia, Tomo 1.pdf",
+      "filename": "Testimonios para la Iglesia, Tomo 1.pdf"
+    },
+    {
+      "id": "egw-083",
+      "title": "Testimonios para la Iglesia, Tomo 2",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "la",
+        "Iglesia",
+        "Tomo",
+        "2"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para la Iglesia, Tomo 2.pdf",
+      "filename": "Testimonios para la Iglesia, Tomo 2.pdf"
+    },
+    {
+      "id": "egw-084",
+      "title": "Testimonios para la Iglesia, Tomo 3",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "la",
+        "Iglesia",
+        "Tomo",
+        "3"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para la Iglesia, Tomo 3.pdf",
+      "filename": "Testimonios para la Iglesia, Tomo 3.pdf"
+    },
+    {
+      "id": "egw-085",
+      "title": "Testimonios para la Iglesia, Tomo 4",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "la",
+        "Iglesia",
+        "Tomo",
+        "4"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para la Iglesia, Tomo 4.pdf",
+      "filename": "Testimonios para la Iglesia, Tomo 4.pdf"
+    },
+    {
+      "id": "egw-086",
+      "title": "Testimonios para la Iglesia, Tomo 5",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "la",
+        "Iglesia",
+        "Tomo",
+        "5"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para la Iglesia, Tomo 5.pdf",
+      "filename": "Testimonios para la Iglesia, Tomo 5.pdf"
+    },
+    {
+      "id": "egw-087",
+      "title": "Testimonios para la Iglesia, Tomo 6",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "la",
+        "Iglesia",
+        "Tomo",
+        "6"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para la Iglesia, Tomo 6.pdf",
+      "filename": "Testimonios para la Iglesia, Tomo 6.pdf"
+    },
+    {
+      "id": "egw-088",
+      "title": "Testimonios para la Iglesia, Tomo 7",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "la",
+        "Iglesia",
+        "Tomo",
+        "7"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para la Iglesia, Tomo 7.pdf",
+      "filename": "Testimonios para la Iglesia, Tomo 7.pdf"
+    },
+    {
+      "id": "egw-089",
+      "title": "Testimonios para la Iglesia, Tomo 8",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "la",
+        "Iglesia",
+        "Tomo",
+        "8"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para la Iglesia, Tomo 8.pdf",
+      "filename": "Testimonios para la Iglesia, Tomo 8.pdf"
+    },
+    {
+      "id": "egw-090",
+      "title": "Testimonios para la Iglesia, Tomo 9",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "la",
+        "Iglesia",
+        "Tomo",
+        "9"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para la Iglesia, Tomo 9.pdf",
+      "filename": "Testimonios para la Iglesia, Tomo 9.pdf"
+    },
+    {
+      "id": "egw-091",
+      "title": "Testimonios para los Ministros",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "para",
+        "los",
+        "Ministros"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios para los Ministros.pdf",
+      "filename": "Testimonios para los Ministros.pdf"
+    },
+    {
+      "id": "egw-092",
+      "title": "Testimonios Selectos Tomo 1",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "Selectos",
+        "Tomo",
+        "1"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios Selectos Tomo 1.pdf",
+      "filename": "Testimonios Selectos Tomo 1.pdf"
+    },
+    {
+      "id": "egw-093",
+      "title": "Testimonios Selectos Tomo 2",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "Selectos",
+        "Tomo",
+        "2"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios Selectos Tomo 2.pdf",
+      "filename": "Testimonios Selectos Tomo 2.pdf"
+    },
+    {
+      "id": "egw-094",
+      "title": "Testimonios Selectos Tomo 3",
+      "author": "Elena G. de White",
+      "category": "Otras Colecciones",
+      "description": "Libro de la colección Otras Colecciones.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Otras Colecciones",
+        "Testimonios",
+        "Selectos",
+        "Tomo",
+        "3"
+      ],
+      "pdf": "libros/EGW/Otras Colecciones/Testimonios Selectos Tomo 3.pdf",
+      "filename": "Testimonios Selectos Tomo 3.pdf"
+    },
+    {
+      "id": "egw-095",
+      "title": "El Conflicto de los Siglos",
+      "author": "Elena G. de White",
+      "category": "Serie Conflicto de los Siglos",
+      "description": "Libro de la colección Serie Conflicto de los Siglos.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Serie Conflicto de los Siglos",
+        "El",
+        "Conflicto",
+        "de",
+        "los",
+        "Siglos"
+      ],
+      "pdf": "libros/EGW/Serie Conflicto de los Siglos/El Conflicto de los Siglos.pdf",
+      "filename": "El Conflicto de los Siglos.pdf"
+    },
+    {
+      "id": "egw-096",
+      "title": "El Deseado de Todas las Gentes",
+      "author": "Elena G. de White",
+      "category": "Serie Conflicto de los Siglos",
+      "description": "Libro de la colección Serie Conflicto de los Siglos.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Serie Conflicto de los Siglos",
+        "El",
+        "Deseado",
+        "de",
+        "Todas",
+        "las",
+        "Gentes"
+      ],
+      "pdf": "libros/EGW/Serie Conflicto de los Siglos/El Deseado de Todas las Gentes.pdf",
+      "filename": "El Deseado de Todas las Gentes.pdf"
+    },
+    {
+      "id": "egw-097",
+      "title": "Historia de los Patriarcas y Profetas",
+      "author": "Elena G. de White",
+      "category": "Serie Conflicto de los Siglos",
+      "description": "Libro de la colección Serie Conflicto de los Siglos.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Serie Conflicto de los Siglos",
+        "Historia",
+        "de",
+        "los",
+        "Patriarcas",
+        "y",
+        "Profetas"
+      ],
+      "pdf": "libros/EGW/Serie Conflicto de los Siglos/Historia de los Patriarcas y Profetas.pdf",
+      "filename": "Historia de los Patriarcas y Profetas.pdf"
+    },
+    {
+      "id": "egw-098",
+      "title": "Los Hechos de los Apóstoles",
+      "author": "Elena G. de White",
+      "category": "Serie Conflicto de los Siglos",
+      "description": "Libro de la colección Serie Conflicto de los Siglos.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Serie Conflicto de los Siglos",
+        "Los",
+        "Hechos",
+        "de",
+        "los",
+        "Apóstoles"
+      ],
+      "pdf": "libros/EGW/Serie Conflicto de los Siglos/Los Hechos de los Apóstoles.pdf",
+      "filename": "Los Hechos de los Apóstoles.pdf"
+    },
+    {
+      "id": "egw-099",
+      "title": "Profetas y Reyes",
+      "author": "Elena G. de White",
+      "category": "Serie Conflicto de los Siglos",
+      "description": "Libro de la colección Serie Conflicto de los Siglos.",
+      "keywords": [
+        "EGW",
+        "Elena G. de White",
+        "Serie Conflicto de los Siglos",
+        "Profetas",
+        "y",
+        "Reyes"
+      ],
+      "pdf": "libros/EGW/Serie Conflicto de los Siglos/Profetas y Reyes.pdf",
+      "filename": "Profetas y Reyes.pdf"
+    }
+  ]
+}
