@@ -36,6 +36,12 @@
     "rutaHTML": "secciones/podcast/podcasts.html"
   },
   {
+    "id": "app-egw",
+    "titulo": "EGW",
+    "icono": "assets/icons/egw.svg",
+    "rutaHTML": "secciones/Biblioteca EGW/index.html"
+  },
+  {
     "id": "app-contacto",
     "titulo": "Contacto",
     "icono": "assets/icons/contacto.svg",
